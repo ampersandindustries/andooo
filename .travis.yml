@@ -10,5 +10,5 @@ script:
   - bundle exec rspec spec
 before_script:
   - cp config/database.travis.yml config/database.yml
-  - psql -c 'create database andconf-arooo_test;' -U postgres
+  - psql -c 'create database andconfarooo_test;' -U postgres
 env: SECRET_TOKEN=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
