@@ -6,11 +6,9 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to 'Double Union', root_path, class: 'navbar-brand'
+      = link_to 'AndConf', root_path, class: 'navbar-brand'
     .collapse.navbar-collapse.navbar-ex1-collapse
       %ul.nav.navbar-nav
-        %li= external_link_to 'Blog', TUMBLR_URL
-
       - if logged_in?
         %ul.nav.navbar-nav.pull-right
           %li.vote-alert-badge

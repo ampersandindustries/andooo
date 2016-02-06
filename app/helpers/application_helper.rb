@@ -13,15 +13,11 @@ module ApplicationHelper
     auto_link(url, html: { target: '_blank' })
   end
 
-  def s3_url(name)
-    "#{S3_BUCKET}/#{name}"
-  end
-
   def html_title
     if content_for?(:title)
       yield(:title)
     else
-      "Double Union | A hacker/maker space for women in San Francisco"
+      "AndConf"
     end
   end
 
@@ -29,7 +25,7 @@ module ApplicationHelper
     if content_for?(:description)
       yield(:description)
     else
-      "A hacker/maker space for women in San Francisco"
+      "AndConf"
     end
   end
 
@@ -41,10 +37,6 @@ module ApplicationHelper
     timestamp.strftime(format)
   end
 
-  # now unused in favor of redcarpet markdown
-  #def preserve_newlines(text)
-  #  text ? text.split("\n").map { |p| h(p) }.join("<br />").html_safe : nil
-  #end
 
   def google_analytics
     return unless Rails.env.production?
