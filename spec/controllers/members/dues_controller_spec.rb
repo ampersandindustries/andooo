@@ -110,20 +110,4 @@ describe Members::DuesController do
       end
     end
   end
-
-  describe "POST scholarship_request" do
-    let(:params) { { "user_id" => member.id, "reason" => "Lemurs are pretty great animals." } }
-
-    subject { post :scholarship_request, params }
-
-    context "logged in as a member" do
-      before { login_as member }
-
-      it "sends an email" do
-        expect { subject }.to change { ActionMailer::Base.deliveries.count }.by(1)
-        expect(ActionMailer::Base.deliveries.last.to).to eq(["scholarship@doubleunion.org"])
-        expect(ActionMailer::Base.deliveries.last.body).to include "Lemurs are pretty great"
-      end
-    end
-  end
 end
