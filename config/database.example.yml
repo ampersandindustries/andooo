@@ -16,10 +16,8 @@ development:
   adapter:  postgresql
   host:     localhost
   encoding: unicode
-  database: doubleunion_development
+  database: andconf-arooo_development
   pool:     5
-  username: postgres
-  password:
   template: template0
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -44,18 +42,14 @@ test: &test
   adapter:  postgresql
   host:     localhost
   encoding: unicode
-  database: doubleunion_test
+  database: andconf-arooo_test
   pool:     5
-  username: postgres
-  password:
   template: template0
 
 production:
   adapter:  postgresql
   host:     localhost
   encoding: unicode
-  database: doubleunion_production
+  database: andconf-arooo_production
   pool:     5
-  username: postgres
-  password:
   template: template0
