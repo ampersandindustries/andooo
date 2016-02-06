@@ -1,46 +1,5 @@
 require "spec_helper"
 
-describe "becoming a key member" do
-
-  before do
-    page.set_rack_session(user_id: member.id)
-  end
-
-  context "when logged in as a member" do
-    let(:member) { create :member }
-
-    it "allows a member to become a key member" do
-      visit edit_members_user_key_members_path(member)
-      check "agreements[kick_out]"
-      check "agreements[lock_up]"
-      check "agreements[take_action]"
-      check "agreements[attended_events]"
-      click_button "Submit"
-      expect(page).to have_content "Yay, you're now a key member!"
-    end
-  end
-end
-
-describe "submitting the voting member agreement" do
-  let(:member) { create(:member) }
-
-  before { page.set_rack_session(user_id: member.id) }
-
-  it "allows a member to submit the voting member agreement" do
-    visit members_root_path
-    click_link "Become a voting member"
-    expect(page).to have_content "Voting Member Agreement"
-    check "I have read and agree to uphold the confidentiality policy."
-    check "I have read and agree to uphold the voting member policy document."
-    check "I agree to vote on applications according to the criteria laid out in the voting member policy."
-    check "I have attended a voting member training"
-    check "I am able to dedicate 3-4 hours per week to voting during the membership drive"
-    check "I am open to having uncomfortable discussions during the course of voting on applications."
-    click_on "Submit"
-    expect(page).to have_content "Thank you for volunteering to serve as a voting member! A membership coordinator will be in touch soon."
-  end
-end
-
 describe "marking members as on scholarship" do
   before { page.set_rack_session(user_id: admin.id) }
 
