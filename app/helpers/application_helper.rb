@@ -48,9 +48,8 @@ module ApplicationHelper
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', '#{GOOGLE_ANALYTICS_ID}', 'doubleunion.org');
+        ga('create', #{GOOGLE_ANALYTICS_ID}, 'auto');
         ga('send', 'pageview');
-
       </script>
     eos
     code.html_safe
