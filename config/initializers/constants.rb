@@ -1,10 +1,4 @@
-TWITTER_USERNAME     = 'doubleunionsf'
-TWITTER_URL          = "https://twitter.com/#{TWITTER_USERNAME}"
-
-PRESS_EMAIL          = 'press@doubleunion.org'
-PAYPAL_EMAIL         = 'paypal@doubleunion.org'
-CONTACT_EMAIL        = 'doubleunionsf@gmail.com'
-JOIN_EMAIL           = I18n.t('du.join_email')
+INFO_EMAIL           = "info@andconf.io"
 MEMBERSHIP_EMAIL     = I18n.t('du.membership_email')
 BOARD_EMAIL          = I18n.t('du.board_email')
 KEYS_EMAIL           = "keys@doubleunion.org"
