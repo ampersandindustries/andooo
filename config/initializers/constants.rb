@@ -1,6 +1,5 @@
 INFO_EMAIL           = "info@andconf.io"
 MEMBERSHIP_EMAIL     = I18n.t('du.membership_email')
-BOARD_EMAIL          = I18n.t('du.board_email')
 
 TUMBLR_BASE          = 'doubleunion.tumblr.com'
 TUMBLR_URL           = "http://#{TUMBLR_BASE}"

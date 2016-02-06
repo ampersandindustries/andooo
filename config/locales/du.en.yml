@@ -1,7 +1,6 @@
 en:
   du:
     membership_email: membership@doubleunion.org
-    board_email: board@doubleunion.org
 
   activerecord:
     errors:
