@@ -1,9 +1,9 @@
-## Andooo, the AndConf fork of Double Union's Arooo
-[![Build Status](https://travis-ci.org/ampersandindustries/arooo.svg?branch=master)](https://travis-ci.org/ampersandindustries/arooo)
+## Andooo
+[![Build Status](https://travis-ci.org/ampersandindustries/andooo.svg?branch=master)](https://travis-ci.org/ampersandindustries/andooo)
 
 ## Welcome :rocket::rocket::rocket:
 
-This is a fork of the membership application app written by members of [Double Union](http://doubleunion.org/), a feminist hacker/makerspace for women in San Francisco.
+This is a fork of the membership application app written by members of [Double Union](http://doubleunion.org/), a feminist hacker/makerspace for women in San Francisco. That app is called Arooo (after A Room Of One's Own). AndConf + Arooo = Andooo. :100:
 
 It's being used by [AndConf](https://www.andconf.io/), an intersectional feminist code retreat and unconference to manage applications to attend the conference.
 
