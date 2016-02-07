@@ -1,18 +1,10 @@
-%h2 Membership application
+%h2 AndConf Application
 
 %p
-  Hello! We're glad you're interested in becoming a member of Double Union. We love reading applications and look forward to meeting you if we haven't already.
-  If you have any questions about the application or application process, please email our membership coordinators at #{ mail_to INFO_EMAIL }.
+  This paragraph will be about AndConf and why there's an application process
 
 %p
-  You can save this application at any time before you submit it. Once
-  submitted, it will only be visible to Double Union members.  No part of this
-  application will ever be public.
-
-%p
-  A small tip: The paragraph questions are parsed as markdown! Here's a #{ link_to "markdown syntax cheatsheet", "https://caleorourke.gitbooks.io/redcarpet-syntax/content/cheatsheet/index.html", target: "_blank"}.
-  That means that you can also just type in sentences or paragraphs and it'll look fine, too.
-  You can also #{ link_to "preview your application", application_path(@user.application), target: "_blank"} before or after submitting it.
+  This paragraph will be about how we'll be evaluating applications
 
 %p
   If this application looks blanker than you left it, double check that you logged in with the same service as before by logging out and trying the other one (GitHub or Google).
@@ -102,11 +94,10 @@
         %td
           = profile_fields.label :reasons, 'Tell us about your feminism!'
           %p.small
-            We ask this because we care about DU being an intersectional feminist space, and it's important to us
+            We ask this because we care about AndConf being an intersectional feminist space, and it's important to us
             that new members care about this too; we expect members to identify as feminist in some way. To help us
             understand your perspective, we'd like to hear about your thoughts around your own feminism. It's ok if you
-            don't have a formal/academic way of talking about this! You may also find it helpful to look at our
-            #{ link_to "base assumptions", BASE_ASSUMPTIONS_URL } since they help explain DU's shared values.
+            don't have a formal/academic way of talking about this!
           %p.small Required — 2000 character maximum.
         %td= profile_fields.text_area :feminism, rows: 10
 
@@ -135,7 +126,7 @@
 
               %tr
                 %td.pt-10= app_fields.check_box :agreement_terms
-                %td.pt-10.pl-10= app_fields.label :agreement_terms, "I understand the #{link_to 'privileges and responsibilities', MEMBERSHIP_URL, target: "_blank"} that come with Double Union membership.".html_safe, class: 'checkbox-label'
+                %td.pt-10.pl-10= app_fields.label :agreement_terms, "I understand the #{link_to 'privileges and responsibilities', POLICIES_URL, target: "_blank"} that come with Double Union membership.".html_safe, class: 'checkbox-label'
 
               %tr
                 %td.pt-10= app_fields.check_box :agreement_policies
@@ -157,7 +148,7 @@
     %h3 Submit
     %p
       When you're done with your application, submit it with the button below.
-      You will be able to edit it any time before the membership drive closes.
+      You will be able to edit it any time before applications close.
     %p
       If you're curious what your application will look like to us,
       you can #{ link_to "check it out here", application_path(@user.application), target: "_blank"}.

@@ -36,7 +36,7 @@ describe 'opening and closing applications' do
       end
 
       it 'should show me my application' do
-        expect(page).to have_content "Hello! We're glad you're interested in becoming a member of Double Union."
+        expect(page).to have_content "If this application looks blanker than you left it, double check that you logged in with the same service as "
       end
     end
   end
