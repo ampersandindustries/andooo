@@ -5,7 +5,6 @@
       %tr.more-padding
         %th.name Name
         %th.date Submitted
-        %th Sponsors
         %th Comments
         - if current_user.voting_member?
           %th You
@@ -24,8 +23,6 @@
               = application.submitted_at.strftime('%b %d, %Y')
             - else
               \--
-          %td
-            = application.sponsorships.count
           %td= application.comments.size
           - if current_user.voting_member?
             %td

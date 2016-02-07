@@ -47,11 +47,6 @@ FactoryGirl.define do
     value false
   end
 
-  factory :sponsorship do
-    user
-    application
-  end
-
   factory :application do
     user
     state "submitted"
@@ -63,17 +58,11 @@ FactoryGirl.define do
       state "started"
     end
 
-    factory :stale_application do
-      stale_email_sent_at nil
-      submitted_at { 14.days.ago }
-    end
-
     factory :approvable_application do
       submitted_at 7.days.ago
 
       after(:create) do |application, _|
         create_list(:vote, Application::MINIMUM_YES, application: application, value: true)
-        create_list(:sponsorship, Application::MINIMUM_SPONSORS, application: application)
       end
     end
 

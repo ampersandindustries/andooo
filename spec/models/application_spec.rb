@@ -22,7 +22,6 @@ describe Application do
       application.submitted_at = Time.now - 8.days
       expect(application).to receive_message_chain(:yes_votes, :count) { 6 }
       expect(application).to receive_message_chain(:no_votes, :count) { 0 }
-      expect(application).to receive_message_chain(:sponsorships, :count) { 1 }
     end
 
     it "should be approvable" do
@@ -46,7 +45,6 @@ describe Application do
     before do
       allow(application).to receive_message_chain(:yes_votes, :count)
       allow(application).to receive_message_chain(:no_votes, :count) { 2 }
-      allow(application).to receive_message_chain(:sponsorships, :count) { 0 }
     end
 
     it "should be rejectable" do

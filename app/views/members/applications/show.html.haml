@@ -25,17 +25,6 @@
   %button{ disabled: true }
     Only Voting Members Can Vote
 
-%h3 Sponsorship
-
-- if current_user.mature?
-  = form_for :sponsorship, url: members_application_sponsor_path(@application), method: :post do |f|
-    = label_tag :is_sponsor do
-      = check_box_tag :is_sponsor, 1, @sponsorship.present?
-      I've met this person and think they would be a respectful member of the DU community.
-    = f.submit "Submit", class: "btn btn-primary"
-- else
-  %p You'll be able to sponsor applicants once you've been a member for 2 weeks!
-
 %h3 Status
 
 %table.table
@@ -45,14 +34,6 @@
       - if @application.submitted_at
         = pretty_timestamp(@application.submitted_at)
         %small= "(#{time_ago_in_words(@application.submitted_at)} ago)"
-  %tr
-    %td Sponsors (who have met this person and recommend them)
-    %td
-      - if @application.sponsorships.any?
-        - @application.sponsorships.each do |sponsor|
-          = link_to sponsor.user.username, members_user_path(sponsor.user)
-      - else
-        none, yet
   %tr
     %td Votes <strong>for</strong> membership (#{@application.yes_votes.size})
     %td

@@ -2,7 +2,6 @@
   %tr
     %th Name
     %th Submitted
-    %th Sponsors
     %th Yes
     %th No
     %th ?
@@ -13,7 +12,6 @@
         = user_gravatar(application.user, 20)
         = link_to application.user.name, members_application_path(application)
       %td= application.submitted_at.strftime("%b %-d")
-      %td= application.sponsorships.count
       %td= application.yes_votes.size
       %td= application.no_votes.size
       %td= application.not_voted_count

@@ -53,17 +53,6 @@ describe ApplicationsMailer do
     end
   end
 
-  describe 'when someone does not have a sponsor after 2 weeks' do
-    describe 'no sponsor email' do
-      let(:stale_application) { create(:stale_application) }
-      let(:mail) { stale_application.no_sponsor_email }
-
-      it 'is sent if application is stale' do
-        expect(mail).to deliver_to(stale_application.user.email)
-      end
-    end
-  end
-
   describe 'when someone hits the vote threshold' do
     describe 'vote threshold email' do
       let(:approvable_application) { create(:approvable_application) }

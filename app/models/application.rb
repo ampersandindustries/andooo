@@ -3,13 +3,9 @@ class Application < ActiveRecord::Base
 
   has_many :votes, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :sponsorships
-  has_many :users, through: :sponsorships
 
   MINIMUM_YES = User.voting_members.count/2
   MAXIMUM_NO = 1
-  MINIMUM_SPONSORS = 1
-
 
   attr_protected :id
 
@@ -45,18 +41,6 @@ class Application < ActiveRecord::Base
   def not_voted_count
     @_not_voted_count ||= begin
       User.voting_members.count - votes.size
-    end
-  end
-
-  def stale?
-    submitted_at <= 14.days.ago && !rejectable? && !sponsored
-  end
-
-  def no_sponsor_email
-    if stale? && stale_email_sent_at.nil?
-      ApplicationsMailer.no_sponsor(self).deliver_now.tap do |message|
-        touch :stale_email_sent_at
-      end
     end
   end
 
@@ -101,7 +85,7 @@ class Application < ActiveRecord::Base
   end
 
   def approvable?
-    enough_yes && few_nos && sponsored && submitted_at < 7.days.ago
+    enough_yes && few_nos && state == "submitted" && submitted_at < 7.days.ago
   end
 
   def rejectable?
@@ -138,9 +122,5 @@ class Application < ActiveRecord::Base
 
   def few_nos
     no_votes.count <= MAXIMUM_NO
-  end
-
-  def sponsored
-    sponsorships.count >= MINIMUM_SPONSORS
   end
 end

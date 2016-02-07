@@ -27,14 +27,6 @@ class ApplicationsMailer < ActionMailer::Base
     )
   end
 
-  def no_sponsor(application)
-    @user = application.user
-    mail(
-      to: @user.email,
-      subject: "Your Double Union application is awaiting a sponsor"
-    )
-  end
-
   def votes_threshold(application)
     @user = application.user
     @application = application
