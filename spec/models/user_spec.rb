@@ -26,21 +26,6 @@ describe User do
     expect(User.new.state).to eq('visitor')
   end
 
-  it 'should have profile after created' do
-    expect(User.new.profile).to be_nil
-    expect(User.make!.profile).to be_an_instance_of(Profile)
-  end
-
-  it 'should accept nested attributes for profile' do
-    user = User.make!
-    expect(user.profile.twitter).to be_nil
-    user.update_attributes!(profile_attributes: {
-        id: user.profile.id,
-        twitter: 'Horse_ebooks'
-      })
-    expect(user.profile.twitter).to eq('Horse_ebooks')
-  end
-
   it 'should transition from visitor to applicant' do
     user = User.new
     user.username = 'sallyride'

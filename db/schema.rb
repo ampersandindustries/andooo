@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160207030133) do
+ActiveRecord::Schema.define(version: 20160215015415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,26 +57,6 @@ ActiveRecord::Schema.define(version: 20160207030133) do
   end
 
   add_index "configurables", ["name"], name: "index_configurables_on_name", using: :btree
-
-  create_table "profiles", force: :cascade do |t|
-    t.integer  "user_id",                                        null: false
-    t.string   "twitter"
-    t.string   "facebook"
-    t.string   "website"
-    t.string   "linkedin"
-    t.string   "blog"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "show_name_on_site",              default: false, null: false
-    t.string   "gravatar_email"
-    t.string   "summary",           limit: 2000
-    t.string   "reasons",           limit: 2000
-    t.string   "projects",          limit: 2000
-    t.string   "skills",            limit: 2000
-    t.string   "feminism",          limit: 2000
-  end
-
-  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

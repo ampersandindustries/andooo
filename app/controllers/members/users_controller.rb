@@ -2,21 +2,11 @@ class Members::UsersController < Members::MembersController
   before_action :set_user, except: [:index, :show]
 
   def index
-    @all_members = User.all_members
-      .includes(:profile)
-      .order_by_state
+    @all_members = User.all_members.order_by_state
   end
 
   def show
     @user = User.all_members.find(params.require(:id))
-  end
-
-  def edit
-  end
-
-  def update
-    update_attrs_and_set_flash
-    render action: :edit
   end
 
   def setup
@@ -38,15 +28,7 @@ class Members::UsersController < Members::MembersController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email,
-      :email_for_google, :dues_pledge,
-      profile_attributes: profile_attributes)
-  end
-
-  def profile_attributes
-    [:id, :twitter, :facebook, :website, :linkedin, :blog,
-     :summary, :reasons, :projects, :skills,
-     :show_name_on_site, :gravatar_email]
+    params.require(:user).permit(:name, :email, :email_for_google, :dues_pledge)
   end
 
   def set_user

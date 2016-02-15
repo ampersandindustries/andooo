@@ -16,14 +16,10 @@ describe Admin::MembershipsController do
 
       context "as JSON" do
         let!(:member) { create(:member, name: "Several Lemurs") }
-        let(:summary) { "We're like cats and bears mixed together and cute." }
-
-        before { member.profile.update_column(:summary, summary) }
 
         it "allows admin to view members as json" do
           get :index, format: "json"
           expect(response.body).to include "Several Lemurs"
-          expect(response.body).to include summary
         end
       end
     end

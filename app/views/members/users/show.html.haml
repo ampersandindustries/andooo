@@ -1,5 +1,3 @@
-- profile = @user.profile
-
 .profile-pic
   = user_gravatar(@user, 150)
 
@@ -7,52 +5,3 @@
 
 - if @user.email.present?
   %h4= @user.email
-
-- if logged_in_as?(@user)
-  %p= link_to 'Edit profile', edit_members_user_path(@user)
-
-%table.table
-  %tr
-    %td GitHub url
-    %td= external_auto_link(profile.github_url)
-
-  - if profile.twitter.present?
-    %tr
-      %td Twitter url
-      %td= external_auto_link(profile.twitter_url)
-
-  - if profile.facebook.present?
-    %tr
-      %td Facebook url
-      %td= external_auto_link(profile.facebook)
-
-  - if profile.website.present?
-    %tr
-      %td Website url
-      %td= external_auto_link(profile.website)
-
-  - if profile.linkedin.present?
-    %tr
-      %td LinkedIn url
-      %td= external_auto_link(profile.linkedin)
-
-  - if profile.blog.present?
-    %tr
-      %td Blog url
-      %td= external_auto_link(profile.blog)
-
-- if profile.summary.present?
-  %h4 Tell us a little about yourself!
-  %div= markdown(profile.summary)
-
-- if profile.reasons.present?
-  %h4 Why are you interested in joining Double Union?
-  %div= markdown(profile.reasons)
-
-- if profile.projects.present?
-  %h4 What would you like to work on in the space?
-  %div= markdown(profile.projects)
-
-- if profile.skills.present?
-  %h4 What skills are you most interested in learning, improving, and/or teaching?
-  %div= markdown(profile.skills)

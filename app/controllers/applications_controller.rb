@@ -60,14 +60,7 @@ class ApplicationsController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email,
-      profile_attributes: profile_attributes,
-      application_attributes: application_attributes)
-  end
-
-  def profile_attributes
-    [:id, :twitter, :facebook, :website, :linkedin, :blog,
-     :summary, :reasons, :feminism, :projects, :skills ]
+    params.require(:user).permit(:name, :email, application_attributes: application_attributes)
   end
 
   def application_attributes

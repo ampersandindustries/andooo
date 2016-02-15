@@ -12,8 +12,7 @@ describe "applying to double union" do
   it "allows the user to submit an application" do
     visit new_application_path
 
-    fill_in "Twitter username", with: "@beepboopbeep"
-    fill_in "Blog URL", with: "http://blog.awesome.com"
+    fill_in "Full name", with: "Beep Booper"
     check "user_application_attributes_agreement_terms"
     check "user_application_attributes_agreement_policies"
     check "user_application_attributes_agreement_female"
@@ -23,15 +22,14 @@ describe "applying to double union" do
     }.to change { cool_lady.application.reload.state }.from("started").to("submitted")
 
     expect(page).to have_content "Application submitted!"
-    expect(find_field('Twitter username').value).to eq "@beepboopbeep"
+    expect(find_field('Full name').value).to eq "Beep Booper"
   end
 
   it "allows the user to save her application without submitting it" do
     visit new_application_path
     expect(page).to have_content "If this application looks blanker than you left it"
 
-    fill_in "Twitter username", with: "@beepboopbeep"
-    fill_in "Tell us a little about yourself!", with: "I am definitely not a cat!"
+    fill_in "Full name", with: "Beep Booper"
 
     first(:button, "Save without submitting").click
 
@@ -44,19 +42,17 @@ describe "applying to double union" do
     visit new_application_path
     expect(page).to have_content "If this application looks blanker than you left it"
 
-    fill_in "Twitter username", with: "@beepboopbeep"
-    fill_in "Blog URL", with: "http://blog.awesome.com"
+    fill_in "Full name", with: "Beep Booper"
     check "user_application_attributes_agreement_terms"
     check "user_application_attributes_agreement_policies"
     check "user_application_attributes_agreement_female"
 
     click_on "Submit application"
 
-    fill_in "Twitter username", with: "@new_and_better_handle"
+    fill_in "Full name", with: "Bop Beeper"
 
     first(:button, "Update application").click
 
-    expect(find_field('Twitter username').value).to eq "@new_and_better_handle"
+    expect(find_field("Full name").value).to eq "Bop Beeper"
   end
-
 end

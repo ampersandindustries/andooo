@@ -28,10 +28,9 @@
                 %li.divider
                 %li= link_to 'Sign out', logout_path
           - if current_user.general_member?
-            %li
-              = link_to edit_members_user_path(current_user) do
-                = user_gravatar(current_user)
-                = current_user.username
+            %li.pt-10
+              = user_gravatar(current_user)
+              = current_user.username
       - else
         %ul.nav.navbar-nav.pull-right
           %li{'data-toggle' => 'modal', 'data-target' => '#log_in'}

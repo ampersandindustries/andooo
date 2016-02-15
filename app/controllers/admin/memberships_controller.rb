@@ -2,11 +2,11 @@ class Admin::MembershipsController < ApplicationController
   before_filter :ensure_admin
 
   def index
-    @all_members = User.all_members.includes(:profile).order_by_state
+    @all_members = User.all_members.order_by_state
 
     respond_to do |format|
       format.html
-      format.json { render json: @all_members.as_json(include: :profile) }
+      format.json { render json: @all_members.as_json }
     end
   end
 

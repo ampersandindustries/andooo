@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   EMAIL_PATTERN = /\A.+@.+\Z/
 
-  attr_accessible :username, :name, :email, :profile_attributes,
+  attr_accessible :username, :name, :email,
     :application_attributes, :email_for_google, :dues_pledge, :is_scholarship, :voting_policy_agreement
 
   validates :state, presence: true
@@ -19,14 +19,13 @@ class User < ActiveRecord::Base
     if:       :setup_complete,
     format:   { with: EMAIL_PATTERN }
 
-  has_one  :profile,     dependent: :destroy
   has_one  :application, dependent: :destroy
   has_many :authentications, dependent: :destroy
   has_many :votes,       dependent: :destroy
   has_many :comments,    dependent: :destroy
 
-  after_create :create_profile, :create_application
-  accepts_nested_attributes_for :profile, :application
+  after_create :create_application
+  accepts_nested_attributes_for :application
 
   scope :visitors,    -> { where(state: 'visitor') }
   scope :applicants,  -> { where(state: 'applicant') }
@@ -41,17 +40,8 @@ class User < ActiveRecord::Base
     .where(stripe_customer_id: nil)
   }
 
-  scope :show_public, -> {
-    all_members
-    .includes(:profile)
-    .where(:'profiles.show_name_on_site' => true)
-    .where('name IS NOT NULL')
-    .order_by_state
-  }
-
   scope :with_submitted_application, -> {
     applicants
-    .includes(:profile)
     .includes(:application)
     .where(:'applications.state' => 'submitted')
     .order('applications.submitted_at DESC')
@@ -59,7 +49,6 @@ class User < ActiveRecord::Base
 
   scope :with_started_application, -> {
     applicants
-    .includes(:profile)
     .includes(:application)
     .where(:'applications.state' => 'started')
     .order('applications.submitted_at DESC')
@@ -122,13 +111,9 @@ class User < ActiveRecord::Base
   end
 
   def gravatar_url(size = 200)
-    email = gravatar_email || self.email
+    email = self.email
     hash = email ? Digest::MD5.hexdigest(email.downcase) : nil
     "https://www.gravatar.com/avatar/#{hash}?s=#{size}"
-  end
-
-  def create_profile
-    self.profile ||= Profile.create(user_id: id)
   end
 
   def create_application
@@ -161,10 +146,6 @@ class User < ActiveRecord::Base
   end
 
   private
-
-  def gravatar_email
-    profile.gravatar_email if profile.gravatar_email.present?
-  end
 
   DEFAULT_PROVIDER = 'github'
 end

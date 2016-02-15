@@ -4,7 +4,7 @@ Doubleunion::Application.routes.draw do
   namespace :members do
     root to: 'users#index'
 
-    resources :users, only: [:index, :show, :edit, :update] do
+    resources :users, only: [:index, :show] do
       get 'setup' => "users#setup"
       patch 'setup' => "users#finalize"
 
@@ -51,7 +51,6 @@ Doubleunion::Application.routes.draw do
   post 'add_github_auth' => 'authentications#add_github_auth'
   post 'add_google_auth' => 'authentications#add_google_auth'
 
-  get 'public_members' => 'api#public_members'
   get 'configurations' => 'api#configurations'
 
   mount StripeEvent::Engine => '/stripe'

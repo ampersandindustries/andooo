@@ -108,7 +108,7 @@ class SessionsController < ApplicationController
         flash[:alert] = "Whoops, something went wrong! Sorry. Email admin@doubleunion.org if this keeps happening."
       end
 
-      redirect_to edit_members_user_path(user.id)
+      redirect_to root_path
     end
 
     def set_user_session(user)
