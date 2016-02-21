@@ -11,21 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215015415) do
+ActiveRecord::Schema.define(version: 20160215015416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "applications", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "state",                              null: false
-    t.boolean  "agreement_terms",    default: false, null: false
-    t.boolean  "agreement_policies", default: false, null: false
-    t.boolean  "agreement_female",   default: false, null: false
+    t.string   "state",                                  null: false
+    t.boolean  "agreement_coc",          default: false, null: false
+    t.boolean  "agreement_attendance",   default: false, null: false
+    t.boolean  "agreement_deadline",     default: false, null: false
     t.datetime "submitted_at"
     t.datetime "processed_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "why_andconf"
+    t.text     "feminism"
+    t.text     "programming_experience"
+    t.text     "diversity"
   end
 
   add_index "applications", ["state"], name: "index_applications_on_state", using: :btree

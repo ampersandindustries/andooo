@@ -113,7 +113,7 @@ class Application < ActiveRecord::Base
   end
 
   def agreed_to_all?
-    agreement_terms && agreement_policies && agreement_female
+    agreement_coc && agreement_attendance && agreement_deadline
   end
 
   def enough_yes

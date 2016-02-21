@@ -64,12 +64,15 @@ class ApplicationsController < ApplicationController
   end
 
   def application_attributes
-    [:id, :agreement_terms, :agreement_policies, :agreement_female]
+    [
+      :id, :agreement_coc, :agreement_attendance, :agreement_deadline,
+      :why_andconf, :feminism, :programming_experience, :diversity
+    ]
   end
 
   def ensure_accepting_applications
     unless Configurable[:accepting_applications]
-      flash['notice'] = "Double Union isn't currently accepting applications. Join our general interest mailing list to be notified when applications are open again."
+      flash['notice'] = "AndConf isn't currently accepting applications. Join our #{ view_context.link_to "general interest mailing list", MAILING_LIST, target: "_blank" } to be notified when applications are open again.".html_safe
       redirect_to root_path
     end
   end

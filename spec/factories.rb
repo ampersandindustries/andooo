@@ -50,9 +50,9 @@ FactoryGirl.define do
   factory :application do
     user
     state "submitted"
-    agreement_terms true
-    agreement_policies true
-    agreement_female true
+    agreement_coc true
+    agreement_attendance true
+    agreement_deadline true
 
     factory :unsubmitted_application do
       state "started"

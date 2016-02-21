@@ -7,6 +7,9 @@
   This paragraph will be about how we'll be evaluating applications
 
 %p
+  And here a timeline for when we'll be reviewing applications and notifying people of acceptance!
+
+%p
   If this application looks blanker than you left it, double check that you logged in with the same service as before by logging out and trying the other one (GitHub or Google).
 
 
@@ -23,7 +26,6 @@
       = f.submit 'Save without submitting', name: 'save', class: "btn"
 
   %table.table
-
     %tr
       %td
         = f.label :name, 'Full name'
@@ -36,23 +38,52 @@
         %small (required)
       %td= f.text_field :email, required: true
 
-      %tr.nested-table
-        %td{ colspan: 2 }
-          %table
-            = f.fields_for :application do |app_fields|
-              = app_fields.hidden_field :id
+  = f.fields_for :application do |app_fields|
+    %table.table
+      %tr
+        %td
+          = app_fields.label :why_andconf, "Why do you want to attend to AndConf?"
+          %p.small
+            We don't evaluate applications based on how accomplished or successful a person is.
+            Some sentences or a paragraph would be great; for all of these questions,
+            we love getting to read some detail but don't want to burden you with writing a huge essay.
+          %p.small Required
+        %td= app_fields.text_area :why_andconf, rows: 10
+      %tr
+        %td
+          = app_fields.label :feminism, "What is your level of familiarity with intersectional feminism?"
+          %p.small
+            It’s fine to not be an expert on the topic.
+          %p.small Required
+        %td= app_fields.text_area :feminism, rows: 10
+      %tr
+        %td
+          = app_fields.label :programming_experience, "How much programming experience do you have?"
+          %p.small
+            We're looking for attendees with a wide variety of experience levels.
+          %p.small Required
+        %td= app_fields.text_area :programming_experience, rows: 10
+      %tr
+        %td
+          = app_fields.label :diversity, "Is there an aspect of your background or identity that you think would make AndConf more diverse?"
+          %p.small
+            We’re striving to have a diverse event with people from many backgrounds.
+            Answering “No” or leaving this section blank wouldn’t disqualify you from attending. A few sentences is plenty.
+        %td= app_fields.text_area :diversity, rows: 10
+    %tr.nested-table
+      %td{ colspan: 2 }
+        %table
+          %tr
+            %td.pt-10= app_fields.check_box :agreement_coc
+            %td.pt-10.pl-10= app_fields.label :agreement_coc, "I have read and agree to adhere to AndConf's Code of Conduct", class: 'checkbox-label'
 
-              %tr
-                %td.pt-10= app_fields.check_box :agreement_terms
-                %td.pt-10.pl-10= app_fields.label :agreement_terms, "I understand the #{link_to 'privileges and responsibilities', POLICIES_URL, target: "_blank"} that come with Double Union membership.".html_safe, class: 'checkbox-label'
+          %tr
+            %td.pt-10= app_fields.check_box :agreement_attendance
+            %td.pt-10.pl-10= app_fields.label :agreement_attendance, "I will attend the entire conference, from the evening of Friday 8/12/15 through Sunday evening, 8/14/15.", class: 'checkbox-label'
 
-              %tr
-                %td.pt-10= app_fields.check_box :agreement_policies
-                %td.pt-10.pl-10= app_fields.label :agreement_policies, "I agree to all posted #{link_to 'Double Union policies', POLICIES_URL, target: "_blank"}.".html_safe, class: 'checkbox-label'
-
-              %tr
-                %td.pt-10= app_fields.check_box :agreement_female
-                %td.pt-10.pl-10= app_fields.label :agreement_female, "To keep the focus on a great space for women (trans, cis, queer, straight, and not-fitting-into-those-labels/other), all DU members identify as women in a way that's significant to them. This fits with my self-identification.", class: 'checkbox-label'
+          %tr
+            %td.pt-10= app_fields.check_box :agreement_deadline
+            %td.pt-10.pl-10= app_fields.label :agreement_deadline, "I agree to confirm or decline my attendance within 2 weeks if I am accepted.", class: 'checkbox-label'
 
   - if @user.application.submitted?
     = f.submit 'Update application', name: 'save', class: "btn"

@@ -19,11 +19,11 @@ describe 'opening and closing applications' do
       end
 
       it 'should redirect to the membership page with a flash message' do
-        expect(page).to have_content "Double Union isn't currently accepting applications."
+        expect(page).to have_content "AndConf isn't currently accepting applications."
       end
 
       it 'should not show me my application' do
-        expect(page).not_to have_content "Hi, #{applicant.username}! We're glad you're"
+        expect(page).not_to have_content "If this application looks blanker than you left it, "
       end
     end
   end
