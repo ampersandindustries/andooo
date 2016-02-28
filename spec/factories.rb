@@ -48,7 +48,7 @@ FactoryGirl.define do
   end
 
   factory :application do
-    user
+    association :user, factory: :applicant
     state "submitted"
     agreement_coc true
     agreement_attendance true
@@ -59,8 +59,6 @@ FactoryGirl.define do
     end
 
     factory :approvable_application do
-      submitted_at 7.days.ago
-
       after(:create) do |application, _|
         create_list(:vote, Application::MINIMUM_YES, application: application, value: true)
       end
@@ -70,6 +68,11 @@ FactoryGirl.define do
       after(:create) do |application, _|
         create_list(:vote, Application::MAXIMUM_NO + 1, application: application, value: false)
       end
+    end
+
+    factory :approved_application do
+      state "approved"
+      processed_at Time.zone.now
     end
   end
 

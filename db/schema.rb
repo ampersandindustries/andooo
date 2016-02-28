@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215015416) do
+ActiveRecord::Schema.define(version: 20160227234855) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20160215015416) do
     t.text     "feminism"
     t.text     "programming_experience"
     t.text     "diversity"
+    t.datetime "confirmed_at"
   end
 
   add_index "applications", ["state"], name: "index_applications_on_state", using: :btree
@@ -79,6 +80,7 @@ ActiveRecord::Schema.define(version: 20160215015416) do
     t.datetime "last_stripe_charge_succeeded"
     t.boolean  "is_scholarship",               default: false
     t.boolean  "voting_policy_agreement",      default: false
+    t.text     "gender"
   end
 
   create_table "votes", force: :cascade do |t|

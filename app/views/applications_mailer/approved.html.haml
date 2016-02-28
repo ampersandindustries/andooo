@@ -3,9 +3,11 @@
     %td
       %p Hi #{@user.name}!
 
-      %p As soon as possible, log into #{ link_to "the site", SITE_URL } ("Log in" is at top right) and confirm your membership #{ link_to "on this page", members_user_setup_url(@user.id) }. This is where you'll give us your Google Drive-friendly email address, set up dues (or apply for a scholarship), and check your subscription to the members' mailing list. (A membership coordinator will subscribe you to the mailing list soon. Feel free to start a thread introducing yourself and jump into conversations right away.)
+      %p
+        As soon as possible, log into #{ link_to "the site", SITE_URL } ("Log in" is at top right) and confirm your
+        attendance #{ link_to "on this page", edit_attendances_url }.
 
-      %p If you have any questions, email the membership coordinator at #{ mail_to MEMBERSHIP_EMAIL }.
+      %p If you have any questions, email the organizers at #{ mail_to MEMBERSHIP_EMAIL }.
 
       %p
         All the best,
@@ -15,6 +17,3 @@
         @andconf
         %br/
         = link_to "www.andconf.io", SITE_URL
-
-      %p PS: Go do #{ link_to "all the things", members_user_setup_url(@user.id) } to get your membership finalized!
-

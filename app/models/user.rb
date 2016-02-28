@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
   EMAIL_PATTERN = /\A.+@.+\Z/
 
   attr_accessible :username, :name, :email,
-    :application_attributes, :email_for_google, :dues_pledge, :is_scholarship, :voting_policy_agreement
+    :application_attributes, :email_for_google, :dues_pledge, :is_scholarship,
+    :voting_policy_agreement, :gender
 
   validates :state, presence: true
 
@@ -78,6 +79,10 @@ class User < ActiveRecord::Base
       transition visitor: :applicant
     end
 
+    event :make_attendee do
+      transition applicant: :attendee
+    end
+
     event :make_member do
       transition [:applicant, :voting_member, :key_member] => :member
     end
@@ -100,6 +105,8 @@ class User < ActiveRecord::Base
 
     state :visitor
     state :applicant
+    state :attendee
+
     state :member
     state :key_member
     state :voting_member

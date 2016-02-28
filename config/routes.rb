@@ -38,6 +38,10 @@ Doubleunion::Application.routes.draw do
   post 'admin/save_membership_note' => 'admin#save_membership_note'
 
   resources :applications, only: [:new, :show, :edit, :update]
+  resource :attendances, only: [:edit] do
+    put :confirm, on: :member
+    get :details, on: :member
+  end
 
   get 'auth/:provider/callback' => 'sessions#create'
   get 'github_login' => 'sessions#github'

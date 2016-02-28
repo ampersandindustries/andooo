@@ -1,7 +1,7 @@
 class ApplicationsMailer < ActionMailer::Base
   default from: "Double Union <#{INFO_EMAIL}>"
 
-  def confirmation(application)
+  def submitted(application)
     @user = application.user
     mail(
       to: @user.email,
@@ -9,21 +9,19 @@ class ApplicationsMailer < ActionMailer::Base
     )
   end
 
-  def notify_members(application)
-    member_emails = User.all_members.pluck(:email).compact
-    @applicant = application.user
-    mail(
-      to: INFO_EMAIL,
-      bcc: member_emails,
-      subject: "New Double Union application submitted"
-    )
-  end
-
   def approved(application)
     @user = application.user
     mail(
       to: @user.email,
-      subject: "Welcome to Double Union!!!"
+      subject: "Please join us at AndConf 2016"
+    )
+  end
+
+  def confirmed(application)
+    @user = application.user
+    mail(
+      to: @user.email,
+      subject: "Attendance at AndConf 2016 confirmed!"
     )
   end
 

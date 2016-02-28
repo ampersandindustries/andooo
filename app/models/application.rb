@@ -51,19 +51,24 @@ class Application < ActiveRecord::Base
   end
 
   state_machine :state, initial: :started do
-    after_transition started: :submitted do |application, transition|
-      ApplicationsMailer.confirmation(application).deliver_now
-      ApplicationsMailer.notify_members(application).deliver_now
+
+    after_transition started: :submitted do |application|
+      ApplicationsMailer.submitted(application).deliver_now
       application.touch :submitted_at
     end
 
-    after_transition submitted: [:approved, :rejected] do |application, transition|
+    after_transition submitted: [:approved, :rejected] do |application|
       application.touch :processed_at
     end
 
     after_transition submitted: :approved do |application|
-      application.user.make_member
       ApplicationsMailer.approved(application).deliver_now
+    end
+
+    after_transition approved: :confirmed do |application|
+      application.touch :confirmed_at
+      ApplicationsMailer.confirmed(application).deliver_now
+      application.user.make_attendee
     end
 
     event :submit do
@@ -78,14 +83,19 @@ class Application < ActiveRecord::Base
       transition submitted: :rejected
     end
 
+    event :confirm do
+      transition approved: :confirmed
+    end
+
     state :started
     state :submitted
     state :approved
     state :rejected
+    state :confirmed
   end
 
   def approvable?
-    enough_yes && few_nos && state == "submitted" && submitted_at < 7.days.ago
+    enough_yes && few_nos && state == "submitted"
   end
 
   def rejectable?

@@ -47,6 +47,16 @@ describe User do
     expect { user.make_member! }.to raise_error(StateMachine::InvalidTransition)
   end
 
+  describe "#make_attendee" do
+    let(:member) { create(:applicant) }
+
+    subject { member.make_attendee }
+
+    it "should transition from applicant to attendee" do
+      expect { subject }.to change { member.state }.from("applicant").to("attendee")
+    end
+  end
+
   describe "#make_former_member" do
     let(:member) { create(:member) }
 

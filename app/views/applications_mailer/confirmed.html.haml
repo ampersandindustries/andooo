@@ -1,0 +1,20 @@
+%table{style: "width: 700px;"}
+  %tr
+    %td
+      %p Hi #{@user.name}!
+
+      %p We are SO EXCITED for you to attend AndConf 2016!
+
+      %p If you have any questions, email the membership coordinator at #{ mail_to MEMBERSHIP_EMAIL }.
+
+      %p
+        All the best,
+        %br/
+        AndConf
+        %br/
+        @andconf
+        %br/
+        = link_to "www.andconf.io", SITE_URL
+
+      %p PS: Go do #{ link_to "all the things", members_user_setup_url(@user.id) } to get your membership finalized!
+

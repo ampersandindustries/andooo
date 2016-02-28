@@ -17,3 +17,13 @@ shared_examples "allow members" do |folks|
     end
   end
 end
+
+shared_examples "allow applicants" do |folks|
+  folks.each do |folk|
+    it "should allow applicants" do
+      login_as(folk)
+      subject
+      expect(response).to be_success
+    end
+  end
+end
