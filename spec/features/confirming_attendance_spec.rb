@@ -15,4 +15,10 @@ describe "confirming attendance at AndConf" do
 
     expect(page).to have_content "AndConf is going to be great!"
   end
+
+  it "allows applicants to pay for their ticket"
+
+  context "as a scholarship recipient" do
+    it "doesn't charge you anything"
+  end
 end

@@ -41,6 +41,7 @@ Doubleunion::Application.routes.draw do
   resource :attendances, only: [:edit] do
     put :confirm, on: :member
     get :details, on: :member
+    resource :payments, only: [:edit, :update]
   end
 
   get 'auth/:provider/callback' => 'sessions#create'
