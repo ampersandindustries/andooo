@@ -1,0 +1,15 @@
+%h1 Wanna come to AndConf?
+
+%p We hope you can come!
+
+- if @attendance.errors.present?
+  %ul
+  - @attendance.errors.full_messages.each do |e|
+    %li= e
+
+= form_for @attendance, url: attendances_path, method: :put, html: { class: "form" } do |f|
+  .form-group
+    = f.label :gender, "Gender"
+    = f.text_field :gender
+  %p
+    = f.submit "Submit", class: "btn btn-primary"

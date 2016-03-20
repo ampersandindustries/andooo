@@ -5,7 +5,7 @@
   Tickets to AndConf cost $300, which includes 8 meals and 3 nights lodging at the venue, St. Dorothy's Rest, as well
   as transportation to and from downtown San Francisco.
 
-= form_tag attendances_payments_path, method: :put, id: "dues-form" do
+= form_tag payment_form_attendances_path, method: :put, id: "dues-form" do
   %a#js-dues.btn.btn-primary{ href: "#", data: { key: "#{ENV['STRIPE_PUBLISHABLE_KEY']}", email: @user.email } } Purchase Ticket
 
 %script{src: 'https://checkout.stripe.com/checkout.js'}
