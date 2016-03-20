@@ -15,6 +15,8 @@
             %a{ href: members_applications_path }
               %span.badge= current_user.number_applications_needing_vote
         %ul.nav.navbar-nav.pull-right
+          %li
+            = link_to "Attendee Details and FAQ", details_path
           - unless current_user.general_member?
             %li.dropdown
               / %span.badge 5
@@ -33,6 +35,10 @@
               = current_user.username
       - else
         %ul.nav.navbar-nav.pull-right
+          %li
+            = link_to "Attendee Details and FAQ", details_path
+          %li
+            = link_to "Sponsorship", "/andconf_prospectus.pdf"
           %li{'data-toggle' => 'modal', 'data-target' => '#log_in'}
             = link_to "Log In", "#"
 

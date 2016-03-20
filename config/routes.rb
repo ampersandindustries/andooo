@@ -1,5 +1,8 @@
 Doubleunion::Application.routes.draw do
-  root to: 'sessions#login'
+  root to: 'static_pages#home'
+
+  get 'code_of_conduct' => 'static_pages#code_of_conduct'
+  get 'details' => 'static_pages#details'
 
   namespace :members do
     root to: 'users#index'

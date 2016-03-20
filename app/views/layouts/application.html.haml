@@ -1,13 +1,15 @@
 !!!
 %html
   %head
-    %meta{ content: 'width=device-width, initial-scale=1.0', name: 'viewport' }
-      %title= html_title
-      %meta{ content: html_description, name: 'description' }
-        = stylesheet_link_tag 'application', media: 'all'
-        = stylesheet_link_tag 'admin', media: 'all' if members_page?
-        = csrf_meta_tags
-        = yield(:head)
+    %meta{name:"viewport", content:"width=device-width, initial-scale=1"}
+    %title
+      = html_title || "AndConf code retreat and unconference"
+    - # Fetch fonts in markup instead of importing from CSS so they load faster
+    = stylesheet_link_tag '//fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300|Bree+Serif', media: 'all'
+    = stylesheet_link_tag 'application', media: 'all'
+    = stylesheet_link_tag 'admin', media: 'all' if members_page?
+    = csrf_meta_tags
+    = yield(:head)
   %body{ class: body_classes.join(' ') }
     .wrapper
       = render 'layouts/navigation'
@@ -15,8 +17,17 @@
       #main{ role: 'main' }
         = render 'layouts/messages'
         .container= yield
+
     %footer
       .container= render 'layouts/footer'
     = javascript_include_tag 'application'
     = yield :js
-    = google_analytics
+
+    :javascript
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-62820008-1', 'auto');
+      ga('send', 'pageview');

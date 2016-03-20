@@ -1,0 +1,246 @@
+body.static_pages {
+  padding: 0;
+  margin: 0;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  color: #606c71;
+
+  * { box-sizing: border-box; }
+
+  h1, h2, h3 { font-family: "Bree Serif", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+  a {
+    color: #0082EE;
+    text-decoration: none; }
+    a:hover {
+      text-decoration: underline; }
+
+  @media screen and (min-width: 64em) {
+    nav ul {
+      margin: 0 auto;
+      max-width: 64rem;
+      text-align: center;
+    }
+
+    nav ul li {
+      display: inline-block;
+      padding: 0.1rem 2rem;
+    }
+  }
+
+  @media screen and (min-width: 42em) and (max-width: 64em) {
+    nav ul { font-size: 1.1rem; }
+    nav ul li { padding: 0.5rem 4rem; }
+  }
+
+  .clearfix:before {
+    display: table;
+    content: "";
+  }
+  .clearfix:after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+
+  .bio {
+    clear: left;
+  }
+
+  .bio img {
+    width: 100px;
+    float: left;
+    margin: 0 20px 20px 0;
+  }
+
+  img.faq-img {
+    float: left;
+    margin: 0 20px 20px 0;
+    padding-top: 5px;
+  }
+
+  .mt10 { margin-top: 10px; }
+  .mb0 { margin-bottom: 0; }
+  .m0 { margin: 0; }
+
+  @media screen and (min-width: 64em) {
+    .btn {
+      padding: 0.75rem 1rem; } }
+
+  @media screen and (min-width: 42em) and (max-width: 64em) {
+    .btn {
+      padding: 0.6rem 0.9rem;
+      font-size: 0.9rem; } }
+
+  @media screen and (max-width: 42em) {
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 0.9rem; }
+      .btn + .btn {
+        margin-top: 1rem;
+        margin-left: 0; } }
+
+  .page-header {
+    color: #fff;
+    text-align: center;
+    background: #29371d url('../road.jpg') center 0;
+  }
+
+  .project-name a {
+    color: #fff;
+  }
+
+  .project-name a:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .project-name a:visited {
+    color: #fff;
+  }
+
+  @media screen and (min-width: 64em) {
+    .page-header {
+      padding: 5rem 6rem; } }
+
+  @media screen and (min-width: 42em) and (max-width: 64em) {
+    .page-header {
+      padding: 3rem 4rem; } }
+
+  @media screen and (max-width: 42em) {
+    .page-header {
+      padding: 2rem 1rem; } }
+
+  .project-name {
+    margin-top: 0;
+    margin-bottom: 0.1rem; }
+
+  @media screen and (min-width: 64em) {
+    .project-name {
+      font-size: 6.25rem; } }
+
+  @media screen and (min-width: 42em) and (max-width: 64em) {
+    .project-name {
+      font-size: 3.25rem; } }
+
+  @media screen and (max-width: 42em) {
+    .project-name {
+      font-size: 2.75rem; } }
+
+  .project-tagline {
+    margin-bottom: 2rem;
+    font-weight: normal;
+    opacity: 0.7; }
+
+  @media screen and (min-width: 64em) {
+    .project-tagline {
+      font-size: 2.25rem; } }
+
+  @media screen and (min-width: 42em) and (max-width: 64em) {
+    .project-tagline {
+      font-size: 2.15rem; } }
+
+  @media screen and (max-width: 42em) {
+    .project-tagline {
+      font-size: 2rem; } }
+
+  .main-content :first-child {
+    margin-top: 0; }
+  .main-content img {
+    max-width: 100%; }
+  .main-content h1,
+  .main-content h2,
+  .main-content h3,
+  .main-content h4,
+  .main-content h5,
+  .main-content h6 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: normal;
+    color: #159957; }
+  .main-content h3 { color: #999; }
+  .main-content p {
+    margin-bottom: 1em; }
+  .main-content .highlight {
+    margin-bottom: 1rem; }
+  .main-content ul, .main-content ol {
+    margin-top: 0; }
+  .main-content blockquote {
+    padding: 0 1rem;
+    margin-left: 0;
+    color: #819198;
+    border-left: 0.3rem solid #dce6f0; }
+    .main-content blockquote > :first-child {
+      margin-top: 0; }
+    .main-content blockquote > :last-child {
+      margin-bottom: 0; }
+  .main-content table {
+    display: block;
+    width: 100%;
+    overflow: auto;
+    word-break: normal;
+    word-break: keep-all; }
+    .main-content table th {
+      font-weight: bold; }
+    .main-content table th, .main-content table td {
+      padding: 0.5rem 1rem;
+      border: 1px solid #e9ebec; }
+  .main-content dl {
+    padding: 0; }
+    .main-content dl dt {
+      padding: 0;
+      margin-top: 1rem;
+      font-weight: bold; }
+    .main-content dl dd {
+      padding: 0;
+      margin-bottom: 1rem; }
+  .main-content hr {
+    height: 2px;
+    padding: 0;
+    margin: 1rem 0;
+    background-color: #eff0f1;
+    border: 0; }
+
+  @media screen and (min-width: 64em) {
+    .main-content {
+      padding: 2rem 6rem;
+      margin: 0 auto; } }
+
+  @media screen and (min-width: 42em) and (max-width: 64em) {
+    .main-content {
+      padding: 2rem 4rem; } }
+
+  @media screen and (max-width: 42em) {
+    .main-content {
+      padding: 2rem 1rem; } }
+
+  .sponsor-logos {
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  .sponsor-col {
+    width: 277px;
+    float: left;
+  }
+  .sponsor-logos h3 {
+    font-size: 1rem;
+    margin: 1rem 0;
+  }
+  .sponsor-logos img {
+    display: block;
+    vertical-align: middle;
+  }
+  img.sponsor-logo-mov { width: 220px; padding: 1rem 0 0 0; }
+  img.sponsor-logo-mailkimp { width: 220px; padding: 0.2rem 2px 0.6rem; }
+  img.sponsor-logo-etsy { width: 150px; padding: 0.2rem 2px 1.2rem; margin-left: -18px; }
+  img.sponsor-logo-c5 { display: inline-block; width: 135px; padding: 0 1rem 0.5rem 0.1rem; }
+  img.sponsor-logo-pivotal { display: inline-block; width: 135px; padding: 0.5rem 0 1.3rem 1.1rem; }
+  img.sponsor-logo-open-news { display: inline-block; width: 135px; padding: 0.2rem 0 1.2rem 0; }
+  img.sponsor-logo-omada { display: inline-block; width: 135px; padding: 0.1rem 0 1.3rem 0.8rem; }
+  img.sponsor-logo-stripe { display: inline; width: 78px; padding: 0 1rem 1rem 0; }
+  img.sponsor-logo-bugsnag { display: inline; width: 125px; padding: 0.1rem 0 1rem 0; }
+  img.sponsor-logo-makersquare { width: 125px; padding: 0.6rem 0 1rem 0; }
+  img.sponsor-logo-stickergiant { width: 70px; padding: 0; }
+}
