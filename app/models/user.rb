@@ -20,7 +20,9 @@ class User < ActiveRecord::Base
     if:       :setup_complete,
     format:   { with: EMAIL_PATTERN }
 
-  has_one  :application, dependent: :destroy
+  has_one :application, dependent: :destroy
+
+  has_many :attendances, dependent: :destroy
   has_many :authentications, dependent: :destroy
   has_many :votes,       dependent: :destroy
   has_many :comments,    dependent: :destroy

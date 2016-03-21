@@ -2,10 +2,14 @@
 
 %p We hope you can come!
 
-= form_for @user, url: confirm_attendances_path, method: :put, html: { class: "form" } do |f|
+- if @attendance.errors.present?
+  %ul
+  - @attendance.errors.full_messages.each do |e|
+    %li= e
+
+= form_for @attendance, url: attendances_path, html: { class: "form" } do |f|
   .form-group
     = f.label :gender, "Gender"
     = f.text_field :gender
   %p
     = f.submit "Submit", class: "btn btn-primary"
-
