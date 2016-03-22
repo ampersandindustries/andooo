@@ -58,18 +58,40 @@
         %td= app_fields.text_area :feminism, rows: 10
       %tr
         %td
-          = app_fields.label :programming_experience, "How much programming experience do you have?"
-          %p.small
-            We're looking for attendees with a wide variety of experience levels.
-          %p.small Required
-        %td= app_fields.text_area :programming_experience, rows: 10
-      %tr
-        %td
           = app_fields.label :diversity, "Is there an aspect of your background or identity that you think would make AndConf more diverse?"
           %p.small
             We’re striving to have a diverse event with people from many backgrounds.
             Answering “No” or leaving this section blank wouldn’t disqualify you from attending. A few sentences is plenty.
         %td= app_fields.text_area :diversity, rows: 10
+
+    %hr
+
+    %strong
+      How long have you been programming full-time?
+    %p.small
+      We want to have a wide variety of experience levels, both for the code retreat and the unconference.
+      We found that people with less than three months of regular coding practice (such as going to a bootcamp or
+      professional work) had less fun at the code retreat.
+
+    %ul.list-unstyled
+      %li
+        = app_fields.radio_button :programming_experience, "3 months - 1 year"
+        = app_fields.label :programming_experience, "3 months - 1 year", value: "3 months - 1 year"
+      %li
+        = app_fields.radio_button :programming_experience, "1 - 2 years"
+        = app_fields.label :programming_experience, "1 - 2 years", value: "1 - 2 years"
+      %li
+        = app_fields.radio_button :programming_experience, "2 - 5 years"
+        = app_fields.label :programming_experience, "2 - 5 years", value: "2 - 5 years"
+      %li
+        = app_fields.radio_button :programming_experience, "5 - 10 years"
+        = app_fields.label :programming_experience, "5 - 10 years", value: "5 - 10 years"
+      %li
+        = app_fields.radio_button :programming_experience, "10+ years"
+        = app_fields.label :programming_experience, "10+ years", value: "10+ years"
+
+    %hr
+
     %tr.nested-table
       %td{ colspan: 2 }
         %table

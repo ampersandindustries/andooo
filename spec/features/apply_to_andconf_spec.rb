@@ -15,8 +15,8 @@ describe "applying to andconf" do
     fill_in "Full name", with: "Beep Booper"
     fill_in "Why do you want to attend to AndConf?", with: "I love lemurs!"
     fill_in "What is your level of familiarity with intersectional feminism?", with: "The lemurs I hang out read a lot of bell hooks."
-    fill_in "How much programming experience", with: "Seventeen years of Ruby"
     fill_in "Is there an aspect of your background or identity that", with: "No, I am a lemur"
+    choose "2 - 5 years"
 
     check "user_application_attributes_agreement_coc"
     check "user_application_attributes_agreement_attendance"
