@@ -60,11 +60,17 @@
         %td
           = app_fields.label :diversity, "Is there an aspect of your background or identity that you think would make AndConf more diverse?"
           %p.small
-            We’re striving to have a diverse event with people from many backgrounds.
-            Answering “No” or leaving this section blank wouldn’t disqualify you from attending. A few sentences is plenty.
+            We’re striving to have a diverse event with people from many backgrounds, especially on these axes:
+            race, gender identity/gender expression/LGBTQ identity, age, & ability.
+            Answering 'No' or leaving this section blank wouldn’t disqualify you from attending — a few sentences is plenty.
         %td= app_fields.text_area :diversity, rows: 10
 
     %hr
+
+
+    .mb-20
+      %em
+        Note: The following three questions will not impact whether or not you are accepted to AndConf!
 
     %strong
       How long have you been programming full-time?
@@ -92,6 +98,44 @@
 
     %hr
 
+    %strong
+      Do you need a scholarship ticket to be able to attend?
+    %p.small
+      All tickets include lodging, food, and transportation to the venue from downtown San Francisco.
+      Although official programming will conclude Sunday night, attendees will be welcome to stay until
+      Monday morning!
+
+    %ul.list-unstyled
+      %li
+        = app_fields.radio_button :programming_experience, "no"
+        = app_fields.label :programming_experience, "No, my ticket will be paid by my employer, myself, or other source.", value: "no"
+      %li
+        = app_fields.radio_button :programming_experience, "yes"
+        = app_fields.label :programming_experience, "Yes, I can only attend if I get a scholarship ticket", value: "yes"
+      %li
+        = app_fields.radio_button :programming_experience, "maybe"
+        = app_fields.label :programming_experience, "Maybe, I might be able to attend without a scholarship ticket but would appreciate assistance.", value: "maybe"
+    %hr
+
+    %strong
+      Are you requesting travel assistance to get from your location to downtown San Francisco?
+    %p.small
+      Transportation from San Francisco to the venue will be provided for all attendees.
+    %ul.list-unstyled
+      %li
+        = app_fields.radio_button :travel_stipend, "no"
+        = app_fields.label :travel_stipend, "No, my travel will be paid by my employer, myself, or other source.", value: "no"
+      %li
+        = app_fields.radio_button :travel_stipend, "yes"
+        = app_fields.label :travel_stipend, "Yes, I can only attend if I get a travel grant.", value: "yes"
+      %li
+        = app_fields.radio_button :travel_stipend, "maybe"
+        = app_fields.label :travel_stipend, "Maybe, I might be able to attend without a travel grant but would appreciate assistance.", value: "maybe"
+
+    %hr
+
+    %h3 Super Important Checkboxes
+
     %tr.nested-table
       %td{ colspan: 2 }
         %table
@@ -101,11 +145,11 @@
 
           %tr
             %td.pt-10= app_fields.check_box :agreement_attendance
-            %td.pt-10.pl-10= app_fields.label :agreement_attendance, "I will attend the entire conference, from the evening of Friday 8/12/15 through Sunday evening, 8/14/15.", class: 'checkbox-label'
+            %td.pt-10.pl-10= app_fields.label :agreement_attendance, "If accepted, I will attend the entire conference, from the evening of Friday 8/12/15 through Sunday evening, 8/14/15.", class: 'checkbox-label'
 
           %tr
             %td.pt-10= app_fields.check_box :agreement_deadline
-            %td.pt-10.pl-10= app_fields.label :agreement_deadline, "I agree to confirm or decline my attendance within 2 weeks if I am accepted.", class: 'checkbox-label'
+            %td.pt-10.pl-10= app_fields.label :agreement_deadline, "I agree to confirm or decline my attendance within 10 days if I am accepted.", class: 'checkbox-label'
 
   - if @user.application.submitted?
     = f.submit 'Update application', name: 'save', class: "btn"

@@ -17,6 +17,8 @@ describe "applying to andconf" do
     fill_in "What is your level of familiarity with intersectional feminism?", with: "The lemurs I hang out read a lot of bell hooks."
     fill_in "Is there an aspect of your background or identity that", with: "No, I am a lemur"
     choose "2 - 5 years"
+    choose "Yes, I can only attend if I get a scholarship ticket"
+    choose "No, my travel will be paid by my employer, myself, or other source."
 
     check "user_application_attributes_agreement_coc"
     check "user_application_attributes_agreement_attendance"

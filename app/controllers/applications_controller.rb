@@ -66,7 +66,8 @@ class ApplicationsController < ApplicationController
   def application_attributes
     [
       :id, :agreement_coc, :agreement_attendance, :agreement_deadline,
-      :why_andconf, :feminism, :programming_experience, :diversity
+      :why_andconf, :feminism, :programming_experience, :diversity, :scholarship,
+      :travel_stipend
     ]
   end
 
