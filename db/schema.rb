@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160320222622) do
+ActiveRecord::Schema.define(version: 20160323040436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,10 @@ ActiveRecord::Schema.define(version: 20160320222622) do
     t.text     "programming_experience"
     t.text     "diversity"
     t.datetime "confirmed_at"
+    t.text     "scholarship"
+    t.text     "travel_stipend"
+    t.boolean  "attend_last_year"
+    t.text     "referral_code"
   end
 
   add_index "applications", ["state"], name: "index_applications_on_state", using: :btree

@@ -157,7 +157,8 @@ describe ApplicationsController do
 
         let(:application_params) do
           {
-            id: application.id, agreement_coc: true, agreement_attendance: true, agreement_deadline: true
+            id: application.id, agreement_coc: true, agreement_attendance: true, agreement_deadline: true,
+            scholarship: "yes", travel_stipend: "maybe"
           }
         end
 
