@@ -158,7 +158,7 @@ describe ApplicationsController do
         let(:application_params) do
           {
             id: application.id, agreement_coc: true, agreement_attendance: true, agreement_deadline: true,
-            scholarship: "yes", travel_stipend: "maybe"
+            scholarship: "yes", travel_stipend: "maybe", attend_last_year: true, referral_code: "lemur_friend"
           }
         end
 
@@ -170,6 +170,8 @@ describe ApplicationsController do
 
           it "should submit the application" do
             expect { subject }.to change { application.state }.from("started").to("submitted")
+            expect(application.travel_stipend).to eq "maybe"
+            expect(application.referral_code).to eq "lemur_friend"
           end
         end
 
