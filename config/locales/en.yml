@@ -20,4 +20,20 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      application:
+        why_andconf: "Answer to 'Why do you want to attend to AndConf?'"
+        feminism: "Answer to 'What is your level of familiarity with intersectional feminism?'"
+        diversity: "Answer to 'Is there an aspect of your background or identity that you think would make AndConf more diverse?'"
+    errors:
+      models:
+        application:
+          attributes:
+            why_andconf:
+              too_long: "must be 2000 characters or less"  
+            feminism:
+              too_long: "must be 2000 characters or less"
+            diversity:
+              too_long: "must be 2000 characters or less"
+              
