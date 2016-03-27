@@ -1,52 +1,38 @@
 class ApplicationsController < ApplicationController
   before_action :ensure_accepting_applications
   before_action :require_applicant_user
-
-  before_action :set_user,               only: [:show, :edit, :update]
-  before_action :ensure_own_application, only: [:show, :edit, :update]
-
-  def new
-    redirect_to edit_application_path(current_user.application)
-  end
+  before_action :ensure_own_application
 
   def show
+    @user = current_user
   end
 
   def edit
+    @application_form = ApplicationForm.new(current_user)
   end
 
   def update
-    unless @user.update_attributes(user_params)
-      app_errors =  @user.application.errors.full_messages.to_sentence
-      user_errors = @user.errors.full_messages.to_sentence
-      errors = user_errors + app_errors
-      flash[:error] = "Application not saved: #{errors}"
-      render action: :edit, id: @user.application.id and return
+    @application_form = ApplicationForm.new(current_user)
+
+    if params['save']
+      @application_form.save_draft(filtered_params)
+    elsif params['submit']
+      @application_form.submit(filtered_params)
     end
 
-    case commit_action
-    when :submit
-      begin
-        @user.application.submit!
-        flash[:notice] = 'Application submitted!'
-      rescue StateMachine::InvalidTransition
-        errors = @user.application.errors.full_messages.to_sentence
-        flash[:error] = "Application not submitted: #{errors}"
-      end
-    when :save
-      flash[:notice] = 'Application saved'
+    if @application_form.errors.any?
+      flash[:error] = @application_form.flash_message
+    else
+      flash[:notice] = @application_form.flash_message
     end
-    redirect_to action: :edit, id: @user.application.id
+
+    render :edit
   end
 
   private
 
-  def set_user
-    @user = current_user
-  end
-
   def ensure_own_application
-    unless @user.application.id.to_s == params.require(:id)
+    unless current_user.application.id.to_s == params.require(:id)
       redirect_to :root
     end
   end
@@ -59,13 +45,13 @@ class ApplicationsController < ApplicationController
     end
   end
 
-  def user_params
-    params.require(:user).permit(:name, :email, application_attributes: application_attributes)
+  def filtered_params
+    params.require(:application_form).permit(:name, :email, application_attributes)
   end
 
   def application_attributes
     [
-      :id, :agreement_coc, :agreement_attendance, :agreement_deadline,
+      :agreement_coc, :agreement_attendance, :agreement_deadline,
       :why_andconf, :feminism, :programming_experience, :diversity, :scholarship,
       :travel_stipend, :attend_last_year, :referral_code
     ]

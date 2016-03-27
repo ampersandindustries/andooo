@@ -24,53 +24,52 @@
   .alert.alert-info
     = Configurable[:application_deadline_warning]
 
-= form_for @user, url: application_path(@user.application) do |f|
+= form_for @application_form, method: :put, url: application_path(@application_form.application) do |f|
 
   %fieldset
-    - if @user.application.submitted?
+    - if @application_form.application.submitted?
       = f.submit 'Update application', name: 'save', class: "btn"
     - else
       = f.submit 'Save without submitting', name: 'save', class: "btn"
 
-  %table.table
-    %tr
-      %td
-        = f.label :name, 'Full name'
-        %small (required)
-      %td= f.text_field :name, required: true
-
-    %tr
-      %td
-        = f.label :email
-        %small (required)
-      %td= f.text_field :email, required: true
-
-  = f.fields_for :application do |app_fields|
     %table.table
       %tr
         %td
-          = app_fields.label :why_andconf, "Why do you want to attend to AndConf?"
+          = f.label :name, 'Full name'
+          %small (required)
+        %td= f.text_field :name, required: true
+
+      %tr
+        %td
+          = f.label :email
+          %small (required)
+        %td= f.text_field :email, required: true
+
+    %table.table
+      %tr
+        %td
+          = f.label :why_andconf, "Why do you want to attend to AndConf?"
           %p.small
             We don't evaluate applications based on how accomplished or successful a person is.
             Some sentences or a paragraph would be great; for all of these questions,
             we love getting to read some detail but don't want to burden you with writing a huge essay.
           %p.small Required
-        %td= app_fields.text_area :why_andconf, rows: 10
+        %td= f.text_area :why_andconf, rows: 10
       %tr
         %td
-          = app_fields.label :feminism, "What is your level of familiarity with intersectional feminism?"
+          = f.label :feminism, "What is your level of familiarity with intersectional feminism?"
           %p.small
             It’s fine to not be an expert on the topic.
           %p.small Required
-        %td= app_fields.text_area :feminism, rows: 10
+        %td= f.text_area :feminism, rows: 10
       %tr
         %td
-          = app_fields.label :diversity, "Is there an aspect of your background or identity that you think would make AndConf more diverse?"
+          = f.label :diversity, "Is there an aspect of your background or identity that you think would make AndConf more diverse?"
           %p.small
             We’re striving to have a diverse event with people from many backgrounds, especially on these axes:
             race, gender identity/gender expression/LGBTQ identity, age, & ability.
             Answering 'No' or leaving this section blank wouldn’t disqualify you from attending — a few sentences is plenty.
-        %td= app_fields.text_area :diversity, rows: 10
+        %td= f.text_area :diversity, rows: 10
 
     %hr
 
@@ -88,20 +87,20 @@
 
     %ul.list-unstyled
       %li
-        = app_fields.radio_button :programming_experience, "3 months - 1 year"
-        = app_fields.label :programming_experience, "3 months - 1 year", value: "3 months - 1 year"
+        = f.radio_button :programming_experience, "3 months - 1 year"
+        = f.label :programming_experience, "3 months - 1 year", value: "3 months - 1 year"
       %li
-        = app_fields.radio_button :programming_experience, "1 - 2 years"
-        = app_fields.label :programming_experience, "1 - 2 years", value: "1 - 2 years"
+        = f.radio_button :programming_experience, "1 - 2 years"
+        = f.label :programming_experience, "1 - 2 years", value: "1 - 2 years"
       %li
-        = app_fields.radio_button :programming_experience, "2 - 5 years"
-        = app_fields.label :programming_experience, "2 - 5 years", value: "2 - 5 years"
+        = f.radio_button :programming_experience, "2 - 5 years"
+        = f.label :programming_experience, "2 - 5 years", value: "2 - 5 years"
       %li
-        = app_fields.radio_button :programming_experience, "5 - 10 years"
-        = app_fields.label :programming_experience, "5 - 10 years", value: "5 - 10 years"
+        = f.radio_button :programming_experience, "5 - 10 years"
+        = f.label :programming_experience, "5 - 10 years", value: "5 - 10 years"
       %li
-        = app_fields.radio_button :programming_experience, "10+ years"
-        = app_fields.label :programming_experience, "10+ years", value: "10+ years"
+        = f.radio_button :programming_experience, "10+ years"
+        = f.label :programming_experience, "10+ years", value: "10+ years"
 
     %hr
 
@@ -114,14 +113,14 @@
 
     %ul.list-unstyled
       %li
-        = app_fields.radio_button :programming_experience, "no"
-        = app_fields.label :programming_experience, "No, my ticket will be paid by my employer, myself, or other source.", value: "no"
+        = f.radio_button :scholarship, "no"
+        = f.label :scholarship, "No, my ticket will be paid by my employer, myself, or other source.", value: "no"
       %li
-        = app_fields.radio_button :programming_experience, "yes"
-        = app_fields.label :programming_experience, "Yes, I can only attend if I get a scholarship ticket", value: "yes"
+        = f.radio_button :scholarship, "yes"
+        = f.label :scholarship, "Yes, I can only attend if I get a scholarship ticket", value: "yes"
       %li
-        = app_fields.radio_button :programming_experience, "maybe"
-        = app_fields.label :programming_experience, "Maybe, I might be able to attend without a scholarship ticket but would appreciate assistance.", value: "maybe"
+        = f.radio_button :scholarship, "maybe"
+        = f.label :scholarship, "Maybe, I might be able to attend without a scholarship ticket but would appreciate assistance.", value: "maybe"
     %hr
 
     %strong
@@ -130,14 +129,14 @@
       Transportation from San Francisco to the venue will be provided for all attendees.
     %ul.list-unstyled
       %li
-        = app_fields.radio_button :travel_stipend, "no"
-        = app_fields.label :travel_stipend, "No, my travel will be paid by my employer, myself, or other source.", value: "no"
+        = f.radio_button :travel_stipend, "no"
+        = f.label :travel_stipend, "No, my travel will be paid by my employer, myself, or other source.", value: "no"
       %li
-        = app_fields.radio_button :travel_stipend, "yes"
-        = app_fields.label :travel_stipend, "Yes, I can only attend if I get a travel grant.", value: "yes"
+        = f.radio_button :travel_stipend, "yes"
+        = f.label :travel_stipend, "Yes, I can only attend if I get a travel grant.", value: "yes"
       %li
-        = app_fields.radio_button :travel_stipend, "maybe"
-        = app_fields.label :travel_stipend, "Maybe, I might be able to attend without a travel grant but would appreciate assistance.", value: "maybe"
+        = f.radio_button :travel_stipend, "maybe"
+        = f.label :travel_stipend, "Maybe, I might be able to attend without a travel grant but would appreciate assistance.", value: "maybe"
 
     %hr
 
@@ -147,47 +146,47 @@
       Don't worry — we're going for a mix of seasoned AndConf attendees and new faces.
     %ul.list-unstyled
       %li
-        = app_fields.radio_button :attend_last_year, "false"
-        = app_fields.label :attend_last_year, "No", value: "false"
+        = f.radio_button :attend_last_year, "false"
+        = f.label :attend_last_year, "No", value: "false"
       %li
-        = app_fields.radio_button :attend_last_year, "true"
-        = app_fields.label :attend_last_year, "Yes", value: "true"
+        = f.radio_button :attend_last_year, "true"
+        = f.label :attend_last_year, "Yes", value: "true"
 
     %hr
 
     %strong
-      = app_fields.label :referral_code, "If you received a referral code, enter it here:"
+      = f.label :referral_code, "If you received a referral code, enter it here:"
     %p
-      = app_fields.text_field :referral_code
+      = f.text_field :referral_code
 
     %hr
 
-    %h3 Super Important Checkboxes
+    %h3 Super Important Agreements
 
     %tr.nested-table
       %td{ colspan: 2 }
         %table
           %tr
-            %td.pt-10= app_fields.check_box :agreement_coc
-            %td.pt-10.pl-10= app_fields.label :agreement_coc, "I have read and agree to adhere to AndConf's Code of Conduct", class: 'checkbox-label'
+            %td.pt-10= f.check_box :agreement_coc
+            %td.pt-10.pl-10= f.label :agreement_coc, "I have read and agree to adhere to AndConf's #{link_to 'Code of Conduct', code_of_conduct_path, target: "_blank"}".html_safe, class: 'checkbox-label'
 
           %tr
-            %td.pt-10= app_fields.check_box :agreement_attendance
-            %td.pt-10.pl-10= app_fields.label :agreement_attendance, "If accepted, I will attend the entire conference, from the evening of Friday 8/12/15 through Sunday evening, 8/14/15.", class: 'checkbox-label'
+            %td.pt-10= f.check_box :agreement_attendance
+            %td.pt-10.pl-10= f.label :agreement_attendance, "If accepted, I will attend the entire conference, from the evening of Friday 8/12/15 through Sunday evening, 8/14/15.", class: 'checkbox-label'
 
           %tr
-            %td.pt-10= app_fields.check_box :agreement_deadline
-            %td.pt-10.pl-10= app_fields.label :agreement_deadline, "I agree to confirm or decline my attendance within 10 days if I am accepted.", class: 'checkbox-label'
+            %td.pt-10= f.check_box :agreement_deadline
+            %td.pt-10.pl-10= f.label :agreement_deadline, "I agree to confirm or decline my attendance within 10 days if I am accepted.", class: 'checkbox-label'
 
   .mt-20
-    - if @user.application.submitted?
+    - if @application_form.application.submitted?
       = f.submit 'Update application', name: 'save', class: "btn"
     - else
       = f.submit 'Save without submitting', name: 'save', class: "btn"
 
-  - if @user.application.submitted?
-    %p Application submitted #{time_ago_in_words(@user.application.submitted_at)} ago
-    %p= link_to 'View application', application_path(@user.application)
+  - if @application_form.application.submitted?
+    %p Application submitted #{time_ago_in_words(@application_form.application.submitted_at)} ago
+    %p= link_to 'View application', application_path(@application_form.application)
   - else
     %h3 Submit
     %p
@@ -195,7 +194,7 @@
       You will be able to edit it any time before applications close.
     %p
       If you're curious what your application will look like to us,
-      you can #{ link_to "check it out here", application_path(@user.application), target: "_blank"}.
+      you can #{ link_to "check it out here", application_path(@application_form.application), target: "_blank"}.
 
     %fieldset
       = f.submit 'Submit application', name: 'submit', class: "btn btn-primary"
