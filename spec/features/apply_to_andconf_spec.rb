@@ -19,6 +19,8 @@ describe "applying to andconf" do
     choose "2 - 5 years"
     choose "Yes, I can only attend if I get a scholarship ticket"
     choose "No, my travel will be paid by my employer, myself, or other source."
+    choose "No"
+    fill_in "If you received a referral code, enter it here:", with: "friend_of_lemurs"
 
     check "user_application_attributes_agreement_coc"
     check "user_application_attributes_agreement_attendance"

@@ -134,6 +134,27 @@
 
     %hr
 
+    %strong
+      Did you attend AndConf last year?
+    %p.small
+      Don't worry — we're going for a mix of seasoned AndConf attendees and new faces.
+    %ul.list-unstyled
+      %li
+        = app_fields.radio_button :attend_last_year, "false"
+        = app_fields.label :attend_last_year, "No", value: "false"
+      %li
+        = app_fields.radio_button :attend_last_year, "true"
+        = app_fields.label :attend_last_year, "Yes", value: "true"
+
+    %hr
+
+    %strong
+      = app_fields.label :referral_code, "If you received a referral code, enter it here:"
+    %p
+      = app_fields.text_field :referral_code
+
+    %hr
+
     %h3 Super Important Checkboxes
 
     %tr.nested-table
@@ -151,10 +172,11 @@
             %td.pt-10= app_fields.check_box :agreement_deadline
             %td.pt-10.pl-10= app_fields.label :agreement_deadline, "I agree to confirm or decline my attendance within 10 days if I am accepted.", class: 'checkbox-label'
 
-  - if @user.application.submitted?
-    = f.submit 'Update application', name: 'save', class: "btn"
-  - else
-    = f.submit 'Save without submitting', name: 'save', class: "btn"
+  .mt-20
+    - if @user.application.submitted?
+      = f.submit 'Update application', name: 'save', class: "btn"
+    - else
+      = f.submit 'Save without submitting', name: 'save', class: "btn"
 
   - if @user.application.submitted?
     %p Application submitted #{time_ago_in_words(@user.application.submitted_at)} ago
