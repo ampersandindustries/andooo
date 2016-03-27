@@ -28,7 +28,6 @@ class User < ActiveRecord::Base
   has_many :comments,    dependent: :destroy
 
   after_create :create_application
-  accepts_nested_attributes_for :application
 
   scope :visitors,    -> { where(state: 'visitor') }
   scope :applicants,  -> { where(state: 'applicant') }

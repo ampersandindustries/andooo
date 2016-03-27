@@ -10,21 +10,9 @@ describe "applying to andconf" do
   end
 
   it "allows the user to submit an application" do
-    visit new_application_path
+    visit edit_application_path(camper.application)
 
-    fill_in "Full name", with: "Beep Booper"
-    fill_in "Why do you want to attend to AndConf?", with: "I love lemurs!"
-    fill_in "What is your level of familiarity with intersectional feminism?", with: "The lemurs I hang out read a lot of bell hooks."
-    fill_in "Is there an aspect of your background or identity that", with: "No, I am a lemur"
-    choose "2 - 5 years"
-    choose "Yes, I can only attend if I get a scholarship ticket"
-    choose "No, my travel will be paid by my employer, myself, or other source."
-    choose "No"
-    fill_in "If you received a referral code, enter it here:", with: "friend_of_lemurs"
-
-    check "user_application_attributes_agreement_coc"
-    check "user_application_attributes_agreement_attendance"
-    check "user_application_attributes_agreement_deadline"
+    fill_in_all_the_fields
 
     expect {
       click_on "Submit application"
@@ -35,7 +23,7 @@ describe "applying to andconf" do
   end
 
   it "allows the user to save her application without submitting it" do
-    visit new_application_path
+    visit edit_application_path(camper.application)
     expect(page).to have_content "If this application looks blanker than you left it"
 
     fill_in "Full name", with: "Beep Booper"
@@ -43,18 +31,15 @@ describe "applying to andconf" do
     first(:button, "Save without submitting").click
 
     expect(camper.application.state).to eq("started")
-    expect(page).to have_content "Application saved"
+    expect(page).to have_content "Application draft saved!"
     expect {Application.count}.to change{Application.count}.by(0)
   end
 
   it "allows the user to update her application" do
-    visit new_application_path
+    visit edit_application_path(camper.application)
     expect(page).to have_content "If this application looks blanker than you left it"
 
-    fill_in "Full name", with: "Beep Booper"
-    check "user_application_attributes_agreement_coc"
-    check "user_application_attributes_agreement_attendance"
-    check "user_application_attributes_agreement_deadline"
+    fill_in_all_the_fields
 
     click_on "Submit application"
 
@@ -64,4 +49,22 @@ describe "applying to andconf" do
 
     expect(find_field("Full name").value).to eq "Bop Beeper"
   end
+end
+
+private
+
+def fill_in_all_the_fields
+  fill_in "Full name", with: "Beep Booper"
+  fill_in "Why do you want to attend to AndConf?", with: "I love lemurs!"
+  fill_in "What is your level of familiarity with intersectional feminism?", with: "The lemurs I hang out read a lot of bell hooks."
+  fill_in "Is there an aspect of your background or identity that", with: "No, I am a lemur"
+  choose "2 - 5 years"
+  choose "Yes, I can only attend if I get a scholarship ticket"
+  choose "No, my travel will be paid by my employer, myself, or other source."
+  choose "No"
+  fill_in "If you received a referral code, enter it here:", with: "friend_of_lemurs"
+
+  check "I have read and agree to adhere to AndConf's Code of Conduct"
+  check "If accepted, I will attend the entire conference, from the evening of Friday 8/12/15 through Sunday evening, 8/14/15."
+  check "I agree to confirm or decline my attendance within 10 days if I am accepted."
 end
