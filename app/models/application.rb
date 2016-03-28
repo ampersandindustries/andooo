@@ -12,10 +12,6 @@ class Application < ActiveRecord::Base
   validates :user_id, presence: true
   validates :state, presence: true
   validate :validate_agreed, if: :submitted?
-  validates_length_of :why_andconf, maximum: 2000
-  validates_length_of :feminism, maximum: 2000
-  validates_length_of :diversity, maximum: 2000
-
 
   scope :for_applicant, -> {
     includes(:user)

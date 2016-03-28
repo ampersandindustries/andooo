@@ -3,9 +3,6 @@ require 'spec_helper'
 describe Application do
   describe "validations" do
     it { is_expected.to validate_presence_of :user_id }
-    it { is_expected.to validate_length_of(:why_andconf).is_at_most(2000) }
-    it { is_expected.to validate_length_of(:feminism).is_at_most(2000) }
-    it { is_expected.to validate_length_of(:diversity).is_at_most(2000) }
   end
 
   describe "#submit" do

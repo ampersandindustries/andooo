@@ -86,7 +86,7 @@ describe ApplicationForm do
 
       it "sets some good errors on the form" do
         subject
-        expect(form.errors.full_messages).to include("Feminism can't be blank")
+        expect(form.errors.full_messages).to include("Answer to 'What is your level of familiarity with intersectional feminism?' can't be blank")
       end
     end
 
@@ -140,10 +140,21 @@ describe ApplicationForm do
       end
 
       context "submitting with errors" do
-        let(:params) { { name: "Basil Cat", email: "basil@example.com", diversity: "nope" } }
+        context "when required fields are missing" do
+          let(:params) { { name: "Basil Cat", email: "basil@example.com", diversity: "nope" } }
 
-        it "returns the correct string" do
-          expect(subject).to include "Feminism can't be blank"
+          it "returns the correct string" do
+            expect(subject).to include("Answer to 'What is your level of familiarity with intersectional feminism?' can't be blank")
+          end
+        end
+
+        context "when fields are too long" do
+          let(:too_long_answer) { ("a" * 4001) }
+          let(:params) { { name: "Basil Cat", email: "basil@example.com", diversity: too_long_answer } }
+
+          it "returns the correct string" do
+            expect(subject).to include "Answer to 'Is there an aspect of your background or identity that you think would make AndConf more diverse?' must be 2000 characters or less"
+          end
         end
       end
     end
