@@ -3,6 +3,7 @@ Doubleunion::Application.routes.draw do
 
   get 'code_of_conduct' => 'static_pages#code_of_conduct'
   get 'details' => 'static_pages#details'
+  get 'accessibility' => 'static_pages#accessibility'
 
   namespace :members do
     root to: 'users#index'
