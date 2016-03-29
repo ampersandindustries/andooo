@@ -35,8 +35,8 @@ class User < ActiveRecord::Base
   scope :key_members, -> { where(state: 'key_member') }
   scope :voting_members, -> { where(state: 'voting_member') }
 
-  scope :all_members, -> { where(state: %w(member key_member voting_member)) }
-
+  scope :all_members, -> { where(state: %w(member key_member voting_member attendee)) }
+  
   scope :no_stripe_dues, -> {
     all_members
     .where(stripe_customer_id: nil)
