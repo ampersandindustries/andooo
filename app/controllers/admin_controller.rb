@@ -61,11 +61,6 @@ class AdminController < ApplicationController
     end
   end
 
-  def dues
-    @all_members = User.all_members
-    @members_without_dues = User.no_stripe_dues
-  end
-
   protected
 
   def members_page?
