@@ -1,4 +1,4 @@
-class Members::DuesController < Members::MembersController
+class Volunteers::DuesController < Volunteers::MembersController
 
   def show
     @user = current_user
@@ -48,9 +48,9 @@ class Members::DuesController < Members::MembersController
 
   def redirect_target
     if request.referer && URI(request.referer).path =~ /setup/
-      members_user_setup_path(current_user)
+      volunteers_user_setup_path(current_user)
     else
-      members_user_dues_path(current_user)
+      volunteers_user_dues_path(current_user)
     end
   end
 end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Members::ApplicationsController do
+describe Volunteers::ApplicationsController do
   include AuthHelper
 
   render_views
@@ -32,7 +32,7 @@ describe Members::ApplicationsController do
         login_as(:member)
         get :show, id: @applicant.application.id
         expect(flash[:error]).to match /not currently visible/
-        expect(response).to redirect_to members_root_path
+        expect(response).to redirect_to volunteers_root_path
       end
 
       it 'renders if application is in submitted state' do
@@ -54,7 +54,7 @@ describe Members::ApplicationsController do
         application.update_attribute(:state, 'approved')
 
         get :show, id: application.id
-        expect(response).to redirect_to members_root_path
+        expect(response).to redirect_to volunteers_root_path
       end
 
       it 'redirects if application is in rejected state' do
@@ -65,7 +65,7 @@ describe Members::ApplicationsController do
         application.update_attribute(:state, 'rejected')
 
         get :show, id: application.id
-        expect(response).to redirect_to members_root_path
+        expect(response).to redirect_to volunteers_root_path
       end
     end
 

@@ -1,4 +1,4 @@
-class Members::CachesController < Members::MembersController
+class Volunteers::CachesController < Volunteers::MembersController
   def index
   end
 

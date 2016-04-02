@@ -17,7 +17,7 @@
         %tr
           %td.name
             = user_gravatar(applicant, 20)
-            = link_to applicant.name, members_application_path(application)
+            = link_to applicant.name, volunteers_application_path(application)
           %td
             - if application.submitted_at
               = application.submitted_at.strftime('%b %d, %Y')

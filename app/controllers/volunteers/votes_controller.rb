@@ -1,9 +1,9 @@
-class Members::VotesController < Members::MembersController
+class Volunteers::VotesController < Volunteers::MembersController
   def create
     vote(application_id_param, !!params[:vote_yes])
 
     application = Application.find(application_id_param)
-    redirect_to members_application_path(application)
+    redirect_to volunteers_application_path(application)
   end
 
   def destroy
@@ -15,7 +15,7 @@ class Members::VotesController < Members::MembersController
       flash[:error] = "Whoops, something went wrong!"
     end
 
-    redirect_to members_application_path(Application.find(params[:id]))
+    redirect_to volunteers_application_path(Application.find(params[:id]))
   end
 
   private

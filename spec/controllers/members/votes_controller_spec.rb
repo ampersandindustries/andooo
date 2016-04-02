@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Members::VotesController do
+describe Volunteers::VotesController do
   include AuthHelper
 
   let(:application) { create(:application) }

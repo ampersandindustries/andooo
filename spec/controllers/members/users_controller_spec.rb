@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Members::UsersController do
+describe Volunteers::UsersController do
   include AuthHelper
 
   let(:someone_cool) { create(:member) }

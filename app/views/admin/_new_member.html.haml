@@ -3,7 +3,7 @@
   .col-md-4
     %ul.list-unstyled
       %li
-        %b #{ link_to new_member.name, members_user_path(new_member) }
+        %b #{ link_to new_member.name, volunteers_user_path(new_member) }
       %li= new_member.email
       %li
         = form_for :user, url: admin_setup_complete_path do |f|

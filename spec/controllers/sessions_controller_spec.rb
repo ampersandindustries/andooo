@@ -100,7 +100,7 @@ describe SessionsController do
 
         it "redirects to the member root path" do
           subject
-          expect(response).to redirect_to members_root_path
+          expect(response).to redirect_to volunteers_root_path
         end
 
         it "creates session for member" do
@@ -117,7 +117,7 @@ describe SessionsController do
 
           it "redirects to the member root path" do
             subject
-            expect(response).to redirect_to members_root_path
+            expect(response).to redirect_to volunteers_root_path
           end
         end
       end

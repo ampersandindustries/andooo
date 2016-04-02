@@ -1,4 +1,4 @@
-class Members::CommentsController < Members::MembersController
+class Volunteers::CommentsController < Volunteers::MembersController
   def create
     application = Application.find(application_id_param)
     comment = Comment.new(comment_params)
@@ -10,7 +10,7 @@ class Members::CommentsController < Members::MembersController
       flash[:error] = 'Comment not saved'
     end
 
-    redirect_to members_application_path(application)
+    redirect_to volunteers_application_path(application)
   end
 
   private

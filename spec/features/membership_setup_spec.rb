@@ -9,7 +9,7 @@ describe 'members can finish their account setup' do
   end
 
   it 'allows members to submit information' do
-    visit members_user_setup_path(member)
+    visit volunteers_user_setup_path(member)
 
     fill_in "user_email_for_google", with: "cat@example.com"
     click_button "Submit"
@@ -18,7 +18,7 @@ describe 'members can finish their account setup' do
   end
 
   it "does not allow users to edit others' information" do
-    visit members_user_setup_path(other_member)
+    visit volunteers_user_setup_path(other_member)
     fill_in "user_email_for_google", with: "fake@example.com"
     click_button "Submit"
 

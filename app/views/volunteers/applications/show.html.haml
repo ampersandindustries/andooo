@@ -1,4 +1,4 @@
-%p= link_to "Back to Applications Overview", members_applications_path
+%p= link_to "Back to Applications Overview", volunteers_applications_path
 
 %h3 Application
 = render partial: 'applications/show', locals: { user: @user }
@@ -12,13 +12,13 @@
       You voted <strong>#{vote.display_value}</strong>
       #{time_ago_in_words(vote.created_at)} ago
 
-  = form_for @vote, url: members_votes_path, method: :post do |f|
+  = form_for @vote, url: volunteers_votes_path, method: :post do |f|
     = f.hidden_field :application_id, value: @application.id
     = f.submit 'Yes', name: 'vote_yes', disabled: vote && vote.value
     = f.submit 'No',  name: 'vote_no',  disabled: vote && !vote.value
 
   - if current_user.voted_on?(@application)
-    #{ link_to 'Remove your vote', members_vote_path, method: :delete }
+    #{ link_to 'Remove your vote', volunteers_vote_path, method: :delete }
 
 - elsif !logged_in_as?(@user) && current_user.member?
   %h3= @user.name
@@ -39,7 +39,7 @@
     %td
       - if @application.yes_votes.any?
         - @application.yes_votes.each do |vote|
-          = link_to vote.user.username, members_user_path(vote.user)
+          = link_to vote.user.username, volunteers_user_path(vote.user)
           <br />
       - else
         \--
@@ -54,21 +54,21 @@
 - @comments.each do |comment|
   - commenter = comment.user
   .comment
-    = link_to user_gravatar(commenter, 20), members_user_path(commenter)
-    = "#{link_to commenter.username, members_user_path(commenter), title: commenter.name}:".html_safe
+    = link_to user_gravatar(commenter, 20), volunteers_user_path(commenter)
+    = "#{link_to commenter.username, volunteers_user_path(commenter), title: commenter.name}:".html_safe
     = comment.body
     %small{ title: comment.created_at }
       = "#{time_ago_in_words(comment.created_at)} ago"
 
 
-= form_for [:members, @application, Comment.new], class: "form-horizontal" do |f|
+= form_for [:volunteers, @application, Comment.new], class: "form-horizontal" do |f|
   .comment.form-group
     .mb-5
-      = link_to user_gravatar(current_user, 20), members_user_path(current_user)
-      = "#{link_to current_user.username, members_user_path(current_user)}:".html_safe
+      = link_to user_gravatar(current_user, 20), volunteers_user_path(current_user)
+      = "#{link_to current_user.username, volunteers_user_path(current_user)}:".html_safe
     = f.hidden_field :application_id, value: @application.id
     = f.text_area :body, rows: 3, class: "form-control"
     %fieldset= f.submit 'Add comment', class: "btn btn-primary pull-right"
 
 
-%p= link_to "Back to Applications Overview", members_root_path
+%p= link_to "Back to Applications Overview", volunteers_root_path

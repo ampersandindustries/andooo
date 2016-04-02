@@ -1,4 +1,4 @@
-class Members::MembersController < ApplicationController
+class Volunteers::MembersController < ApplicationController
   before_action :authenticate_member!
 
   protected

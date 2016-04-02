@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Members::DuesController do
+describe Volunteers::DuesController do
   include AuthHelper
 
   let(:member) { create(:member) }
@@ -57,7 +57,7 @@ describe Members::DuesController do
       before { request.env['HTTP_REFERER'] = 'http://example.com/members/users/x/setup' }
 
       it "redirects to the membership setup page" do
-        expect(subject).to redirect_to members_user_setup_path(user)
+        expect(subject).to redirect_to volunteers_user_setup_path(user)
       end
     end
 
@@ -81,7 +81,7 @@ describe Members::DuesController do
         end
 
         it "redirects to the manage dues page" do
-          expect(subject).to redirect_to members_user_dues_path(user)
+          expect(subject).to redirect_to volunteers_user_dues_path(user)
         end
       end
 

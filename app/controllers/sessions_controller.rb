@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   def login
-    redirect_to members_root_path if current_user.try(:general_member?)
+    redirect_to volunteers_root_path if current_user.try(:general_member?)
   end
 
   def github
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
     authentication = Authentication.where(conditions).first
 
     if current_user.present? && already_has_auth?(omniauth)
-      redirect_to members_root_path
+      redirect_to volunteers_root_path
     elsif current_user.present?
       add_auth_and_redirect(omniauth)
     elsif authentication.try(:user)
@@ -74,7 +74,7 @@ class SessionsController < ApplicationController
         flash[:message] = "As a former member, you can no longer access the members sections."
         redirect_to root_path and return
       elsif user.general_member?
-        redirect_to members_root_path and return
+        redirect_to volunteers_root_path and return
       else
         user.make_applicant!
         redirect_to edit_application_path(user.application) and return

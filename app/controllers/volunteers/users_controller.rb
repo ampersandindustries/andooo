@@ -1,4 +1,4 @@
-class Members::UsersController < Members::MembersController
+class Volunteers::UsersController < Volunteers::MembersController
   before_action :set_user, except: [:index, :show]
 
   def index

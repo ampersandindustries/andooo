@@ -11,7 +11,7 @@ describe "voting on an application" do
     let(:member) { create(:voting_member) }
 
     it "allows the member to vote yes" do
-      visit members_application_path(application)
+      visit volunteers_application_path(application)
       expect(page).to have_content "Votes for membership (0)"
       click_button "Yes"
       expect(page).to have_content "Votes for membership (1)"
@@ -19,7 +19,7 @@ describe "voting on an application" do
     end
 
     it "allows the member to vote no" do
-      visit members_application_path(application)
+      visit volunteers_application_path(application)
       expect(page).to have_content "Votes against membership (0)"
       click_button "No"
       expect(page).to have_content "Votes against membership (1)"
@@ -27,7 +27,7 @@ describe "voting on an application" do
     end
 
     it "allows the member to remove their vote" do
-      visit members_application_path(application)
+      visit volunteers_application_path(application)
       click_button "No"
       expect(page).to have_content "Votes against membership (1)"
       click_link "Remove your vote"
@@ -39,7 +39,7 @@ describe "voting on an application" do
     let(:member) { create(:member) }
 
     it "does not allow the member to vote" do
-      visit members_application_path(application)
+      visit volunteers_application_path(application)
       expect(page).to have_content "Only Voting Members Can Vote"
       expect(page).not_to have_button "No"
       expect(page).not_to have_button "Yes"

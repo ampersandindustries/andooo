@@ -1,4 +1,4 @@
-class Members::ApplicationsController < Members::MembersController
+class Volunteers::ApplicationsController < Volunteers::MembersController
 
   def index
     @applicants_submitted = User.with_submitted_application
@@ -11,7 +11,7 @@ class Members::ApplicationsController < Members::MembersController
 
     unless @application.submitted?
       flash[:error] = 'This application is not currently visible.'
-      redirect_to members_root_path and return
+      redirect_to volunteers_root_path and return
     end
 
     @user = @application.user
