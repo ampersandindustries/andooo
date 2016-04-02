@@ -9,12 +9,12 @@ class Vote < ActiveRecord::Base
 
   validates :user_id, uniqueness: { scope: :application_id }
 
-  validate :user_is_voting_member
+  validate :user_is_application_reviewer
   validate :user_is_not_applicant
 
-  def user_is_voting_member
-    unless user && user.voting_member?
-      errors.add(:user, 'is not a voting member')
+  def user_is_application_reviewer
+    unless user && user.application_reviewer?
+      errors.add(:user, 'is not a application reviewer')
     end
   end
 

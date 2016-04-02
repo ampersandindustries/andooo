@@ -1,9 +1,9 @@
-class Volunteers::UsersController < Volunteers::MembersController
+class Volunteers::UsersController < Volunteers::VolunteersController
   def index
-    @all_members = User.all_members.order_by_state
+    @all_attendees = User.all_attendees
   end
 
   def show
-    @user = User.all_members.find(params.require(:id))
+    @user = User.all_attendees.find(params.require(:id))
   end
 end

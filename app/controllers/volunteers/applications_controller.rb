@@ -1,8 +1,7 @@
-class Volunteers::ApplicationsController < Volunteers::MembersController
+class Volunteers::ApplicationsController < Volunteers::VolunteersController
 
   def index
     @applicants_submitted = User.with_submitted_application
-    @applicants_started   = User.with_started_application
   end
 
   def show

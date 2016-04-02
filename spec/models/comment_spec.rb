@@ -24,22 +24,21 @@ describe Comment do
     expect(comment.tap(&:valid?)).to have_at_least(1).errors_on(:user)
   end
 
-  it 'should be valid for member' do
+  it 'should not be valid for attendee' do
+    comment = Comment.new(user: User.make!(:attendee))
+    expect(comment.tap(&:valid?)).to have_at_least(1).errors_on(:user)
+  end
+
+  it 'should be valid for application reviewer' do
     comment = Comment.new
-    comment.user = User.make!(:member)
+    comment.user = User.make!(:application_reviewer)
     expect(comment.tap(&:valid?)).to have(0).errors_on(:user)
   end
 
-  it 'should be valid for voting member' do
-    comment = Comment.new
-    comment.user = User.make!(:voting_member)
-    expect(comment.tap(&:valid?)).to have(0).errors_on(:user)
-  end
-
-  it 'should be saved for member' do
+  it 'should be saved for application reviewer' do
     comment = Comment.new(body: 'hello')
     comment.application = Application.make!(:with_user)
-    comment.user = User.make!(:member)
+    comment.user = User.make!(:application_reviewer)
     expect(comment.save).to be_truthy
   end
 end

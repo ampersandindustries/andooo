@@ -13,7 +13,8 @@
   %body{ class: body_classes.join(' ') }
     .wrapper
       = render 'layouts/navigation'
-      = render 'layouts/member_nav' if current_user && current_user.general_member?
+      = render 'layouts/attendee_nav' if current_user
+      = render 'layouts/admin_nav' if current_user && current_user.application_reviewer?
       #main{ role: 'main' }
         = render 'layouts/messages'
         .container= yield

@@ -4,11 +4,11 @@ describe "voting on an application" do
   let(:application) { create(:application) }
 
   before do
-    page.set_rack_session(user_id: member.id)
+    page.set_rack_session(user_id: application_reviewer.id)
   end
 
-  context "when logged in as a voting member" do
-    let(:member) { create(:voting_member) }
+  context "when logged in as a application reviewer" do
+    let(:application_reviewer) { create(:application_reviewer) }
 
     it "allows the member to vote yes" do
       visit volunteers_application_path(application)
@@ -32,17 +32,6 @@ describe "voting on an application" do
       expect(page).to have_content "Votes against membership (1)"
       click_link "Remove your vote"
       expect(page).to have_content "Votes against membership (0)"
-    end
-  end
-
-  context "logged in as a non-voting member" do
-    let(:member) { create(:member) }
-
-    it "does not allow the member to vote" do
-      visit volunteers_application_path(application)
-      expect(page).to have_content "Only Voting Members Can Vote"
-      expect(page).not_to have_button "No"
-      expect(page).not_to have_button "Yes"
     end
   end
 end

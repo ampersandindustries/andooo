@@ -6,23 +6,21 @@ describe Volunteers::VotesController do
   let(:application) { create(:application) }
 
   describe "POST create" do
-    let(:params) { {
-    vote: { application_id: application.id }, "vote_no" => "No"
-    } }
+    let(:params) { { vote: { application_id: application.id }, "vote_no" => "No" } }
 
     subject { post :create, params }
 
     before do
-      login_as(member)
+      login_as(application_reviewer)
     end
 
-    context "when logged in as a voting member" do
-      let(:member) { create(:voting_member) }
+    context "when logged in as a application reviewer" do
+      let(:application_reviewer) { create(:application_reviewer) }
 
       it "create the correct vote" do
         subject
         expect(Vote.last.application_id).to eq application.id
-        expect(Vote.last.user_id).to eq member.id
+        expect(Vote.last.user_id).to eq application_reviewer.id
       end
 
       describe "voting no" do
@@ -49,20 +47,20 @@ describe Volunteers::VotesController do
     subject { delete :destroy, params }
 
     before do
-      login_as(member)
+      login_as(application_reviewer)
 
       vote = Vote.new
       vote.application_id = application.id
-      vote.user_id = member.id
+      vote.user_id = application_reviewer.id
       vote.value = true
       vote.save
     end
 
-    context "when logged in as a voting member" do
-      let(:member) { create(:voting_member) }
+    context "when logged in as a application reviewer" do
+      let(:application_reviewer) { create(:application_reviewer) }
       let(:params) { { id: application.id } }
       let(:vote) { Vote.where(application_id: application.id,
-                              user_id: member.id,
+                              user_id: application_reviewer.id,
                               value: true).first
       }
 

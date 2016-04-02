@@ -1,0 +1,23 @@
+%nav.navbar#attendee-nav{ role: 'navigation' }
+  .container
+    .navbar-header
+      %button.navbar-toggle{type: 'button', :'data-toggle' => 'collapse', :'data-target' => '.navbar-ex1-collapse'}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+    .collapse.navbar-collapse.navbar-ex1-collapse
+      %ul.nav.navbar-nav.pull-right
+        - if current_user.present?
+          %li.dropdown
+            %a{ href: '#', class: 'dropdown-toggle', :'data-toggle' => 'dropdown' }
+              = user_gravatar(current_user)
+              = current_user.username
+              <b class="caret"></b>
+            %ul.dropdown-menu
+              - if current_user.applicant?
+                %li= link_to 'Application', edit_application_path(current_user.application)
+              - if current_user.attendee? || current_user.application_reviewer?
+                %li= link_to 'Attendee Details', details_attendances_path
+              %li.divider
+              %li= link_to 'Sign out', logout_path

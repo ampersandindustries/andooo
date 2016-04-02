@@ -2,11 +2,11 @@ class Admin::MembershipsController < ApplicationController
   before_filter :ensure_admin
 
   def index
-    @all_members = User.all_members.order_by_state
+    @all_attendees = User.all_attendees
 
     respond_to do |format|
       format.html
-      format.json { render json: @all_members.as_json }
+      format.json { render json: @all_attendees.as_json }
     end
   end
 
@@ -20,18 +20,6 @@ class Admin::MembershipsController < ApplicationController
     end
 
     redirect_to admin_applications_path
-  end
-
-  def change_membership_state
-    user = User.find(params[:id])
-
-    if user.send("make_#{params[:user][:updated_state]}")
-      flash[:message] = "#{user.name} is now a #{user.state.humanize.downcase}."
-    else
-      flash[:message] = "Whoops! #{user.errors.full_messages.to_sentence}"
-    end
-
-    redirect_to admin_memberships_path
   end
 
   private

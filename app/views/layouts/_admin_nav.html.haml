@@ -1,4 +1,4 @@
-%nav.navbar#member-nav{ role: 'navigation' }
+%nav.navbar#attendee-nav{ role: 'navigation' }
   .container
     .navbar-header
       %button.navbar-toggle{type: 'button', :'data-toggle' => 'collapse', :'data-target' => '.navbar-ex1-collapse'}
@@ -8,7 +8,7 @@
         %span.icon-bar
     .collapse.navbar-collapse.navbar-ex1-collapse
       %ul.nav.navbar-nav
-        %li.no-padding= link_to 'Volunteers Home', volunteers_users_path
+        %li.no-padding= link_to 'Admin Home', volunteers_users_path
         %li= link_to 'Applications', volunteers_applications_path
         - if current_user.is_admin?
           %li.dropdown

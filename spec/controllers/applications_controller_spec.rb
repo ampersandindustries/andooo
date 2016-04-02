@@ -16,7 +16,7 @@ describe ApplicationsController do
     end
 
     it 'should redirect to root if logged in as member' do
-      user = login_as(:member)
+      user = login_as(:attendee)
       get :show, id: user.application.id
       expect(response).to redirect_to :root
     end
@@ -52,7 +52,7 @@ describe ApplicationsController do
     end
 
     it 'should redirect to root if logged in as member' do
-      user = login_as(:member)
+      user = login_as(:attendee)
       get :edit, id: user.application.id
       expect(response).to redirect_to :root
     end
@@ -88,7 +88,7 @@ describe ApplicationsController do
     end
 
     it 'should redirect to root if logged in as member' do
-      user = login_as(:member)
+      user = login_as(:attendee)
       post :update, id: user.application.id
       expect(response).to redirect_to :root
     end

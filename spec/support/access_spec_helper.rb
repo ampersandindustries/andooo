@@ -1,6 +1,6 @@
-shared_examples "deny non-members" do |folks|
+shared_examples "deny non-application reviewers" do |folks|
   folks.each do |folk|
-    it "should deny non-members" do
+    it "should deny non-application reviewers" do
       login_as(folk)
       subject
       expect(response).to redirect_to :root
@@ -8,9 +8,9 @@ shared_examples "deny non-members" do |folks|
   end
 end
 
-shared_examples "allow members" do |folks|
+shared_examples "allow application reviewers" do |folks|
   folks.each do |folk|
-    it "should allow members" do
+    it "should allow application reviewers" do
       login_as(folk)
       subject
       expect(response).to be_success

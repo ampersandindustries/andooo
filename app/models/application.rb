@@ -4,7 +4,7 @@ class Application < ActiveRecord::Base
   has_many :votes, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  MINIMUM_YES = User.voting_members.count/2
+  MINIMUM_YES = User.application_reviewers.count/2
   MAXIMUM_NO = 1
 
   attr_protected :id
@@ -40,7 +40,7 @@ class Application < ActiveRecord::Base
 
   def not_voted_count
     @_not_voted_count ||= begin
-      User.voting_members.count - votes.size
+      User.application_reviewers.count - votes.size
     end
   end
 

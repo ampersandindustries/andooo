@@ -86,8 +86,8 @@ describe SessionsController do
         end
       end
 
-      context "who is a member" do
-        before { user.update_attribute(:state, "member") }
+      context "who is an application reviewer" do
+        before { user.update_attribute(:state, "application_reviewer") }
 
         it "doesn't make a new user" do
           expect { subject }.to_not change { User.count }
@@ -98,12 +98,12 @@ describe SessionsController do
           expect(session[:user_id]).to eq(user.id)
         end
 
-        it "redirects to the member root path" do
+        it "redirects to the volunteer root path" do
           subject
           expect(response).to redirect_to volunteers_root_path
         end
 
-        it "creates session for member" do
+        it "creates session for the application reviewer" do
           expect { subject }.to_not change { User.count }
           expect(session[:user_id]).to eq(user.id)
         end
@@ -115,7 +115,7 @@ describe SessionsController do
             login_as(user)
           end
 
-          it "redirects to the member root path" do
+          it "redirects to the volunteer root path" do
             subject
             expect(response).to redirect_to volunteers_root_path
           end
@@ -190,7 +190,7 @@ describe SessionsController do
         let(:user) { create_with_omniauth(OmniAuth.config.mock_auth[:github]) }
 
         before do
-          user.update_attribute(:state, "member")
+          user.update_attribute(:state, "attendee")
         end
 
         it "does not create a user" do

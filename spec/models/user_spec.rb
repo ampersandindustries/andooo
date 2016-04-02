@@ -37,83 +37,23 @@ describe User do
     expect(user.state).to eq('applicant')
   end
 
-  it 'should not transition from visitor to member' do
-    user = User.new
-    user.username = 'sallyride'
-    user.email = 'cat@example.org'
-    user.save!
-
-    expect(user.state).to eq('visitor')
-    expect { user.make_member! }.to raise_error(StateMachine::InvalidTransition)
-  end
-
   describe "#make_attendee" do
-    let(:member) { create(:applicant) }
+    let(:applicant) { create(:applicant) }
 
-    subject { member.make_attendee }
+    subject { applicant.make_attendee }
 
     it "should transition from applicant to attendee" do
-      expect { subject }.to change { member.state }.from("applicant").to("attendee")
+      expect { subject }.to change { applicant.state }.from("applicant").to("attendee")
     end
   end
 
-  describe "#make_former_member" do
-    let(:member) { create(:member) }
+  describe "#make_application_reviewer" do
+    let(:attendee) { create(:attendee) }
 
-    subject { member.make_former_member }
+    subject { attendee.make_application_reviewer }
 
-    it "should transition from member to former_member" do
-      expect { subject }.to change { member.state }.from("member").to("former_member")
-    end
-  end
-
-  describe "#make_member" do
-    let(:member) { create(:key_member) }
-
-    subject { member.make_member }
-
-    it "should transition from key member to member" do
-      expect { subject }.to change { member.state }.from("key_member").to("member")
-    end
-
-    context "with a voting member" do
-      let(:member) { create(:voting_member) }
-
-      it "should remove voting member agreement status" do
-        expect { subject }.to change { member.voting_policy_agreement }.from(true).to(false)
-      end
-    end
-  end
-
-  describe "#make_key_member" do
-    let(:member) { create :voting_member }
-
-    subject { member.make_key_member }
-
-    it "should transition from voting_member to member" do
-      expect { subject }.to change { member.state }.from("voting_member").to("key_member")
-    end
-
-    it "should remove voting member agreement status" do
-      expect { subject }.to change { member.voting_policy_agreement }.from(true).to(false)
-    end
-
-    context "with an applicant" do
-      let(:member) { create :applicant }
-
-      it "should not transition from applicant to key member" do
-        expect { subject }.not_to change { member.state }
-      end
-    end
-  end
-
-  describe "#make_voting_member" do
-    let(:member) { create(:key_member) }
-
-    subject { member.make_voting_member }
-
-    it "should transition from key member to voting member" do
-      expect { subject }.to change { member.state }.from("key_member").to("voting_member")
+    it "should transition from key member to application reviewer" do
+      expect { subject }.to change { attendee.state }.from("attendee").to("application_reviewer")
     end
   end
 end

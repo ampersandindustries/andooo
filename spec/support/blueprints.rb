@@ -14,11 +14,10 @@ User.blueprint do
   # Attributes here
 end
 
-User.blueprint(:visitor)    { state { 'visitor'    } }
-User.blueprint(:applicant)  { state { 'applicant'  } }
-User.blueprint(:member)     { state { 'member'     } }
-User.blueprint(:key_member) { state { 'key_member' } }
-User.blueprint(:voting_member) { state { 'voting_member' } }
+User.blueprint(:visitor) { state { 'visitor' } }
+User.blueprint(:applicant) { state { 'applicant' } }
+User.blueprint(:attendee) { state { 'attendee' } }
+User.blueprint(:application_reviewer) { state { 'application_reviewer' } }
 
 Application.blueprint do
 end

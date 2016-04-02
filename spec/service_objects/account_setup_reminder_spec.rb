@@ -5,9 +5,9 @@ describe AccountSetupReminder do
     before { ActionMailer::Base.deliveries = [] }
 
     let(:deliveries) { ActionMailer::Base.deliveries }
-    let(:users) { User.new_members }
-    let(:member) { create :member }
-    let(:other_member) { create :setup_complete_member }
+    let(:users) { User.has_not_confirmed_attendance }
+    let!(:applicant) { create(:approved_application).user }
+    let!(:other_attendee) { create(:confirmed_application).user }
 
     subject { AccountSetupReminder.new(users).send_emails }
 
@@ -20,8 +20,8 @@ describe AccountSetupReminder do
 
     context "with one 3 day reminder" do
       before do
-        member.application.update_column(:processed_at, 3.days.ago)
-        other_member.application.update_column(:processed_at, 3.days.ago)
+        applicant.application.update_column(:processed_at, 3.days.ago)
+        other_attendee.application.update_column(:processed_at, 3.days.ago)
       end
 
       it "sends 1 email" do
@@ -32,8 +32,8 @@ describe AccountSetupReminder do
 
     context "with one 7 day reminder" do
       before do
-        member.application.update_column(:processed_at, 7.days.ago)
-        other_member.application.update_column(:processed_at, 7.days.ago)
+        applicant.application.update_column(:processed_at, 7.days.ago)
+        other_attendee.application.update_column(:processed_at, 7.days.ago)
       end
 
       it "sends 1 email" do
@@ -44,8 +44,8 @@ describe AccountSetupReminder do
 
     context "with one 14 day reminder" do
       before do
-        member.application.update_column(:processed_at, 14.days.ago)
-        other_member.application.update_column(:processed_at, 14.days.ago)
+        applicant.application.update_column(:processed_at, 14.days.ago)
+        other_attendee.application.update_column(:processed_at, 14.days.ago)
       end
 
       it "sends 1 email" do
@@ -56,8 +56,8 @@ describe AccountSetupReminder do
 
     context "with one 21 day reminder" do
       before do
-        member.application.update_column(:processed_at, 21.days.ago)
-        other_member.application.update_column(:processed_at, 21.days.ago)
+        applicant.application.update_column(:processed_at, 21.days.ago)
+        other_attendee.application.update_column(:processed_at, 21.days.ago)
       end
 
       it "sends 1 email" do

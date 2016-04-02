@@ -1,4 +1,4 @@
-class Volunteers::CommentsController < Volunteers::MembersController
+class Volunteers::CommentsController < Volunteers::VolunteersController
   def create
     application = Application.find(application_id_param)
     comment = Comment.new(comment_params)

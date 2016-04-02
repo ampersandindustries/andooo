@@ -8,11 +8,11 @@ class Comment < ActiveRecord::Base
 
   validates :body, presence: true, length: { maximum: 2000 }
 
-  validate :user_is_general_member
+  validate :user_is_an_application_reviewer
 
-  def user_is_general_member
-    unless user && user.general_member?
-      errors.add(:user, 'is not a member')
+  def user_is_an_application_reviewer
+    unless user && user.application_reviewer?
+      errors.add(:user, 'is not an application reviewer')
     end
   end
 end

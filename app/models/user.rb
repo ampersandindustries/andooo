@@ -31,16 +31,10 @@ class User < ActiveRecord::Base
 
   scope :visitors,    -> { where(state: 'visitor') }
   scope :applicants,  -> { where(state: 'applicant') }
-  scope :members,     -> { where(state: 'member') }
-  scope :key_members, -> { where(state: 'key_member') }
-  scope :voting_members, -> { where(state: 'voting_member') }
+  scope :attendees,     -> { where(state: 'attendee') }
+  scope :application_reviewers, -> { where(state: 'application_reviewer') }
 
-  scope :all_members, -> { where(state: %w(member key_member voting_member)) }
-
-  scope :no_stripe_dues, -> {
-    all_members
-    .where(stripe_customer_id: nil)
-  }
+  scope :all_attendees, -> { where(state: %w(attendee application_reviewer)) }
 
   scope :with_submitted_application, -> {
     applicants
@@ -49,31 +43,9 @@ class User < ActiveRecord::Base
     .order('applications.submitted_at DESC')
   }
 
-  scope :with_started_application, -> {
-    applicants
-    .includes(:application)
-    .where(:'applications.state' => 'started')
-    .order('applications.submitted_at DESC')
+  scope :has_not_confirmed_attendance, -> {
+   applicants.joins(:application).where(applications: { state: 'approved' })
   }
-
-  scope :new_members, -> {
-    all_members
-    .where('setup_complete IS NULL or setup_complete = ?', false)
-    .includes(:application)
-    .order('applications.processed_at ASC')
-  }
-
-  scope :order_by_state, -> { order(<<-eos
-    CASE state
-    WHEN 'voting_member' THEN 1
-    WHEN 'key_member'    THEN 2
-    WHEN 'member'        THEN 3
-    WHEN 'applicant'     THEN 4
-    WHEN 'visitor'       THEN 5
-    ELSE                      6
-    END
-    eos
-    .squish)}
 
   state_machine :state, initial: :visitor do
     event :make_applicant do
@@ -84,38 +56,18 @@ class User < ActiveRecord::Base
       transition applicant: :attendee
     end
 
-    event :make_member do
-      transition [:applicant, :voting_member, :key_member] => :member
-    end
-
-    event :make_key_member do
-      transition [:member, :voting_member] => :key_member
-    end
-
-    event :make_voting_member do
-      transition [:member, :key_member] => :voting_member
-    end
-
-    event :make_former_member do
-      transition [:member, :voting_member, :key_member] => :former_member
-    end
-
-    after_transition on: [:make_member, :make_key_member, :make_former_member] do |user, _|
-      user.update(voting_policy_agreement: false)
+    event :make_application_reviewer do
+      transition [:attendee] => :application_reviewer
     end
 
     state :visitor
     state :applicant
     state :attendee
-
-    state :member
-    state :key_member
-    state :voting_member
-    state :former_member
+    state :application_reviewer
   end
 
-  def general_member?
-    member? || key_member? || voting_member?
+  def general_attendee?
+    attendee? || application_reviewer?
   end
 
   def gravatar_url(size = 200)
@@ -142,15 +94,6 @@ class User < ActiveRecord::Base
 
   def vote_for(application)
     Vote.where(application: application, user: self).first
-  end
-
-  def number_applications_needing_vote
-    if self.voting_member?
-      n = Application.where(state: 'submitted').count - Application.joins("JOIN votes ON votes.application_id = applications.id AND applications.state = 'submitted' AND votes.user_id = #{self.id}").count
-      n==0 ? nil : n
-    else
-      nil
-    end
   end
 
   private

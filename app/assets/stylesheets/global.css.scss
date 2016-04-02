@@ -34,14 +34,15 @@ footer ul {
 
 .navbar,
 .navbar-header {
-  background-color: $color-green;
-
-  a { color: white !important; }
-
   ul li span.non-link {
     display: block;
     padding: 15px 10px;
   }
+}
+
+#external-nav {
+  background-color: $color-green;
+  a { color: white !important; }
 }
 
 .icon-20 {
@@ -49,14 +50,14 @@ footer ul {
   height: 20px;
 }
 
-#member-nav {
-  background: #be2361;
+#attendee-nav {
+  background-color: $dark-green;
   border-radius: 0px;
 
   li {
     a {
       &:focus, &:hover {
-        background: #be2361;
+        background: $color-green;
       }
     }
   }

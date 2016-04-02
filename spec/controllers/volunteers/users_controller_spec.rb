@@ -3,13 +3,13 @@ require 'spec_helper'
 describe Volunteers::UsersController do
   include AuthHelper
 
-  let(:someone_cool) { create(:member) }
+  let(:someone_cool) { create(:application_reviewer) }
 
   describe 'GET index' do
     subject { get :index }
 
-    it_should_behave_like "deny non-members", [:visitor, :applicant]
-    it_should_behave_like "allow members", [:member, :voting_member]
+    it_should_behave_like "deny non-application reviewers", [:visitor, :applicant, :attendee]
+    it_should_behave_like "allow application reviewers", [:application_reviewer]
 
     it 'redirects if not logged in' do
       subject
@@ -20,8 +20,8 @@ describe Volunteers::UsersController do
   describe 'GET show' do
     subject { get :show, id: someone_cool.id }
 
-    it_should_behave_like "deny non-members", [:visitor, :applicant]
-    it_should_behave_like "allow members", [:member, :voting_member]
+    it_should_behave_like "deny non-application reviewers", [:visitor, :applicant, :attendee]
+    it_should_behave_like "allow application reviewers", [:application_reviewer]
 
     it 'redirects if not logged in' do
       subject

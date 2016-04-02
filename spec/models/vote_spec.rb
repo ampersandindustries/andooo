@@ -13,20 +13,20 @@ describe Vote do
     expect(Vote.new.tap(&:valid?)).to have_at_least(1).errors_on(:value)
   end
 
-  it 'should be invalid if voter is member' do
+  it 'should be invalid if voter is attendee' do
     vote = Vote.new
 
-    vote.user = User.make!(:member)
+    vote.user = User.make!(:attendee)
     vote.application = Application.make!(user: User.make!(:applicant))
     vote.value = true
     expect(vote.valid?).to be_falsey
     expect(vote).to have_at_least(1).errors_on(:user)
   end
 
-  it 'should be valid if voter is voting member' do
+  it 'should be valid if voter is application reviewer' do
     vote = Vote.new
 
-    vote.user = User.make!(:voting_member)
+    vote.user = User.make!(:application_reviewer)
     vote.application = Application.make!(user: User.make!(:applicant))
     vote.value = true
     expect(vote.valid?).to be_truthy
@@ -35,7 +35,7 @@ describe Vote do
   it 'should validate uniqueness per user and application' do
     applicant   = User.make!(:applicant)
     application = Application.make!(user: applicant)
-    voter       = User.make!(:voting_member)
+    voter       = User.make!(:application_reviewer)
     vote        = Vote.make!(application: application, user: voter)
 
     invalid = Vote.new(application: application,

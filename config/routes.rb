@@ -23,7 +23,6 @@ Doubleunion::Application.routes.draw do
   namespace :admin do
     resource :exceptions, only: :show
     resources :memberships, only: [:index, :update]
-    patch "memberships/:id/change_membership_state" => "memberships#change_membership_state", as: "change_membership_state"
   end
 
   get 'admin/applications' => 'admin#applications'

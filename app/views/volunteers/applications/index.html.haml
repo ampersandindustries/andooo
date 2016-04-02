@@ -6,7 +6,7 @@
         %th.name Name
         %th.date Submitted
         %th Comments
-        - if current_user.voting_member?
+        - if current_user.application_reviewer?
           %th You
         %th Yes
         %th No
@@ -24,7 +24,7 @@
             - else
               \--
           %td= application.comments.size
-          - if current_user.voting_member?
+          - if current_user.application_reviewer?
             %td
               - if current_user.voted_on?(application)
                 = current_user.vote_for(application).display_value

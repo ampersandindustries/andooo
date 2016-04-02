@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   def login
-    redirect_to volunteers_root_path if current_user.try(:general_member?)
+    redirect_to volunteers_root_path if current_user.try(:application_reviewer?)
   end
 
   def github
@@ -70,10 +70,7 @@ class SessionsController < ApplicationController
         redirect_to edit_application_path(user.application) and return
       elsif user.attendee?
         redirect_to details_attendances_path and return
-      elsif user.former_member?
-        flash[:message] = "As a former member, you can no longer access the members sections."
-        redirect_to root_path and return
-      elsif user.general_member?
+      elsif user.application_reviewer?
         redirect_to volunteers_root_path and return
       else
         user.make_applicant!

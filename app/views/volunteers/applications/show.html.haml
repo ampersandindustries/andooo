@@ -3,7 +3,7 @@
 %h3 Application
 = render partial: 'applications/show', locals: { user: @user }
 
-- if !logged_in_as?(@user) && current_user.voting_member?
+- if !logged_in_as?(@user) && current_user.application_reviewer?
   %h3= @user.name
 
   - if current_user.voted_on?(@application)
@@ -23,7 +23,7 @@
 - elsif !logged_in_as?(@user) && current_user.member?
   %h3= @user.name
   %button{ disabled: true }
-    Only Voting Members Can Vote
+    Only application reviewers Can Vote
 
 %h3 Status
 

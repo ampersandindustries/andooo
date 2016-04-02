@@ -1,4 +1,4 @@
-class Volunteers::VotesController < Volunteers::MembersController
+class Volunteers::VotesController < Volunteers::VolunteersController
   def create
     vote(application_id_param, !!params[:vote_yes])
 

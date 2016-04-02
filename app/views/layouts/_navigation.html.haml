@@ -1,4 +1,4 @@
-%nav.navbar.navbar-default{ role: 'navigation' }
+%nav.navbar.navbar-default#external-nav{ role: 'navigation' }
   .container
     .navbar-header
       %button.navbar-toggle{type: 'button', :'data-toggle' => 'collapse', :'data-target' => '.navbar-ex1-collapse'}
@@ -8,43 +8,15 @@
         %span.icon-bar
       = link_to 'AndConf', root_path, class: 'navbar-brand'
     .collapse.navbar-collapse.navbar-ex1-collapse
-      %ul.nav.navbar-nav
-      - if logged_in?
-        %ul.nav.navbar-nav.pull-right
-          %li.vote-alert-badge
-            %a{ href: volunteers_applications_path }
-              %span.badge= current_user.number_applications_needing_vote
-        %ul.nav.navbar-nav.pull-right
-          %li
-            = link_to "Attendee Details and FAQ", details_path
-          - unless current_user.general_member?
-            %li.dropdown
-              / %span.badge 5
-              %a{ href: '#', class: 'dropdown-toggle', :'data-toggle' => 'dropdown' }
-                = user_gravatar(current_user)
-                = current_user.username
-                <b class="caret"></b>
-              %ul.dropdown-menu
-                - if current_user.applicant?
-                  %li= link_to 'Application', edit_application_path(current_user.application)
-                - if current_user.attendee?
-                  %li= link_to 'Attendee Details', details_attendances_path
-                %li.divider
-                %li= link_to 'Sign out', logout_path
-          - if current_user.general_member?
-            %li.pt-10
-              = user_gravatar(current_user)
-              = current_user.username
-      - else
-        %ul.nav.navbar-nav.pull-right
-          %li
-            = link_to "Attendee Details and FAQ", details_path
-          %li
-            = link_to "Accessibility", accessibility_path
-          %li
-            = link_to "Sponsorship", "/andconf_prospectus.pdf"
-          -# %li{'data-toggle' => 'modal', 'data-target' => '#log_in'}
-          -#   = link_to "Log In", "#"
+      %ul.nav.navbar-nav.pull-right
+        %li
+          = link_to "Attendee Details and FAQ", details_path
+        %li
+          = link_to "Accessibility", accessibility_path
+        %li
+          = link_to "Sponsorship", "/andconf_prospectus.pdf"
+        -# %li{'data-toggle' => 'modal', 'data-target' => '#log_in'}
+        -#   = link_to "Log In", "#"
 
 .modal#log_in
   .modal-dialog

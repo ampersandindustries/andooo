@@ -36,10 +36,6 @@ class ApplicationController < ActionController::Base
     require_user_with_state('applicant')
   end
 
-  def require_general_member
-    require_user_with_state(['member', 'key_member', 'voting_member'])
-  end
-
   def require_user_with_state(states)
     unless logged_in? && states.include?(current_user.state)
       redirect_to :root and return
