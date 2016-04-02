@@ -19,7 +19,7 @@ class Admin::MembershipsController < ApplicationController
       flash[:message] = "Whoops! #{user.errors.full_messages.to_sentence}"
     end
 
-    redirect_to admin_memberships_path
+    redirect_to admin_applications_path
   end
 
   def change_membership_state
