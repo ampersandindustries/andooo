@@ -26,13 +26,10 @@ Doubleunion::Application.routes.draw do
     patch "memberships/:id/change_membership_state" => "memberships#change_membership_state", as: "change_membership_state"
   end
 
-  get 'admin/new_members' => 'admin#new_members'
   get 'admin/applications' => 'admin#applications'
 
   patch 'admin/approve' => 'admin#approve'
   patch 'admin/reject' => 'admin#reject'
-
-  post 'admin/setup_complete' => 'admin#setup_complete'
   post 'admin/save_membership_note' => 'admin#save_membership_note'
 
   resources :applications, only: [:show, :edit, :update]

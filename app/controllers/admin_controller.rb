@@ -31,21 +31,6 @@ class AdminController < ApplicationController
     end
   end
 
-  def new_members
-    @new_members = User.new_members
-  end
-
-  def setup_complete
-    user = User.find(user_params[:id])
-    user.setup_complete = true
-    if user.save
-      ApplicationsMailer.member_access(user.application).deliver_now
-    else
-      flash[:message] = "Whoops! #{user.errors.full_messages.to_sentence}"
-    end
-    redirect_to admin_new_members_path
-  end
-
   def save_membership_note
     user = User.find(user_params[:id])
     user.membership_note = user_params[:membership_note]
@@ -53,10 +38,8 @@ class AdminController < ApplicationController
     respond_to do |format|
       if user.save
         format.json { render json: { user_id: user.id } }
-        format.html { redirect_to admin_new_members_path, notice: "Note saved!" }
       else
         format.json { render json: { user_id: user.id } }
-        format.html { redirect_to admin_new_members_path, notice: "Whoops! #{user.errors.full_messages.to_sentence}" }
       end
     end
   end

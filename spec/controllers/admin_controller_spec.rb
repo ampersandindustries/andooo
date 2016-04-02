@@ -38,34 +38,9 @@ describe AdminController do
       end
     end
 
-    describe 'GET new_members' do
-      it 'allows admin to view admin new members index' do
-        login_as(:voting_member, is_admin: true)
-        get :new_members
-        expect(response).to render_template :new_members
-      end
-    end
-
-    describe 'POST setup_complete' do
-      let!(:member) { create(:member) }
-      let(:params) { { user: { id: member.id} } }
-
-      subject { post :setup_complete, params }
-
-      before {
-        member.update(email_for_google: "bananas@example.com")
-      }
-
-      it 'allows the admin to mark user setup as complete' do
-        login_as(:voting_member, is_admin: true)
-
-        expect { subject  }.to change{ member.reload.setup_complete }.from(nil).to(true)
-      end
-    end
-
     describe 'POST add_membership_note' do
       let!(:member) { create(:member) }
-      let(:params) { { user: { id: member.id, membership_note: "beeeep"} } }
+      let(:params) { { user: { id: member.id, membership_note: "beeeep"}, format: :json } }
 
       it 'allows the admin to make notes on the new user' do
         login_as(:voting_member, is_admin: true)
@@ -73,7 +48,6 @@ describe AdminController do
           post :save_membership_note, params
         end.to change{member.reload.membership_note}.from(nil).to("beeeep")
       end
-
     end
   end
 
