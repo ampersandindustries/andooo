@@ -6,7 +6,7 @@ $(document).ready(function(){
 
     token: function(token, args) {
         var tokenElem = $("<input type='hidden' name='token'>").val(token.id);
-        $("#dues-form").append(tokenElem).submit();
+        $("#payment-form").append(tokenElem).submit();
         $("#js-dues").text("Updating...").attr("disabled", "disabled");
     }
   });

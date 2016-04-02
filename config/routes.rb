@@ -8,12 +8,7 @@ Doubleunion::Application.routes.draw do
   namespace :volunteers do
     root to: 'users#index'
 
-    resources :users, only: [:index, :show] do
-      get 'setup' => "users#setup"
-      patch 'setup' => "users#finalize"
-
-      resource :dues, only: [:show, :update]
-    end
+    resources :users, only: [:index, :show]
     resources :votes, only: [:create, :destroy]
 
     resources :applications, only: [:index, :show] do
