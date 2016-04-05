@@ -22,11 +22,38 @@ describe AttendancesController do
       subject { put :create, params }
 
       context "with good params" do
-        let(:params) { { attendance: { gender: "nb" } } }
+        let(:params) { { attendance: { 
+                          badge_name: "my name",
+                          twitter_handle: "a_handle",
+                          dietary_restrictions: ["something"],
+                          gender: "my gender",
+                          sleeping_preference: "I have no preference",
+                          staying_sunday_night: "yes",
+                          flying_in: "no",
+                          transport_to_venue: "I will be taking the free shuttle leaving downtown San Francisco on FRIDAY, August 12th at 3pm",
+                          transport_from_venue: "I will be driving myself or organizing carpooling via the doc or #transportation slack channel",
+                          agree_to_coc: true,
+                          accept_trails_and_pool_risk: true,
+                          attend_entire_conference: true,
+                          interested_in_volunteering: true
+                        } } }
 
         it "updates the attendance" do
           subject
-          expect(attendance.reload.gender).to eq "nb"
+          attendance.reload
+          expect(attendance.badge_name).to eq("my name")
+          expect(attendance.dietary_restrictions).to eq("[\"something\"]")
+          expect(attendance.gender).to eq("my gender")
+          expect(attendance.twitter_handle).to eq("a_handle")
+          expect(attendance.sleeping_preference).to eq("I have no preference")
+          expect(attendance.staying_sunday_night).to eq("yes")
+          expect(attendance.flying_in).to eq("no")
+          expect(attendance.agree_to_coc).to eq(true)
+          expect(attendance.accept_trails_and_pool_risk).to eq(true)
+          expect(attendance.attend_entire_conference).to eq(true)
+          expect(attendance.interested_in_volunteering).to eq(true)
+          expect(attendance.transport_to_venue).to eq("I will be taking the free shuttle leaving downtown San Francisco on FRIDAY, August 12th at 3pm")
+          expect(attendance.transport_from_venue).to eq("I will be driving myself or organizing carpooling via the doc or #transportation slack channel")
         end
 
         it "renders the payment form" do

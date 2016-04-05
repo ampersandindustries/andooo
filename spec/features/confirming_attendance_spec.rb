@@ -10,9 +10,21 @@ describe "confirming attendance and paying money to attend AndConf" do
   it "allows applicants to give us their precious deets" do
     visit new_attendances_path
 
+    fill_in "Badge Name", with: "Cool Attendee"
     fill_in "Gender", with: "NB"
+    check "attendance_dietary_restrictions_vegan"
+    fill_in "Additional dietary restrictions or concerns (e.g. needing access to a fridge)", with: "Need access to a kitchen"
+    fill_in "Twitter Handle", with: "@fun_times"
+    select "I have no preference", from: "Sleeping Preferences"
+    select "Maybe", from: "Are you staying at St. Dorothy's Rest on Sunday night?"
+    select "No", from: "Are you flying into the Bay Area for AndConf?"
+    select "I will be taking the free shuttle leaving downtown San Francisco on FRIDAY, August 12th at 3pm", from: "Transportation to St. Dorothy's Rest"
+    select "I will be driving myself or organizing carpooling via the doc or #transportation slack channel", from: "Transportation from St. Dorothy's Rest"
+    check "I have read and agree to abide by the code of conduct:"
+    check "I acknowledge that I use the trails and pool at St. Dorothy's Rest at my own risk"
+    check "I plan to attend the entire conference (Friday evening through Sunday evening)"
+    check "I am interested in volunteering" 
     click_on "Submit"
-
     expect(page).to have_content "Tickets to AndConf cost $300"
 
     # TODO maybe write an integration spec for stripe stuff??
