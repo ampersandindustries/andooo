@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   http_basic_authenticate_with name: ENV['BASIC_AUTH_NAME'], password: ENV['BASIC_AUTH_PASSWORD'] if Rails.env.staging?
   protect_from_forgery
   helper_method :current_user, :logged_in?, :logged_in_as?,
-                :correct_user?, :members_page?, :vote
+                :correct_user?, :members_page?, :home_page?, :vote
 
   private
 
@@ -58,6 +58,10 @@ class ApplicationController < ActionController::Base
   end
 
   def members_page?
+    false
+  end
+
+  def home_page?
     false
   end
 
