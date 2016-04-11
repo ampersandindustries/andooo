@@ -17,6 +17,7 @@
       = render 'layouts/admin_nav' if current_user && current_user.application_reviewer?
       #main{ role: 'main' }
         = render 'layouts/messages'
+        = render 'static_pages/masthead' if home_page?
         .container= yield
 
     %footer

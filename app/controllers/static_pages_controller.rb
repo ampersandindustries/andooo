@@ -11,4 +11,10 @@ class StaticPagesController < ApplicationController
 
   def accessibility
   end
+
+  private
+
+  def home_page?
+    params[:action] == "home"
+  end
 end
