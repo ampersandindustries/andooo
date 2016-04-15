@@ -5,6 +5,8 @@ Doubleunion::Application.routes.draw do
   get 'details' => 'static_pages#details'
   get 'accessibility' => 'static_pages#accessibility'
 
+  resource :donations, only: [:show, :create]
+
   namespace :volunteers do
     root to: 'users#index'
 
