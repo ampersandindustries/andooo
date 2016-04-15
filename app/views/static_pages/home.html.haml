@@ -1,11 +1,4 @@
 %section.main-content
-  %h2 Thanks for attending!
-  %p
-    Huge thanks to our attendees and sponsors who helped make AndConf 2015 a
-    success. If you're interested in hearing about AndConf 2016, sign up for our
-    #{link_to "mailing list", "http://eepurl.com/bAuGZb"}.
-
-  %h2 What is AndConf?
   %p
     AndConf (formerly &:conf) is a code retreat and an
     unconference for intersectional feminist programmers in the woods of western
@@ -15,54 +8,16 @@
     two tracks: yak and hack, where we'll talk about technologies,
     programming, careers, and culture.
   %p
-    AndConf will take place at
-    #{ link_to "St. Dorothy's Rest", "http://stdorothysrest.org/facilities/grounds/" }
+    AndConf takes place at
+    #{ link_to "St. Dorothy's Rest", "http://stdorothysrest.org/facilities/grounds/", target: "_blank" }
     camp and retreat center.
 
-  %h2 Sponsors
-  %p A huge thank you to our generous sponsors for helping to make AndConf possible:
-  .sponsor-logos.clearfix
-    .sponsor-col
-      %h3 Diamond Sponsor
-      = link_to 'http://www.ministryofvelocity.com/' do
-        = image_tag 'mov.png', alt: 'Ministry of Velocity', class: 'sponsor-logo-mov'
-    .sponsor-col
-      %h3 Platinum Sponsors
-      = link_to 'http://mailchimp.com/' do
-        = image_tag 'mailchimp.png', alt: 'MailChimp', class: 'sponsor-logo-mailkimp'
-      = link_to 'https://etsy.com/' do
-        = image_tag 'etsy.png', alt: 'Etsy', class: 'sponsor-logo-etsy'
-    .sponsor-col
-      %h3 Gold Sponsors
-      = link_to 'http://www.carbonfive.com/' do
-        = image_tag 'c5-logo-horizontal.png', alt: 'Carbon Five', class: 'sponsor-logo-c5'
-      = link_to 'http://pivotallabs.com/' do
-        = image_tag 'pivotal.png', alt: 'Pivotal Labs', class: 'sponsor-logo-pivotal'
-      = link_to 'http://opennews.org/' do
-        = image_tag 'open-news.png', alt: 'Knight-Mozilla OpenNews', class: 'sponsor-logo-open-news'
-      = link_to 'https://omadahealth.com/' do
-        = image_tag 'omada-horiz.png', alt: 'Omada Health', class: 'sponsor-logo-omada'
-  .sponsor-logos.clearfix
-    .sponsor-col
-      %h3 Diversity Scholarship Sponsors
-      = link_to 'https://stripe.com/' do
-        = image_tag 'stripe.png', alt: 'Stripe', class: 'sponsor-logo-stripe'
-      = link_to 'https://bugsnag.com/' do
-        = image_tag 'bugsnag.png', alt: 'Bugsnag', class: 'sponsor-logo-bugsnag'
-    .sponsor-col
-      %h3 Snack Sponsor
-      = link_to 'http://www.makersquare.com/' do
-        = image_tag 'makersquare.png', alt: 'MakerSquare', class: 'sponsor-logo-makersquare'
-    .sponsor-col
-      %h3 Sticker Sponsor
-      = link_to 'http://www.stickergiant.com/' do
-        = image_tag 'stickergiant.png', alt: 'StickerGiant', class: 'sponsor-logo-stickergiant'
+  %h2 Sponsorship
+
   %p
-    Interested in sponsoring? Check out our
-    = link_to "sponsorship prospectus", "/andconf_prospectus.pdf"
-    or
-    = link_to "contact us", "mailto:info@andconf.io"
-    if we can help find a custom sponsorship opportunity that's right for you.
+    We're actively seeking sponsors for AndConf 2016! Check out our
+    #{ link_to "sponsorship prospectus", "/andconf_prospectus.pdf", target: "_blank" }, and email
+    #{ mail_to "lillie@andconf.io" } with any questions!
 
   %h2 Code of Conduct
   %p
@@ -77,23 +32,29 @@
     Read the #{ link_to "full code of conduct", code_of_conduct_path }.
 
   %h2 Contact
+
   %p Questions? Contact the conference organizers at #{ mail_to "info@andconf.io" }.
+
+  %p
+    Sign up for our #{link_to "mailing list", "http://eepurl.com/bAuGZb", target: "_blank"} for updates
+    about AndConf!
+
   %h2 About the Organizers
   %p.bio
     = image_tag "lillie.jpg", alt: "Lillie Chilen"
-    = link_to "Lillie Chilen", "https://twitter.com/lilliealbert"
+    = link_to "Lillie Chilen", "https://twitter.com/lilliealbert", target: "_blank"
     is a software engineer at Omada Health and a veteran open source event
     organizer. She chairs the RailsBridge board and is the CTO of Double Union, a feminist
     hacker/makerspace in San Francisco.
   %p.bio
     = image_tag "stella.jpg", alt: "Stella Cotton"
-    = link_to "Stella Cotton", "https://twitter.com/practice_cactus"
+    = link_to "Stella Cotton", "https://twitter.com/practice_cactus", target: "_blank"
     is a software engineer and project lead at Indiegogo. Coming to
     software after six years in the Financial sector, she’s passionate about building robust
     payments systems and diverse teams.
   %p.bio
     = image_tag "emily.jpg", alt: "Emily Nakashima"
-    = link_to "Emily Nakashima", "https://twitter.com/eanakashima"
+    = link_to "Emily Nakashima", "https://twitter.com/eanakashima", target: "_blank"
     is a software engineer at GitHub and a volunteer with RailsBridge.
     She writes and speaks at conferences on the topics of web performance, client-side
     monitoring, javascript patterns, and supporting diversity in technical organizations.
