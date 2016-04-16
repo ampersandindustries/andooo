@@ -9,7 +9,108 @@
 
 = form_for @attendance, url: attendances_path, html: { class: "form" } do |f|
   .form-group
+    = f.label :badge_name, "Badge Name"
+    %small (required)
+    %p.small
+    = f.text_field :badge_name
+  %p
+
+  .form-group
     = f.label :gender, "Gender"
+    %small (required)
+    %p.small
     = f.text_field :gender
+  %p
+
+  .form-group
+  %strong Dietary Restrictions
+  %small (required)
+  %p
+  - Attendance::DIETARY_OPTIONS.each do | option |
+    = f.check_box :dietary_restrictions, { :multiple => true }, option, nil
+    = f.label :dietary_restrictions, option
+    %br
+  %p
+
+  .form-group
+    = f.label :dietary_additional_info, "Additional dietary restrictions or concerns (e.g. needing access to a fridge)"
+  %p
+    = f.text_area :dietary_additional_info
+  %p
+
+  .form-group
+    = f.label :twitter_handle, "Twitter Handle"
+    %p.small
+    = f.text_field :twitter_handle
+  %p
+  
+  .form-group
+    = f.label :sleeping_preference, "Sleeping Preferences"
+    %small (required)
+    %p.small
+    %small AndConf is open to people of all gender identities and we are emphatically queer, trans-, and non-binary-friendly
+    %p.small
+    = f.select :sleeping_preference, Attendance::SLEEPING_OPTIONS
+  %p
+
+  .form-group
+    = f.label :staying_sunday_night, "Are you staying at St. Dorothy's Rest on Sunday night?"
+    %small (required)
+    %p.small
+    The conference program ends after dinner on Sunday, but staying over on Sunday night is included in the ticket cost in case you want to head home Monday.
+    %p.small
+    = f.select :staying_sunday_night, Attendance::STAYING_OVER_OPTIONS
+  %p
+
+  .form-group
+    = f.label :flying_in, "Are you flying into the Bay Area for AndConf?"
+    %small (required)
+    %p.small
+    = f.select :flying_in, Attendance::FLYING_IN_OPTIONS
+  %p
+
+  AndConf will provide a free shuttle from downtown San Francisco to St. Dorothy's Rest. St. Dorothy's Rest is about 2.5 hours from downtown San Francisco in normal traffic. If you would coordinate carpooling with other attendees, there is a doc #{ link_to "Carpool Coordination Doc", carpool_doc_url, target: "_blank"} and a #transportation Slack channel to help you facilitate.
+  %p
+
+  .form-group
+    = f.label :transport_to_venue, "Transportation to St. Dorothy's Rest"
+    %small (required)
+    %p.small
+    = f.select :transport_to_venue, Attendance::TRANSPORT_TO_VENUE_OPTIONS
+  %p
+
+  .form-group
+    = f.label :transport_from_venue, "Transportation from St. Dorothy's Rest"
+    %small (required)
+    %p.small
+    = f.select :transport_from_venue, Attendance::TRANSPORT_FROM_VENUE_OPTIONS
+  %p
+
+  .form-group
+    = f.check_box :agree_to_coc
+    = f.label :agree_to_coc, "I have read and agree to abide by the code of conduct: " 
+    #{ link_to "Code of Conduct", code_of_conduct_path, target: "_blank" }
+    %small (required)
+    %br
+  %p
+
+  .form-group
+    = f.check_box :accept_trails_and_pool_risk
+    = f.label :accept_trails_and_pool_risk, "I acknowledge that I use the trails and pool at St. Dorothy's Rest at my own risk" 
+    %small (required)
+    %br
+  %p
+
+  .form-group
+    = f.check_box :attend_entire_conference
+    = f.label :attend_entire_conference, "I plan to attend the entire conference (Friday evening through Sunday evening)"
+    %small (required)
+    %br
+  %p
+
+  .form-group
+    = f.check_box :interested_in_volunteering
+    = f.label :interested_in_volunteering, "I am interested in volunteering"
+    %br
   %p
     = f.submit "Submit", class: "btn btn-primary"

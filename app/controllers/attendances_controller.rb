@@ -7,7 +7,7 @@ class AttendancesController < ApplicationController
 
   def create
     @attendance = current_user.attendances.build
-
+    
     if @attendance.update(attendance_params)
       redirect_to payment_form_attendances_path
     else
@@ -51,7 +51,9 @@ class AttendancesController < ApplicationController
   private
 
   def attendance_params
-    params.require(:attendance).permit(:gender)
+    params.require(:attendance).permit(:badge_name, :gender, { dietary_restrictions: [] }, :dietary_additional_info, :twitter_handle, :sleeping_preference, 
+                                      :staying_sunday_night, :flying_in, :transport_to_venue, :transport_from_venue, :agree_to_coc, 
+                                      :attend_entire_conference, :interested_in_volunteering, :accept_trails_and_pool_risk)
   end
 
   def require_approved_applicant
