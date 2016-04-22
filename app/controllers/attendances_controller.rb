@@ -26,7 +26,10 @@ class AttendancesController < ApplicationController
   end
 
   def confirm_scholarship
-    if params[:attending].present?
+    if current_user.attendee?
+      flash[:error] = "You have already confirmed your attendance, can't do it again!"
+      redirect_to details_attendances_path
+    elsif params[:attending].present?
       current_user.make_attendee!
       redirect_to details_attendances_path
     else

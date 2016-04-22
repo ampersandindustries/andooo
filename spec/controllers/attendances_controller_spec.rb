@@ -188,6 +188,21 @@ describe AttendancesController do
           expect(subject).to render_template :scholarship_form
         end
       end
+
+      context "with someone who has already confirmed" do
+        let(:params) { { attending: "yes" } }
+
+        before { applicant.make_attendee! }
+
+        it "doesn't call make_attendee!" do
+          expect(applicant).not_to receive(:make_attendee!)
+          subject
+        end
+
+        it "redirects to the attendances page" do
+          expect(subject).to redirect_to details_attendances_path
+        end
+      end
     end
   end
 end
