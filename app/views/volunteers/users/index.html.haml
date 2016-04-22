@@ -1,7 +1,3 @@
 - if @all_attendees.any?
   %h3 Volunteers
   = render partial: 'list', locals: { users: @all_attendees }
-
-  %h3 Attendees
-  %small (Who aren't also volunteers)
-  = render partial: 'list', locals: { users: @just_attendees }
