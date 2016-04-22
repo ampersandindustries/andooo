@@ -39,7 +39,7 @@ class AttendancesController < ApplicationController
       :description => "Ticket for AndConf"
     )
 
-    # TODO: This is where we confirm paying people's attendance
+    current_user.make_attendee!
 
     redirect_to details_attendances_path
 

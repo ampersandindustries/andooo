@@ -128,6 +128,10 @@ describe AttendancesController do
         it "redirects to the attendances page" do
           expect(subject).to redirect_to details_attendances_path
         end
+
+        it "marks the applicant as an attendee" do
+          expect { subject }.to change { applicant.state }.from("applicant").to("attendee")
+        end
       end
 
       context "when something goes wrong with Stripe" do
@@ -137,6 +141,10 @@ describe AttendancesController do
           subject
           expect(flash[:error]).to eq "The card was declined"
           expect(response).to render_template :payment_form
+        end
+
+        it "does not mark the applicant as an attendee" do
+          expect { subject }.not_to change { applicant.state }.from("applicant")
         end
       end
     end
