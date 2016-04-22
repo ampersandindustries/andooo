@@ -24,13 +24,4 @@ class ApplicationsMailer < ActionMailer::Base
       subject: "Attendance at AndConf 2016 confirmed!"
     )
   end
-
-  def votes_threshold(application)
-    @user = application.user
-    @application = application
-    mail(
-      to: INFO_EMAIL,
-      subject: "A Double Union application hit the votes threshold!"
-    )
-  end
 end
