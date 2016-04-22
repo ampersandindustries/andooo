@@ -9,13 +9,30 @@ class AttendancesController < ApplicationController
     @attendance = current_user.attendances.build
     
     if @attendance.update(attendance_params)
-      redirect_to payment_form_attendances_path
+      if current_user.is_scholarship?
+        redirect_to scholarship_form_attendances_path
+      else
+        redirect_to payment_form_attendances_path
+      end
     else
       render :new
     end
   end
 
   def details
+  end
+
+  def scholarship_form
+  end
+
+  def confirm_scholarship
+    if params[:attending].present?
+      current_user.make_attendee!
+      redirect_to details_attendances_path
+    else
+      flash[:error] = "Please check the confirmation box."
+      render :scholarship_form
+    end
   end
 
   def payment_form

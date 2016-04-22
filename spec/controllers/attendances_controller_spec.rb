@@ -22,21 +22,21 @@ describe AttendancesController do
       subject { put :create, params }
 
       context "with good params" do
-        let(:params) { { attendance: { 
-                          badge_name: "my name",
-                          twitter_handle: "a_handle",
-                          dietary_restrictions: ["something"],
-                          gender: "my gender",
-                          sleeping_preference: "I have no preference",
-                          staying_sunday_night: "yes",
-                          flying_in: "no",
-                          transport_to_venue: "I will be taking the free shuttle leaving downtown San Francisco on FRIDAY, August 12th at 3pm",
-                          transport_from_venue: "I will be driving myself or organizing carpooling via the doc or #transportation slack channel",
-                          agree_to_coc: true,
-                          accept_trails_and_pool_risk: true,
-                          attend_entire_conference: true,
-                          interested_in_volunteering: true
-                        } } }
+        let(:params) { { attendance: {
+          badge_name: "my name",
+          twitter_handle: "a_handle",
+          dietary_restrictions: ["something"],
+          gender: "my gender",
+          sleeping_preference: "I have no preference",
+          staying_sunday_night: "yes",
+          flying_in: "no",
+          transport_to_venue: "I will be taking the free shuttle leaving downtown San Francisco on FRIDAY, August 12th at 3pm",
+          transport_from_venue: "I will be driving myself or organizing carpooling via the doc or #transportation slack channel",
+          agree_to_coc: true,
+          accept_trails_and_pool_risk: true,
+          attend_entire_conference: true,
+          interested_in_volunteering: true
+        } } }
 
         it "updates the attendance" do
           subject
@@ -59,6 +59,15 @@ describe AttendancesController do
         it "renders the payment form" do
           subject
           expect(response).to redirect_to payment_form_attendances_path
+        end
+
+        context "with a scholarship attendee" do
+          before { applicant.update(is_scholarship: true) }
+
+          it "renders the payment form" do
+            subject
+            expect(response).to redirect_to scholarship_form_attendances_path
+          end
         end
 
         context "when the application was rejected" do
@@ -145,6 +154,38 @@ describe AttendancesController do
 
         it "does not mark the applicant as an attendee" do
           expect { subject }.not_to change { applicant.state }.from("applicant")
+        end
+      end
+    end
+
+    describe "GET scholarship_form" do
+      subject { get :scholarship_form }
+
+      it "renders the attendance page" do
+        expect(subject).to render_template :scholarship_form
+      end
+    end
+
+    describe "PUT confirm_scholarship" do
+      subject { put :confirm_scholarship, params }
+
+      context "with the agreements checked" do
+        let(:params) { { attending: "yes" } }
+
+        it "marks the applicant as an attendee" do
+          expect { subject }.to change { applicant.state }.from("applicant").to("attendee")
+        end
+
+        it "redirects to the attendances page" do
+          expect(subject).to redirect_to details_attendances_path
+        end
+      end
+
+      context "with the agreement not checked" do
+        let(:params) { { } }
+
+        it "rerenders the form" do
+          expect(subject).to render_template :scholarship_form
         end
       end
     end
