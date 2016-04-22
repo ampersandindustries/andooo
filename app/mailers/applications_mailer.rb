@@ -1,11 +1,11 @@
 class ApplicationsMailer < ActionMailer::Base
-  default from: "Double Union <#{INFO_EMAIL}>"
+  default from: "AndConf <#{INFO_EMAIL}>"
 
   def submitted(application)
     @user = application.user
     mail(
       to: @user.email,
-      subject: "Thanks for applying to Double Union!"
+      subject: "Thanks for applying to attend AndConf!"
     )
   end
 

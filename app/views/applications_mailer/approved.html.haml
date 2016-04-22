@@ -1,13 +1,30 @@
 %table{style: "width: 700px;"}
   %tr
     %td
-      %p Hi #{@user.name}!
+      %p
+        Hi #{@user.name}!
 
       %p
-        As soon as possible, log into #{ link_to "the site", SITE_URL } ("Log in" is at top right) and confirm your
-        attendance #{ link_to "on this page", new_attendances_url }.
+        You've been accepted to attend AndConf 2016! We can't wait to see you in August.
 
-      %p If you have any questions, email the organizers at #{ mail_to MEMBERSHIP_EMAIL }.
+      - if @user.is_scholarship
+        %p
+          We're also happy to offer you a scholarship ticket to AndConf this year.
+
+      %p
+        As soon as possible, please #{ link_to "log in", login_url } and #{ link_to "confirm your attendance", new_attendances_url }.
+        There's a short form with logistical questions like dietary restrictions, and travel and housing preferences.
+        - if !@user.is_scholarship
+          Then, you'll purchase your ticket and will be all set for the conference.
+
+      %p
+        (If you can no longer attend, there's an option #{ link_to "to decline your spot", new_attendances_url }, which will allow us to offer a spot to someone on the waitlist.)
+
+      %p
+        If you don't confirm your attendance within 10 days, we'll offer your spot to someone on the waitlist.
+
+      %p
+        As always, if you have any questions, email the organizers at #{ mail_to MEMBERSHIP_EMAIL }.
 
       %p
         All the best,
