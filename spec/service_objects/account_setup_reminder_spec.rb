@@ -30,10 +30,10 @@ describe AccountSetupReminder do
       end
     end
 
-    context "with one 7 day reminder" do
+    context "with one 6 day reminder" do
       before do
-        applicant.application.update_column(:processed_at, 7.days.ago)
-        other_attendee.application.update_column(:processed_at, 7.days.ago)
+        applicant.application.update_column(:processed_at, 6.days.ago)
+        other_attendee.application.update_column(:processed_at, 6.days.ago)
       end
 
       it "sends 1 email" do
@@ -42,22 +42,10 @@ describe AccountSetupReminder do
       end
     end
 
-    context "with one 14 day reminder" do
+    context "with one 9 day reminder" do
       before do
-        applicant.application.update_column(:processed_at, 14.days.ago)
-        other_attendee.application.update_column(:processed_at, 14.days.ago)
-      end
-
-      it "sends 1 email" do
-        subject
-        expect(deliveries.count).to eq 1
-      end
-    end
-
-    context "with one 21 day reminder" do
-      before do
-        applicant.application.update_column(:processed_at, 21.days.ago)
-        other_attendee.application.update_column(:processed_at, 21.days.ago)
+        applicant.application.update_column(:processed_at, 9.days.ago)
+        other_attendee.application.update_column(:processed_at, 9.days.ago)
       end
 
       it "sends 1 email" do

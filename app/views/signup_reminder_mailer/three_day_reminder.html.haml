@@ -1,0 +1,10 @@
+%p
+  Hi #{@user.name}!
+
+%p
+  We are so excited for you to attend AndConf 2016. Before things are official, though, we need you to #{ link_to "confirm that you are coming", new_attendances_url }.
+
+%p
+  If we don't hear back from you within seven more days, we'll be giving your spot to someone on the waitlist.
+
+= render "layouts/mailer_footer"

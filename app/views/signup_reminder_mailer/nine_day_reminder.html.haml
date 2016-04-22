@@ -1,0 +1,15 @@
+%p
+  Hi #{@user.name}!
+
+%p
+  We hope you can still attend AndConf, but we are going to have to give you spot to someone on the waitlist
+  if we don't hear back from you by tomorrow.
+
+%p
+  So please fill out #{ link_to "a very short form", new_attendances_url } today!
+
+%p
+  If it turns out you can't come, you can also #{ link_to "decline your spot", new_attendances_url }.
+
+= render "layouts/mailer_footer"
+

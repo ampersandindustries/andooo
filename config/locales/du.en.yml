@@ -1,7 +1,4 @@
 en:
-  du:
-    membership_email: membership@doubleunion.org
-
   activerecord:
     errors:
       models:

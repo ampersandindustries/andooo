@@ -1,0 +1,14 @@
+%p
+  Hi #{@user.name},
+
+%p
+  We are so excited for you to attend AndConf! You have four days left to sign up, but we'd love it if you sign up today!
+
+%p
+  So please fill out #{ link_to "a very short form", new_attendances_url }, and we'll stop sending you reminder emails :D
+
+%p
+  If it turns out you can't come, you can also #{ link_to "decline your spot", new_attendances_url }.
+
+= render "layouts/mailer_footer"
+

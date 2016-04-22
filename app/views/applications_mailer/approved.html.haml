@@ -23,14 +23,5 @@
       %p
         If you don't confirm your attendance within 10 days, we'll offer your spot to someone on the waitlist.
 
-      %p
-        As always, if you have any questions, email the organizers at #{ mail_to MEMBERSHIP_EMAIL }.
+      = render "layouts/mailer_footer"
 
-      %p
-        All the best,
-        %br/
-        AndConf
-        %br/
-        @andconf
-        %br/
-        = link_to "www.andconf.io", SITE_URL

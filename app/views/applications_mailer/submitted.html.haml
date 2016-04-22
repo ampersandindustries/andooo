@@ -4,20 +4,15 @@
   %body
     %p
       Hi, #{@user.name}!
-    %p
-      Thanks for applying to attend AndConf!
-    %p
-      Our application review committee is excited to read through your application, and we'll be in touch in early June about it.
-    %p
-      For more details about why we have an application form and what we're looking for, check out #{ link_to "this blog post", "https://blog.andconf.io/announcing-andconf-2016-3c24c02b47b9" }.
-    %p
-      If you have any questions, feel free to email the organizers at #{ mail_to INFO_EMAIL }.
 
     %p
-      All the best,
-      %br/
-      AndConf
-      %br/
-      @andconf
-      %br/
-      = link_to "www.andconf.io", SITE_URL
+      Thanks for applying to attend AndConf!
+
+    %p
+      Our application review committee is excited to read through your application, and we'll be in touch in early June about it.
+
+    %p
+      For more details about why we have an application form and what we're looking for, check out #{ link_to "this blog post", "https://blog.andconf.io/announcing-andconf-2016-3c24c02b47b9" }.
+
+    = render "layouts/mailer_footer"
+
