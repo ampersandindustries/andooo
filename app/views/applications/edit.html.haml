@@ -1,7 +1,12 @@
+- if @application_form.errors.present?
+  .alert-danger.ptb-10.mb-30.mt-20
+    %ul
+    - @application_form.errors.full_messages.each do |e|
+      %li= e
 %h2 AndConf Application
 
 %p
-  We’ll be processing admissions on a rolling basis, so be sure to apply early! We’ll begin notifying people in early June.
+  We’ll be processing admissions on a rolling basis, so be sure to apply early! We’ll begin notifying people of acceptance in early June.
   We’ll also let you know whether or not you’ve received a scholarship ticket and any travel assistance at the same time.
   %strong If accepted, you’ll have 10 days to register for your ticket.
   After that, we’ll pass the opportunity along to someone on the waitlist.
@@ -75,7 +80,7 @@
           %p.small
             We’re striving to have a diverse event with people from many backgrounds, including these axes:
             age, race/ethnicity, gender/gender identity, LGBTQ+ identity, ability, class, and national origin.
-            Answering 'No' or leaving this section blank wouldn’t disqualify you from attending — a few sentences is plenty.
+            Answering 'No' or leaving this section blank wouldn’t disqualify you from attending — a sentence or two is plenty.
           %p.small Optional — max 1,000 characters
         %td= f.text_area :diversity, rows: 10
 

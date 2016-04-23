@@ -126,11 +126,6 @@ describe ApplicationsController do
             expect { subject }.not_to change { user.reload.email }
           end
 
-          it "should show an error message" do
-            subject
-            expect(flash[:error]).to include "Email can't be blank"
-          end
-
           it "renders the form" do
             expect(subject).to render_template :edit
           end
@@ -167,11 +162,6 @@ describe ApplicationsController do
 
         context "missing required fields" do
           let(:application_params) { { agreement_deadline: true } }
-
-          it "should add an error to the flash" do
-            subject
-            expect(flash[:error]).to include "Whoops! Name can't be blank, Email can't be blank"
-          end
 
           it "should not submit the application" do
             expect { subject }.not_to change { application.reload.state }.from("started")

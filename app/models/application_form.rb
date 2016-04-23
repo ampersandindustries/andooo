@@ -48,8 +48,6 @@ class ApplicationForm
       "Application draft saved!"
     elsif saved? && !saving_as_draft
       "Application submitted!"
-    else
-      "Whoops! #{errors.full_messages.to_sentence}"
     end
   end
 

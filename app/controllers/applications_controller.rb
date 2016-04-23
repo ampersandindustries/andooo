@@ -20,9 +20,7 @@ class ApplicationsController < ApplicationController
       @application_form.submit(filtered_params)
     end
 
-    if @application_form.errors.any?
-      flash[:error] = @application_form.flash_message
-    else
+    if @application_form.errors.blank?
       flash[:notice] = @application_form.flash_message
     end
 
