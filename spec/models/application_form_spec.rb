@@ -153,7 +153,7 @@ describe ApplicationForm do
           let(:params) { { name: "Basil Cat", email: "basil@example.com", diversity: too_long_answer } }
 
           it "returns the correct string" do
-            expect(subject).to include "Answer to 'Is there an aspect of your background or identity that you think would make AndConf more diverse?' must be 2000 characters or less"
+            expect(subject).to include "Answer to 'Is there an aspect of your background or identity that you think would make AndConf more diverse?' must be 1,000 characters or less"
           end
         end
       end

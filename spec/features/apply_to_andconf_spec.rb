@@ -55,6 +55,7 @@ private
 
 def fill_in_all_the_fields
   fill_in "Full name", with: "Beep Booper"
+  fill_in "Referral code", with: "friend_of_lemurs"
   fill_in "Why do you want to attend to AndConf?", with: "I love lemurs!"
   fill_in "What is your level of familiarity with intersectional feminism?", with: "The lemurs I hang out read a lot of bell hooks."
   fill_in "Is there an aspect of your background or identity that", with: "No, I am a lemur"
@@ -62,7 +63,6 @@ def fill_in_all_the_fields
   choose "Yes, I can only attend if I get a scholarship ticket"
   choose "No, my travel will be paid by my employer, myself, or other source."
   choose "No"
-  fill_in "If you received a referral code, enter it here:", with: "friend_of_lemurs"
 
   check "I have read and agree to adhere to AndConf's Code of Conduct"
   check "If accepted, I will attend the entire conference, from the evening of Friday 8/12/15 through Sunday evening, 8/14/15."

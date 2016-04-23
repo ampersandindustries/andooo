@@ -13,9 +13,9 @@ class ApplicationForm
   validates :agreement_coc, :agreement_attendance, :agreement_deadline,
     :why_andconf, :feminism, :programming_experience, :scholarship,
     :travel_stipend, presence: :true, unless: :saving_as_draft
-  validates_length_of :why_andconf, maximum: 2000
-  validates_length_of :feminism, maximum: 2000
-  validates_length_of :diversity, maximum: 2000
+  validates_length_of :why_andconf, maximum: 1000
+  validates_length_of :feminism, maximum: 1000
+  validates_length_of :diversity, maximum: 1000
 
   validates :attend_last_year, inclusion: { in: [true, false] }, unless: :saving_as_draft
 

@@ -31,9 +31,8 @@ en:
         application_form:
           attributes:
             why_andconf:
-              too_long: "must be 2000 characters or less"  
+              too_long: "must be 1,000 characters or less"
             feminism:
-              too_long: "must be 2000 characters or less"
+              too_long: "must be 1,000 characters or less"
             diversity:
-              too_long: "must be 2000 characters or less"
-              
+              too_long: "must be 1,000 characters or less"
