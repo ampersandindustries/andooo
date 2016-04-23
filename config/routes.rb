@@ -4,7 +4,6 @@ Doubleunion::Application.routes.draw do
   get 'code_of_conduct' => 'static_pages#code_of_conduct'
   get 'details' => 'static_pages#details'
   get 'accessibility' => 'static_pages#accessibility'
-  get 'carpool_doc' => redirect('https://docs.google.com/spreadsheets/d/1mS6jM6CtcQnFeNbbbJILr7ssPVYwxzGXgrha7iyTIiI/edit?usp=sharing')
 
   resource :donations, only: [:show, :create]
 
