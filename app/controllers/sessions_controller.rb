@@ -57,7 +57,7 @@ class SessionsController < ApplicationController
         render :get_email
       end
     else
-      redirect_to root_path, alert: "It looks like you've previously logged in with a different authentication provider, so try logging in with a different one. Email admin@doubleunion.org for help if that isn't the case!"
+      redirect_to root_path, alert: "It looks like you've previously logged in with a different authentication provider, so try logging in with a different one. Email info@andconf.io for help if that isn't the case!"
     end
   end
 
@@ -104,7 +104,7 @@ class SessionsController < ApplicationController
       if authentication.save!
         flash[:alert] = "#{omniauth.provider} authentication added!"
       else
-        flash[:alert] = "Whoops, something went wrong! Sorry. Email admin@doubleunion.org if this keeps happening."
+        flash[:alert] = "Whoops, something went wrong! Sorry. Email info@andconf.io if this keeps happening."
       end
 
       redirect_to root_path
