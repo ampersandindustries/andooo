@@ -55,7 +55,7 @@
     %p
     - Attendance::DIETARY_OPTIONS.each do | option |
       = f.check_box :dietary_restrictions, { :multiple => true }, option, nil
-      = f.label :dietary_restrictions, option
+      = f.label :dietary_restrictions, { value: option } 
       %br
 
   .form-group.mb-40
