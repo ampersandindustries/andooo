@@ -10,7 +10,7 @@ It's being used by [AndConf](https://www.andconf.io/), an intersectional feminis
 
 ## How to Contribute
 
-We use [GitHub issues](https://github.com/doubleunion/arooo/issues) for feature development and bug tracking, so take a look for things that you can work on, and comment with any questions you have about half-baked issues.
+We use [GitHub issues](https://github.com/ampersandindustries/andooo/issues) for feature development and bug tracking, so take a look for things that you can work on, and comment with any questions you have about half-baked issues.
 
 ## Development setup
 
