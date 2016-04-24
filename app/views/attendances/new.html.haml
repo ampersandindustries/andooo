@@ -12,12 +12,23 @@
 
 = form_for @attendance, url: attendances_path, html: { class: "form" } do |f|
 
+  %h2 Badge Stuff
+
   .form-group.mb-40
     = f.label :badge_name, "Badge Name"
     %small (required)
     .small.mb-5
-      (This is what we'll print on your conference badge!)
+      For example, "Emily N.", or "Emily Nakashima"
     = f.text_field :badge_name, class: "col-lg-6"
+
+  %br
+  .form-group.mb-40
+    = f.label :pronouns, "Pronouns"
+    %small (required)
+    .small.mb-5
+      Common pronouns include "they/their", "she/hers", and "ze/zir".
+      Learn how to use various pronouns at #{ link_to "http://pronoun.is", "http://pronoun.is"}!
+    = f.text_field :pronouns, class: "col-lg-6"
 
   %br
   .form-group.mb-40

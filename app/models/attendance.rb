@@ -3,7 +3,7 @@ class Attendance < ActiveRecord::Base
   :dietary_additional_info, :twitter_handle, :sleeping_preference, 
   :staying_sunday_night, :flying_in, :agree_to_coc, 
   :attend_entire_conference, :interested_in_volunteering, :transport_to_venue, 
-  :transport_from_venue, :accept_trails_and_pool_risk
+  :transport_from_venue, :accept_trails_and_pool_risk, :pronouns
   
   belongs_to :user
 
@@ -18,6 +18,7 @@ class Attendance < ActiveRecord::Base
   validates :transport_to_venue, presence: true
   validates :transport_from_venue, presence: true
   validates :accept_trails_and_pool_risk, presence: true
+  validates :pronouns, presence: true
 
   DIETARY_OPTIONS = ["Vegetarian", "Lactose Free", "Gluten Intolerant", "Vegan", "None"]
   SLEEPING_OPTIONS = ["I prefer to be in all women-identified housing", "I prefer to be in all men-identified housing", 

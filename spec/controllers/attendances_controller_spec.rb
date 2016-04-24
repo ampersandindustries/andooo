@@ -27,6 +27,7 @@ describe AttendancesController do
           twitter_handle: "a_handle",
           dietary_restrictions: ["something"],
           gender: "my gender",
+          pronouns: "they/their",
           sleeping_preference: "I have no preference",
           staying_sunday_night: "yes",
           flying_in: "no",
@@ -54,6 +55,7 @@ describe AttendancesController do
           expect(attendance.interested_in_volunteering).to eq(true)
           expect(attendance.transport_to_venue).to eq("I will be taking the free shuttle leaving downtown San Francisco on FRIDAY, August 12th at 3pm")
           expect(attendance.transport_from_venue).to eq("I will be driving myself or organizing carpooling via the doc or #transportation slack channel")
+          expect(attendance.pronouns).to eq("they/their")
         end
 
         it "renders the payment form" do

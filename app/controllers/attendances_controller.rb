@@ -73,7 +73,7 @@ class AttendancesController < ApplicationController
   def attendance_params
     params.require(:attendance).permit(:badge_name, :gender, { dietary_restrictions: [] }, :dietary_additional_info, :twitter_handle, :sleeping_preference, 
                                       :staying_sunday_night, :flying_in, :transport_to_venue, :transport_from_venue, :agree_to_coc, 
-                                      :attend_entire_conference, :interested_in_volunteering, :accept_trails_and_pool_risk)
+                                      :attend_entire_conference, :interested_in_volunteering, :accept_trails_and_pool_risk, :pronouns)
   end
 
   def require_approved_applicant

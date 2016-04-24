@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160404002410) do
+ActiveRecord::Schema.define(version: 20160424195935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20160404002410) do
     t.text     "transport_to_venue"
     t.text     "transport_from_venue"
     t.boolean  "accept_trails_and_pool_risk"
+    t.text     "pronouns"
   end
 
   create_table "authentications", force: :cascade do |t|
