@@ -3,13 +3,11 @@
   %tr
     %td.left
       Full name
-      %small (required)
     %td= @user.name
 
   %tr
     %td.left
       Email
-      %small (required)
     %td= @user.email
 
   %tr
@@ -21,9 +19,9 @@
     %td= markdown(@user.application.feminism)
 
   %tr
-    %td.left How much programming experience do you have?
-    %td= markdown(@user.application.programming_experience)
-
-  %tr
     %td.left Is there an aspect of your background or identity that you think would make AndConf more diverse?
     %td= markdown(@user.application.diversity)
+
+  %tr
+    %td.left How much programming experience do you have?
+    %td= markdown(@user.application.programming_experience)
