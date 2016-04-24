@@ -13,7 +13,7 @@ class ApplicationsMailerPreview < ActionMailer::Preview
   end
 
   def approved_scholarship
-    app = User.where(is_scholarship: true).first.application
-    ApplicationsMailer.approved(app)
+    User.first.update(is_scholarship: true)
+    ApplicationsMailer.approved(User.first.application)
   end
 end
