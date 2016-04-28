@@ -55,7 +55,7 @@
     %p
     - Attendance::DIETARY_OPTIONS.each do | option |
       = f.check_box :dietary_restrictions, { :multiple => true }, option, nil
-      = f.label :dietary_restrictions, { value: option } 
+      = f.label :dietary_restrictions, { value: option }
       %br
 
   .form-group.mb-40
@@ -125,19 +125,19 @@
 
   %h2 Agreements
 
-  .form-group
+  .form-group.agreements
     = f.check_box :agree_to_coc
     = f.label :agree_to_coc, "I have read and agree to adhere to AndConf's #{link_to 'Code of Conduct', code_of_conduct_path, target: "_blank"}.".html_safe
     %small (required)
     %br
 
-  .form-group
+  .form-group.agreements
     = f.check_box :accept_trails_and_pool_risk
-    = f.label :accept_trails_and_pool_risk, "I acknowledge that I use the trails and pool at St. Dorothy's Rest at my own risk."
+    = f.label :accept_trails_and_pool_risk, "The trails around St. Dorothy's Rest are unmaintained. The pool at St. Dorothy's Rest is unsupervised. I acknowledge that if choose to use the pool or trails at any point, any use will be at my own risk."
     %small (required)
     %br
 
-  .form-group
+  .form-group.agreements
     = f.check_box :attend_entire_conference
     = f.label :attend_entire_conference, "I plan to attend the entire conference (Friday evening through Sunday evening)."
     %small (required)
