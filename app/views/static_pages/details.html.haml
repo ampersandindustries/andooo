@@ -1,97 +1,120 @@
 = content_for :title_tag, "AndConf attendee details and FAQ"
 
-%section.main-content
-  %h2
-    Attendee Details and FAQ
-  %h3 What should I bring?
-  %p
-    St. Dorothy's Rest provides linens, towels, and meals, so you just need to bring the essentials:
-  %ul
-    %li Spare keyboards and mice, if you have some handy or can borrow.
-    %li Your laptop and charger.
-    %li
-      Your programming languages, testing frameworks and package dependencies,
-      downloaded onto your laptop and set up before you leave home. Wifi is very limited at the conference.
-    %li Clothing for warm weather and cold weather. It can be hot during the day and cool at night.
-    %li Toiletries
-    %li A flashlight (optional, but could be handy after dark).
-    %li Snacks! The conference provides meals at breakfast, lunch & dinner time, and light afternoon snacks, but you may want to bring some favorite snacks in case you get hungry. The venue is far from any stores so you won’t be able to easily pop out and resupply during the weekend.
+%h1
+  Attendee Details and FAQ
 
-  %h3 Is there anything I shouldn't bring?
-  %ul
-    %li Alcohol (AndConf will provide wine and beer during the two happy hours. See below for more details.)
-    %li Pets (Service animals are obviously welcome!!)
+%h2 What should I bring?
 
-  %h3 Who can attend?
-  %p
-    We welcome programmers of all genders and backgrounds and are an emphatically
-    queer- and trans-friendly event. You must be over age 21 to attend.
+%p
+  St. Dorothy's Rest provides linens, towels, and meals, so you just need to bring the essentials:
 
-  %h3 Where will I be staying?
-  %p
-    = image_tag "sdr.jpg", alt: "", class: "faq-img"
-    Every ticket includes 8 meals and 3 nights lodging at the venue,
-    #{ link_to "St. Dorothy's Rest", "http://stdorothysrest.org/facilities/grounds/" },
-    a camp and retreat center surrounded by redwoods and rolling hills
-    in Northern California. Accommodations are rustic but charming (think summer camp)
-    and include a mix of bunk beds and single beds in shared rooms. Bathrooms are
-    down the hall. If you have any accessibility concerns or questions, please email us at
-    #{ mail_to INFO_EMAIL } and let us know.
+%ul
+  %li Spare keyboards and mice, if you have some handy or can borrow.
+  %li Your laptop and charger.
+  %li
+    Your programming languages, testing frameworks and package dependencies,
+    downloaded onto your laptop and set up before you leave home. Wifi is very limited at the conference.
+  %li Clothing for warm weather and cold weather. It can be hot during the day and cool at night.
+  %li Toiletries
+  %li A flashlight (optional, but could be handy after dark).
+  %li Snacks! The conference provides meals at breakfast, lunch & dinner time, and light afternoon snacks, but you may want to bring some favorite snacks in case you get hungry. The venue is far from any stores so you won’t be able to easily pop out and resupply during the weekend.
 
-  %h3 How do I get there?
-  %p
-    The venue is located about 2 hours north of San Francisco. You're welcome
-    to make your own way to the venue, but we'll also provide a bus from downtown
-    San Francisco. We'll also designate a google doc or slack channel for coordinating
-    carpools, if you're interested in ridesharing.
-  %p
-    If you're flying from out of town, we recommend flying in and out of SFO or
-    OAK, since it's possible to take the BART train from SFO to the bus pickup
-    site in downtown San Francisco. OAK and STS airports are slightly closer to
-    the venue, but you'll need to figure out your own transportation to and from
-    the venue from those airports.
-  %h3 Is there internet or cell service?
-  %p
-    Come expecting to disconnect and recharge. There is very limited wifi. AT&T and Verizon
-    have towers in the area, but the hills may prevent you from getting a mobile signal.
+%h2 Is there anything I shouldn't bring?
 
-  %h3 What is a code retreat?
-  %p
-    A code retreat is a day of pair programming where you work on
-    #{ link_to "the same problem", "https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" } over and over with different
-    pairs and different restrictions as the day progresses.
-    (The individual restrictions are a surprise! But they could include no `if` statements, only two lines
-    per method, and more silliness.) Each hour, everyone deletes their code and pairs up with someone new.
-  %p
-    You can bring any language to the code retreat! It's especially fun if you're set up to write tests, but not mandatory.
-    You won't have time to set up new dev environment during the code retreat, so if there's something new you want to try out,
-    be sure to get everything installed before AndConf.
+%ul
+  %li Alcohol (AndConf will provide wine and beer during the two happy hours. See below for more details.)
+  %li Pets (Service animals are obviously welcome!)
 
-  %h3 What is an unconference?
-  %p
-    An unconference is an attendee-driven event where people self-organize into groups to discuss a common topic. At AndConf,
-    we'll be breaking the topics into two main tracks, Yak and Hak (thanks,
-    #{ link_to "Ruby DCamp", "http://evan.tiggerpalace.com/articles/2012/10/06/the-dcamp-manifesto/"}!). But there could
-    be more tracks, depending on the collective will of the AndConf community.
-  %p
-    On Saturday night, we'll decide which specific topics to include, and then on Sunday we'll have 30 minute sessions on the topics
-    that get the most votes. (This will probably be done with sticky notes and dot stickers.)
+%h2 Who can attend?
 
-  %p
-    The person who suggests a topic is usually a facilitator, but aren't necessarily a subject-matter
-    expert. We expect many of the sessions to be round-table discussions, but they might also involve short
-    presentations or demos, a short workshops, or something completely different!
+%p
+  We welcome programmers of all genders and backgrounds and are an emphatically
+  queer- and trans-friendly event. You must be age 21 or over to attend.
 
-  %h3 Should I bring my own alcohol with me?
+%h2 Where will I be staying?
 
-  %p
-    Nope! Drinking alcohol at AndConf will be limited to two happy hours during the weekend,
-    and attendees are asked not to bring any additional alcohol with them.
+%p.clearfix
+  = image_tag "sdr.jpg", alt: "Dorothy's Rest", class: "faq-img"
+  Every ticket includes 8 meals and 3 nights lodging at the venue,
+  #{ link_to "St. Dorothy's Rest", "http://stdorothysrest.org/facilities/grounds/" },
+  a camp and retreat center surrounded by redwoods and rolling hills
+  in Northern California. Accommodations are rustic but charming (think summer camp)
+  and include a mix of bunk beds and single beds in shared rooms. Bathrooms are
+  down the hall. If you have any accessibility concerns or questions, check out
+  the #{ link_to "accessibility", accessibility_path } page and email us at
+  #{ mail_to ATTEND_EMAIL } if we can answer any questions.
 
-  %p
-    While many AndConf attendees (and organizers) imbibe, we want to keep the event accessible
-    to attendees who have different comfort levels around alcohol. Because we’re all in the same
-    place for the whole weekend, we lean toward being conservative. During the happy hours,
-    alcohol consumption will be limited to the common area of the Main House, and alternative
-    hanging out will be encouraged in other buildings. We will also be serving EANABs
-    (Equally Attractive Non-Alcoholic Beverages) during the happy hours.
+%h2 How do I get there?
+
+%p
+  The venue is located about 2 hours north of San Francisco. You're welcome
+  to make your own way to the venue, but we'll also provide a bus from downtown
+  San Francisco. We'll also designate a google doc or slack channel for coordinating
+  carpools, if you're interested in ridesharing.
+%p
+  If you're flying from out of town, we recommend flying to SFO or
+  OAK, since it's possible to take the BART train from those airports to the bus pickup
+  site in downtown San Francisco. The STS airport is slightly closer to the venue,
+  but you'll need to figure out your own transportation to and from the venue.
+
+%h2 Is there internet or cell service?
+
+%p
+  Come expecting to disconnect and recharge. There is very limited wifi. Last year,
+  Verizon phones were usually able to get an ok-to-moderately-bad signal, while
+  AT&T and T-Mobile phones had extremely limited reception.
+
+%h2 What is a code retreat?
+
+%p
+  A code retreat is a day of pair programming where you work on
+  #{ link_to "the same problem", "https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" } over and over with different
+  pairs and different restrictions as the day progresses.
+  (The individual restrictions are a surprise! But they could include no `if` statements, only two lines
+  per method, and more silliness.) Each hour, everyone deletes their code and pairs up with someone new.
+
+%p
+  You can bring any language to the code retreat! It's especially fun if you're set up to write tests, but not mandatory.
+  You won't have time to set up new dev environment during the code retreat, so if there's something new you want to try out,
+  be sure to get everything installed before AndConf.
+
+%h2 What is an unconference?
+
+%p
+  An unconference is an attendee-driven event where people self-organize into groups to discuss a common topic. At AndConf,
+  we'll be breaking the topics into two main tracks, Yak and Hak (thanks,
+  #{ link_to "Ruby DCamp", "http://evan.tiggerpalace.com/articles/2012/10/06/the-dcamp-manifesto/"}!). But there could
+  be more tracks, depending on the collective will of the AndConf community.
+%p
+  On Saturday night, we'll decide which specific topics to include, and then on Sunday we'll have 30 minute sessions on the topics
+  that get the most votes. (This will probably be done with sticky notes and dot stickers.)
+
+%p
+  The person who suggests a topic is usually a facilitator, but aren't necessarily a subject-matter
+  expert. We expect many of the sessions to be round-table discussions, but they might also involve short
+  presentations or demos, a short workshops, or something completely different!
+
+%h2 What's the food like?
+
+%p
+  The food at St. Dorothy's Rest is best described as "simple but good." They can accommodate
+  vegetarian, vegan, lactose-free and gluten-free dietary restrictions (just check the appropriate
+  box when you register for your ticket).
+
+%p
+  Get in touch with us at #{ mail_to ATTEND_EMAIL } if you have a serious allergy or other
+  dietary concerns, or need access to a refrigerator to store medication or supplementary food.
+
+%h2 Should I bring my own alcohol with me?
+
+%p
+  Nope! Drinking alcohol at AndConf will be limited to two happy hours during the weekend,
+  and attendees are asked not to bring any additional alcohol with them.
+
+%p
+  While many AndConf attendees (and organizers) imbibe, we want to keep the event accessible
+  to attendees who have different comfort levels around alcohol. Because we’re all in the same
+  place for the whole weekend, we lean toward being conservative. During the happy hours,
+  alcohol consumption will be limited to the common area of the Main House, and alternative
+  hanging out will be encouraged in other buildings. We will also be serving EANABs
+  (Equally Attractive Non-Alcoholic Beverages) during the happy hours.
