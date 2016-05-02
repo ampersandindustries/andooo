@@ -14,7 +14,7 @@ $(document).ready(function(){
   $('#js-dues').on('click', function(e) {
     handler.open({
       name: "AndConf",
-      description: "You're buying one $300 ticket",
+      description: "You're buying one $325 ticket",
       allowRememberMe: false
     });
     e.preventDefault();

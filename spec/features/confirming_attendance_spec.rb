@@ -26,7 +26,7 @@ describe "confirming attendance and paying money to attend AndConf" do
     check "I plan to attend the entire conference (Friday evening through Sunday evening)"
     check "Sure, I'd like to help during AndConf."
     click_on "Submit"
-    expect(page).to have_content "Tickets to AndConf cost $300"
+    expect(page).to have_content "Tickets to AndConf cost $325"
 
     # TODO maybe write an integration spec for stripe stuff??
   end
