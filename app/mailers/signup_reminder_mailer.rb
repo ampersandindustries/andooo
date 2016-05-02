@@ -1,6 +1,6 @@
 class SignupReminderMailer < ActionMailer::Base
 
-  default from: "AndConf <#{INFO_EMAIL}>"
+  default from: "AndConf <#{ATTEND_EMAIL}>"
   
   def three_day_reminder(user)
     @user = user

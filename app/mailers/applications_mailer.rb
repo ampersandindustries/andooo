@@ -1,5 +1,5 @@
 class ApplicationsMailer < ActionMailer::Base
-  default from: "AndConf <#{INFO_EMAIL}>"
+  default from: "AndConf <#{ATTEND_EMAIL}>"
 
   def submitted(application)
     @user = application.user

@@ -23,7 +23,7 @@ class Attendance < ActiveRecord::Base
   DIETARY_OPTIONS = ["Vegetarian", "Lactose Free", "Gluten Intolerant", "Vegan", "None"]
   SLEEPING_OPTIONS = ["I prefer to be in all women-identified housing", "I prefer to be in all men-identified housing", 
                       "I prefer to be in all-gender housing", "I have no preference", 
-                      "Other- please email info@andconf.io with any accommodation needs"]
+                      "Other- please email #{ATTEND_EMAIL} with any accommodation needs"]
   STAYING_OVER_OPTIONS = %w(Yes No Maybe)
   FLYING_IN_OPTIONS = %w(Yes No)  
   TRANSPORT_TO_VENUE_OPTIONS = ["I will be taking the free shuttle leaving downtown San Francisco on FRIDAY, August 12th at 3pm",

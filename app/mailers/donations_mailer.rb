@@ -5,8 +5,8 @@ class DonationsMailer < ActionMailer::Base
 
     mail(
       to: email,
-      from: "info@andconf.io",
-      bcc: "info@andconf.io",
+      from: INFO_EMAIL,
+      bcc: INFO_EMAIL,
       subject: "Thank you for your donation to AndConf!"
     )
   end
