@@ -108,7 +108,7 @@ describe AttendancesController do
         {
           user_id: applicant.id,
           email: "applicant@example.com",
-          amount: "30000",
+          amount: "32500",
           token: token
         }
       end
@@ -132,7 +132,7 @@ describe AttendancesController do
         it "charges them money" do
           subject
           charge = Stripe::Customer.retrieve(applicant.stripe_customer_id).charges.first
-          expect(charge.amount).to eq 30000
+          expect(charge.amount).to eq 325_00
           expect(charge.status).to eq "succeeded"
         end
 
@@ -208,4 +208,3 @@ describe AttendancesController do
     end
   end
 end
-

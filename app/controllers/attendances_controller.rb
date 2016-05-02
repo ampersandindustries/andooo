@@ -7,7 +7,7 @@ class AttendancesController < ApplicationController
 
   def create
     @attendance = current_user.attendances.build
-    
+
     if @attendance.update(attendance_params)
       if current_user.is_scholarship?
         redirect_to scholarship_form_attendances_path
@@ -53,7 +53,7 @@ class AttendancesController < ApplicationController
     current_user.update_attribute(:stripe_customer_id, stripe_customer.id)
 
     Stripe::Charge.create(
-      :amount => 30000,
+      :amount => 325_00,
       :currency => "usd",
       :customer => stripe_customer.id,
       :description => "Ticket for AndConf"
@@ -71,8 +71,8 @@ class AttendancesController < ApplicationController
   private
 
   def attendance_params
-    params.require(:attendance).permit(:badge_name, :gender, { dietary_restrictions: [] }, :dietary_additional_info, :twitter_handle, :sleeping_preference, 
-                                      :staying_sunday_night, :flying_in, :transport_to_venue, :transport_from_venue, :agree_to_coc, 
+    params.require(:attendance).permit(:badge_name, :gender, { dietary_restrictions: [] }, :dietary_additional_info, :twitter_handle, :sleeping_preference,
+                                      :staying_sunday_night, :flying_in, :transport_to_venue, :transport_from_venue, :agree_to_coc,
                                       :attend_entire_conference, :interested_in_volunteering, :accept_trails_and_pool_risk, :pronouns)
   end
 
