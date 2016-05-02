@@ -37,7 +37,7 @@
   %h3
     %a{"data-toggle" => "collapse" , "href" => "#collapseEmails"} Applicant Email Addresses <b class="caret"></b>
   %div.collapse.out#collapseEmails
-    %p Don't spam people! Just invite them to DU things :D
+    %p Just in case we need to follow up on an application.
     %ul.list-unstyled
       - @applicants_submitted.each do |applicant|
         - if applicant.email.present?
