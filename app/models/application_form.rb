@@ -7,7 +7,8 @@ class ApplicationForm
   delegate :name, :email, to: :user
   delegate :agreement_coc, :agreement_attendance, :agreement_deadline,
     :why_andconf, :feminism, :programming_experience, :diversity,
-    :scholarship, :travel_stipend, :attend_last_year, :referral_code, to: :application
+    :scholarship, :travel_stipend, :stipend_request, :attend_last_year,
+    :referral_code, to: :application
 
   validates :name, :email, presence: :true
   validates :agreement_coc, :agreement_attendance, :agreement_deadline,
@@ -16,6 +17,7 @@ class ApplicationForm
   validates_length_of :why_andconf, maximum: 1000
   validates_length_of :feminism, maximum: 1000
   validates_length_of :diversity, maximum: 1000
+  validates_length_of :travel_stipend, maximum: 1000
 
   validates :attend_last_year, inclusion: { in: [true, false] }, unless: :saving_as_draft
 

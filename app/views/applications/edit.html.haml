@@ -148,6 +148,12 @@
       The amount of travel assistance we'll be able to provide will depend on sponsorship and the number of
       requests we receive. Last year, we were able to reimburse a few attendees for travel expenses up to $250, and
       we hope we'll be able to do something similar this year.
+    %p.small
+      If you would need financial assistance with
+      %strong dependent care
+      to be able to attend AndConf, we consider dependent care stipend requests
+      the same way we'd consider travel assistance requests. Please check the
+      "yes" or "maybe" box for this question and fill in the text box below.
     %ul.list-unstyled
       %li
         = f.radio_button :travel_stipend, "no"
@@ -158,6 +164,19 @@
       %li
         = f.radio_button :travel_stipend, "maybe"
         = f.label :travel_stipend, "Maybe, I might be able to attend without a travel grant but would appreciate assistance.", value: "maybe"
+    %br
+
+    %table.table
+      %tr
+        %td
+          = f.label :stipend_request, "Scholarship/travel assistance request details"
+          %p.small
+            If you answered "Yes" or "Maybe" to the scholarship ticket or travel assistance
+            questions above, this is the place to tell us anything
+            you'd like us to know about your situation, including how much financial
+            assistance you'd need to be able to attend AndConf.
+          %p.small Optional — max 1,000 characters
+        %td= f.text_area :stipend_request, rows: 10
 
     %hr
 

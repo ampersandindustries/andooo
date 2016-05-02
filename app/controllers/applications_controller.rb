@@ -51,7 +51,7 @@ class ApplicationsController < ApplicationController
     [
       :agreement_coc, :agreement_attendance, :agreement_deadline,
       :why_andconf, :feminism, :programming_experience, :diversity, :scholarship,
-      :travel_stipend, :attend_last_year, :referral_code
+      :travel_stipend, :stipend_request, :attend_last_year, :referral_code
     ]
   end
 
