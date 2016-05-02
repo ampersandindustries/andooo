@@ -1,10 +1,14 @@
 %section.main-content
   %p
-    AndConf will be back,
-    %b August 12-14th, 2016!
-    If you're interested in attending, sign up for our
-    #{link_to "mailing list", "http://eepurl.com/bAuGZb"}
-    and we'll let you know when registration opens.
+    AndConf will be back, August 12-14th, 2016.
+    = link_to "Apply to attend!", login_path
+
+  %p
+    We're streamlining the ticketing this year by having a single
+    = link_to "ticket application", login_path
+    process for everyone. You'll be able apply for a scholarship ticket, travel stipend,
+    or dependent care stipend on the same form. Read more about the new application process on our
+    #{ link_to "blog", "https://blog.andconf.io/announcing-andconf-2016-3c24c02b47b9#.ibhpph6gp", target: "_blank" }.
 
   %h2 What is AndConf?
   %p
