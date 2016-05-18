@@ -63,16 +63,21 @@
           = f.label :why_andconf, "Why do you want to attend to AndConf?"
           %p.small
             We don't evaluate applications based on how accomplished or successful a person is.
-            Some sentences or a paragraph would be great; for all of these questions,
-            we love getting to read a little bit of detail but don't want you to have to write an essay.
-            1,000 characters is roughly two paragraphs.
+            Some sentences or a paragraph would be great. (1,000 characters is roughly two paragraphs.)
+          %p.small
+            If you're not sure what to write about, here are some more prompts!
+          %ul.small
+            %li Are there topics you’d be particularly excited to talk about in the unconference?
+            %li AndConf has a different format and attendee demographic when compared to many tech events. Tell us how that might be appealing (or unappealing!).
           %p.small Required — max 1,000 characters
         %td= f.text_area :why_andconf, rows: 10
       %tr
         %td
           = f.label :feminism, "What is your level of familiarity with intersectional feminism?"
           %p.small
-            It’s fine to not be an expert on the topic.
+            It’s fine to not be an expert on the topic! If you’re not at all familiar with intersection feminism,
+            have you done any reading on the topic? (Even a wiki page, blog post, or quick google search counts!)
+            Did any of the ideas you read about appeal to you in particular?
           %p.small Required — max 1,000 characters
         %td= f.text_area :feminism, rows: 10
       %tr
