@@ -27,7 +27,7 @@
     %small (required)
     .small.mb-5
       Common pronouns include "they/their", "she/hers", and "ze/zir".
-      Learn how to use various pronouns at #{ link_to "http://pronoun.is", "http://pronoun.is"}!
+      Learn how to use various pronouns at #{ link_to "http://pronoun.is", "http://pronoun.is", target: "_blank"}!
     = f.text_field :pronouns, class: "col-lg-6"
 
   %br
@@ -98,9 +98,10 @@
     AndConf provides a free shuttle from downtown San Francisco to St. Dorothy's Rest, which
     is about 2.5 hours from downtown San Francisco in normal traffic.
   %p.mt-0
-    If you would rather coordinate carpooling with other attendees, there is a doc
-    #{ link_to "Carpool Coordination Doc", CARPOOL_DOC, target: "_blank"}
-    and a #transportation Slack channel to help you facilitate.
+    If you would rather coordinate carpooling with other attendees, we've made a
+    #{ link_to "carpool coordination doc", CARPOOL_DOC, target: "_blank"}
+    and a #transportation Slack channel to help you facilitate. (We'd suggest starting
+    with #{ link_to "the doc", CARPOOL_DOC, target: "_blank"} and doing follow up in Slack.)
 
   .form-group.mb-40
     = f.label :transport_to_venue, "Transportation to St. Dorothy's Rest"
@@ -112,7 +113,8 @@
     = f.label :transport_from_venue, "Transportation from St. Dorothy's Rest"
     %small (required)
     .small.mb-5
-      Please note that there are two (two!!) different departure shuttles, Sunday night and Monday morning.
+      Please note that there are <b>two different departure shuttles</b>, Sunday night and Monday morning.
+      (It is also helpful if this choice makes logical sense with your answer to whether or not you're staying on Sunday night.)
     = f.select :transport_from_venue, ["-"] + Attendance::TRANSPORT_FROM_VENUE_OPTIONS
 
   .form-group.mb-40
@@ -133,7 +135,7 @@
 
   .form-group.agreements
     = f.check_box :accept_trails_and_pool_risk
-    = f.label :accept_trails_and_pool_risk, "The trails around St. Dorothy's Rest are unmaintained. The pool at St. Dorothy's Rest is unsupervised. I acknowledge that if choose to use the pool or trails at any point, any use will be at my own risk."
+    = f.label :accept_trails_and_pool_risk, "The trails around St. Dorothy's Rest are unmaintained and the pool at St. Dorothy's Rest is unsupervised. I acknowledge that if choose to use the pool or trails at any point, any use will be at my own risk."
     %small (required)
     %br
 

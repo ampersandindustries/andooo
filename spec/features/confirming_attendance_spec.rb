@@ -10,22 +10,8 @@ describe "confirming attendance and paying money to attend AndConf" do
   it "allows applicants to give us their precious deets" do
     visit new_attendances_path
 
-    fill_in "Badge Name", with: "Cool Attendee"
-    fill_in "Gender", with: "NB"
-    fill_in "Pronouns", with: "they/their"
-    check "attendance_dietary_restrictions_vegan"
-    fill_in "Additional dietary restrictions or concerns (e.g. needing access to a fridge)", with: "Need access to a kitchen"
-    fill_in "Twitter Handle", with: "@fun_times"
-    select "I have no preference", from: "Sleeping Preferences"
-    select "Maybe", from: "Are you staying at St. Dorothy's Rest on Sunday night?"
-    select "No", from: "Are you flying into the Bay Area for AndConf?"
-    select "I will be taking the free shuttle leaving downtown San Francisco on FRIDAY, August 12th at 3pm", from: "Transportation to St. Dorothy's Rest"
-    select "I will be driving myself or organizing carpooling via the doc or #transportation slack channel", from: "Transportation from St. Dorothy's Rest"
-    check "I have read and agree to adhere to AndConf's"
-    check "The trails around St. Dorothy's Rest are unmaintained. The pool at St. Dorothy's Rest is unsupervised. I acknowledge that if choose to use the pool or trails at any point, any use will be at my own risk."
-    check "I plan to attend the entire conference (Friday evening through Sunday evening)"
-    check "Sure, I'd like to help during AndConf."
-    click_on "Submit"
+    fill_in_the_deets
+
     expect(page).to have_content "Tickets to AndConf cost $325"
 
     # TODO maybe write an integration spec for stripe stuff??
@@ -43,22 +29,7 @@ describe "confirming scholarship attendance" do
   it "allows applicants to give us their precious deets" do
     visit new_attendances_path
 
-    fill_in "Badge Name", with: "Cool Attendee"
-    fill_in "Gender", with: "NB"
-    fill_in "Pronouns", with: "they/their"
-    check "attendance_dietary_restrictions_vegan"
-    fill_in "Additional dietary restrictions or concerns (e.g. needing access to a fridge)", with: "Need access to a kitchen"
-    fill_in "Twitter Handle", with: "@fun_times"
-    select "I have no preference", from: "Sleeping Preferences"
-    select "Maybe", from: "Are you staying at St. Dorothy's Rest on Sunday night?"
-    select "No", from: "Are you flying into the Bay Area for AndConf?"
-    select "I will be taking the free shuttle leaving downtown San Francisco on FRIDAY, August 12th at 3pm", from: "Transportation to St. Dorothy's Rest"
-    select "I will be driving myself or organizing carpooling via the doc or #transportation slack channel", from: "Transportation from St. Dorothy's Rest"
-    check "I have read and agree to adhere to AndConf's"
-    check "The trails around St. Dorothy's Rest are unmaintained. The pool at St. Dorothy's Rest is unsupervised. I acknowledge that if choose to use the pool or trails at any point, any use will be at my own risk."
-    check "I plan to attend the entire conference (Friday evening through Sunday evening)"
-    check "Sure, I'd like to help during AndConf."
-    click_on "Submit"
+    fill_in_the_deets
 
     expect(page).to have_content "Scholarship Confirmation"
     check "I can definitely attend the entirety of the conference."
@@ -68,4 +39,23 @@ describe "confirming scholarship attendance" do
 
     expect(applicant.reload.state).to eq "attendee"
   end
+end
+
+def fill_in_the_deets
+  fill_in "Badge Name", with: "Cool Attendee"
+  fill_in "Gender", with: "NB"
+  fill_in "Pronouns", with: "they/their"
+  check "attendance_dietary_restrictions_vegan"
+  fill_in "Additional dietary restrictions or concerns (e.g. needing access to a fridge)", with: "Need access to a kitchen"
+  fill_in "Twitter Handle", with: "@fun_times"
+  select "I have no preference", from: "Sleeping Preferences"
+  select "Maybe", from: "Are you staying at St. Dorothy's Rest on Sunday night?"
+  select "No", from: "Are you flying into the Bay Area for AndConf?"
+  select "I will be taking the free shuttle leaving downtown San Francisco on FRIDAY, August 12th at 3pm", from: "Transportation to St. Dorothy's Rest"
+  select "I will be driving myself or organizing carpooling via the doc or #transportation slack channel", from: "Transportation from St. Dorothy's Rest"
+  check "I have read and agree to adhere to AndConf's"
+  check "The trails around St. Dorothy's Rest are unmaintained and the pool at St. Dorothy's Rest is unsupervised. I acknowledge that if choose to use the pool or trails at any point, any use will be at my own risk."
+  check "I plan to attend the entire conference (Friday evening through Sunday evening)"
+  check "Sure, I'd like to help during AndConf."
+  click_on "Submit"
 end
