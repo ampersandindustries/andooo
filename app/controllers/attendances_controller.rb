@@ -83,6 +83,12 @@ class AttendancesController < ApplicationController
     render :payment_form
   end
 
+  def decline
+    current_user.application.decline!
+    flash[:message] = "Bummer! Thanks for letting us know you can't attend."
+    redirect_to root_path
+  end
+
   private
 
   def attendance_params

@@ -297,5 +297,34 @@ describe AttendancesController do
         end
       end
     end
+
+    describe "PUT decline" do
+      subject { put :decline }
+
+      context "with an accepted application" do
+        it "marks the application as declined" do
+          expect { subject }.to change { applicant.reload.application.state }.from("approved").to("declined")
+        end
+
+        it "set a message and redirects to the root path" do
+          expect(subject).to redirect_to root_path
+          expect(flash[:message]).to eq "Bummer! Thanks for letting us know you can't attend."
+        end
+
+        it "sends an email" do
+          expect { subject }.to change(ActionMailer::Base.deliveries, :count).by(1)
+        end
+      end
+
+      context "with an application already declined" do
+        before do
+          applicant.application.decline!
+        end
+
+        it "redirects to root" do
+          expect(subject).to redirect_to root_path
+        end
+      end
+    end
   end
 end

@@ -45,6 +45,17 @@ describe "confirming attendance to attend AndConf" do
       expect(page).to have_content "AndConf is going to be great!"
     end
   end
+
+  describe "declining attendance" do
+    it "allows people to decline attending AndConf" do
+      visit new_attendances_path
+
+      click_on "I can't attend"
+
+      expect(page).to have_content "Bummer! Thanks for letting us know"
+      expect(applicant.reload.application.state).to eq "declined"
+    end
+  end
 end
 
 def fill_in_the_deets

@@ -1,1 +1,11 @@
+%h1 AndConf Attendee Survey
+
+%p You'll be able to edit this form until the end of July, in case your plans change.
+
+%p As always, if you have any questions or concerns, please email #{ATTEND_EMAIL}.
+
+= form_for @attendance, url: decline_attendances_path, method: :put do |f|
+  %p Need to decline your spot? Just click this sad button:
+  = f.submit "I can't attend AndConf :(", class: "btn btn-secondary"
+
 = render "form"

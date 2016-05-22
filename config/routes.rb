@@ -40,6 +40,7 @@ Doubleunion::Application.routes.draw do
     put :pay
     get :scholarship_form
     put :confirm_scholarship
+    put :decline
   end
 
   get 'auth/:provider/callback' => 'sessions#create'

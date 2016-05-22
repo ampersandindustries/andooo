@@ -24,4 +24,12 @@ class ApplicationsMailer < ActionMailer::Base
       subject: "Attendance at AndConf 2016 confirmed!"
     )
   end
+
+  def declined(application)
+    @user = application.user
+    mail(
+      to: INFO_EMAIL,
+      subject: "#{@user.name} has declined to attend AndConf :("
+    )
+  end
 end

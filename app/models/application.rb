@@ -65,6 +65,10 @@ class Application < ActiveRecord::Base
       application.user.make_attendee
     end
 
+    after_transition approved: :declined do |application|
+      ApplicationsMailer.declined(application).deliver_now
+    end
+
     event :submit do
       transition started: :submitted
     end
@@ -81,11 +85,16 @@ class Application < ActiveRecord::Base
       transition approved: :confirmed
     end
 
+    event :decline do
+      transition approved: :declined
+    end
+
     state :started
     state :submitted
     state :approved
     state :rejected
     state :confirmed
+    state :declined
   end
 
   def approvable?
