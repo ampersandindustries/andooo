@@ -34,7 +34,7 @@ Doubleunion::Application.routes.draw do
   post 'admin/save_membership_note' => 'admin#save_membership_note'
 
   resources :applications, only: [:show, :edit, :update]
-  resource :attendances, only: [:new, :create] do
+  resource :attendances, only: [:new, :create, :edit, :update] do
     get :details, on: :member
     get :payment_form
     put :pay

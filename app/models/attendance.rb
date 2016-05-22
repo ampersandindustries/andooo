@@ -3,9 +3,13 @@ class Attendance < ActiveRecord::Base
   :dietary_additional_info, :twitter_handle, :sleeping_preference, 
   :staying_sunday_night, :flying_in, :agree_to_coc, 
   :attend_entire_conference, :interested_in_volunteering, :transport_to_venue, 
-  :transport_from_venue, :accept_trails_and_pool_risk, :pronouns
+  :transport_from_venue, :accept_trails_and_pool_risk, :pronouns, :user_id, :event_id
   
   belongs_to :user
+  belongs_to :event
+
+  validates_uniqueness_of :event, scope: :user
+  validates :event, presence: true
 
   validates :badge_name, presence: true
   validates :dietary_restrictions, presence: true

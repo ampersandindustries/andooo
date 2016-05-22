@@ -1,0 +1,149 @@
+%h1 AndConf Attendee Survey
+
+%p You'll be able to edit this form until the end of July, in case your plans change.
+
+%p As always, if you have any questions or concerns, please email #{ATTEND_EMAIL}.
+
+- if @attendance.errors.present?
+  .alert-danger.ptb-10.mb-30
+    %ul
+    - @attendance.errors.full_messages.each do |e|
+      %li= e
+
+= form_for @attendance, url: attendances_path, html: { class: "form" } do |f|
+
+  %h2 Badge Stuff
+
+  .form-group.mb-40
+    = f.label :badge_name, "Badge Name"
+    %small (required)
+    .small.mb-5
+      For example, "Emily N.", or "Emily Nakashima"
+    = f.text_field :badge_name, class: "col-lg-6"
+
+  %br
+  .form-group.mb-40
+    = f.label :pronouns, "Pronouns"
+    %small (required)
+    .small.mb-5
+      Common pronouns include "they/their", "she/hers", and "ze/zir".
+      Learn how to use various pronouns at #{ link_to "http://pronoun.is", "http://pronoun.is", target: "_blank"}!
+    = f.text_field :pronouns, class: "col-lg-6"
+
+  %br
+  .form-group.mb-40
+    = f.label :twitter_handle, "Twitter Handle"
+    %br
+    = f.text_field :twitter_handle, class: "col-lg-6"
+
+  %br
+  %label Want to help out during AndConf?
+  .small.mb-5
+    We're looking for people interested in doing some light manual labor or logisical tasks during the conference.
+  .form-group.mb-40.mt-10
+    = f.check_box :interested_in_volunteering
+    = f.label :interested_in_volunteering, "Sure, I'd like to help during AndConf."
+    %br
+
+  %hr
+
+  %h2 Food Stuff
+
+  .form-group
+    %strong Dietary Restrictions
+    %small (required)
+    %p
+    - Attendance::DIETARY_OPTIONS.each do | option |
+      = f.check_box :dietary_restrictions, { :multiple => true }, option, nil
+      = f.label :dietary_restrictions, { value: option }
+      %br
+
+  .form-group.mb-40
+    = f.label :dietary_additional_info, "Additional dietary restrictions or concerns (e.g. needing access to a fridge)"
+    %br
+    = f.text_area :dietary_additional_info, cols: "60", rows: "4"
+
+  %hr
+
+  %h2 Housing Stuff
+
+  .form-group.mb-40
+    = f.label :sleeping_preference, "Sleeping Preferences"
+    %small (required)
+    .small.mb-5
+      AndConf is open to people of all gender identities and we are emphatically queer-, trans-, and non-binary-friendly.
+    = f.select :sleeping_preference, ["-"] + Attendance::SLEEPING_OPTIONS
+
+  .form-group.mb-40
+    = f.label :gender, "Gender"
+    %small (required)
+    .small.mb-5
+      We use this information to help us figure out housing assignments.
+    = f.text_field :gender
+
+  .form-group.mb-40
+    = f.label :staying_sunday_night, "Are you staying at St. Dorothy's Rest on Sunday night?"
+    %small (required)
+    .small.mb-5
+      The conference program ends after dinner on Sunday, but staying over on Sunday night is included
+      in the ticket cost in case you want to head home Monday morning. We recommend it if you can swing it!
+    = f.select :staying_sunday_night, ["-"] + Attendance::STAYING_OVER_OPTIONS
+
+  %hr
+
+  %h2 Travel Stuff
+
+  %label Shuttle busses!
+  %p.mt-0
+    AndConf provides a free shuttle from downtown San Francisco to St. Dorothy's Rest, which
+    is about 2.5 hours from downtown San Francisco in normal traffic.
+  %p.mt-0
+    If you would rather coordinate carpooling with other attendees, we've made a
+    #{ link_to "carpool coordination doc", CARPOOL_DOC, target: "_blank"}
+    and a #transportation Slack channel to help you facilitate. (We'd suggest starting
+    with #{ link_to "the doc", CARPOOL_DOC, target: "_blank"} and doing follow up in Slack.)
+
+  .form-group.mb-40
+    = f.label :transport_to_venue, "Transportation to St. Dorothy's Rest"
+    %small (required)
+    %br
+    = f.select :transport_to_venue, ["-"] + Attendance::TRANSPORT_TO_VENUE_OPTIONS
+
+  .form-group.mb-40
+    = f.label :transport_from_venue, "Transportation from St. Dorothy's Rest"
+    %small (required)
+    .small.mb-5
+      Please note that there are <b>two different departure shuttles</b>, Sunday night and Monday morning.
+      (It is also helpful if this choice makes logical sense with your answer to whether or not you're staying on Sunday night.)
+    = f.select :transport_from_venue, ["-"] + Attendance::TRANSPORT_FROM_VENUE_OPTIONS
+
+  .form-group.mb-40
+    = f.label :flying_in, "Are you flying into the Bay Area for AndConf?"
+    %small (required)
+    %br
+    = f.select :flying_in, ["-"] + Attendance::FLYING_IN_OPTIONS
+
+  %hr
+
+  %h2 Agreements
+
+  .form-group.agreements
+    = f.check_box :agree_to_coc
+    = f.label :agree_to_coc, "I have read and agree to adhere to AndConf's #{link_to 'Code of Conduct', code_of_conduct_path, target: "_blank"}.".html_safe
+    %small (required)
+    %br
+
+  .form-group.agreements
+    = f.check_box :accept_trails_and_pool_risk
+    = f.label :accept_trails_and_pool_risk, "The trails around St. Dorothy's Rest are unmaintained and the pool at St. Dorothy's Rest is unsupervised. I acknowledge that if choose to use the pool or trails at any point, any use will be at my own risk."
+    %small (required)
+    %br
+
+  .form-group.agreements
+    = f.check_box :attend_entire_conference
+    = f.label :attend_entire_conference, "I plan to attend the entire conference (Friday evening through Sunday evening)."
+    %small (required)
+    %br
+
+  %p
+    = f.submit "Submit", class: "btn btn-primary"

@@ -6,7 +6,7 @@ class AttendancesController < ApplicationController
   end
 
   def create
-    @attendance = current_user.attendances.build
+    @attendance = current_user.attendances.build(event_id: Event.last.id)
 
     if @attendance.update(attendance_params)
       if current_user.is_scholarship?
@@ -16,6 +16,21 @@ class AttendancesController < ApplicationController
       end
     else
       render :new
+    end
+  end
+
+  def edit
+    @attendance = Attendance.where(user: current_user, event_id: Event.last.id).first
+  end
+
+  def update
+    @attendance = Attendance.find_or_initialize_by(user_id: current_user.id, event_id: Event.last.id)
+
+    if @attendance.update(attendance_params)
+      flash[:message] = "Details updated!"
+      redirect_to details_attendances_path
+    else
+      render :edit
     end
   end
 

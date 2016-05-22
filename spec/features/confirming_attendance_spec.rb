@@ -1,13 +1,14 @@
 require "spec_helper"
 
-describe "confirming attendance and paying money to attend AndConf" do
+describe "confirming attendance to attend AndConf" do
   let(:applicant) { create(:approved_application).user }
 
   before do
     page.set_rack_session(user_id: applicant.id)
+    Event.create(name: "cool_event")
   end
 
-  it "allows applicants to give us their precious deets" do
+  it "allows paying attendees to give us their precious deets" do
     visit new_attendances_path
 
     fill_in_the_deets
@@ -16,28 +17,33 @@ describe "confirming attendance and paying money to attend AndConf" do
 
     # TODO maybe write an integration spec for stripe stuff??
   end
-end
 
-describe "confirming scholarship attendance" do
-  let(:applicant) { create(:approved_application).user }
+  describe "confirming scholarship attendance" do
+    before { applicant.update(is_scholarship: true) }
 
-  before do
-    page.set_rack_session(user_id: applicant.id)
-    applicant.update(is_scholarship: true)
+    it "allows applicants to give us their precious deets" do
+      visit new_attendances_path
+
+      fill_in_the_deets
+
+      expect(page).to have_content "Scholarship Confirmation"
+      check "I can definitely attend the entirety of the conference."
+      click_on "Confirm Attendance"
+
+      expect(page).to have_content "AndConf is going to be great!"
+
+      expect(applicant.reload.state).to eq "attendee"
+    end
   end
 
-  it "allows applicants to give us their precious deets" do
-    visit new_attendances_path
+  describe "updating attendance details" do
+    before { create :attendance, user: applicant }
 
-    fill_in_the_deets
-
-    expect(page).to have_content "Scholarship Confirmation"
-    check "I can definitely attend the entirety of the conference."
-    click_on "Confirm Attendance"
-
-    expect(page).to have_content "AndConf is going to be great!"
-
-    expect(applicant.reload.state).to eq "attendee"
+    it "allows confirmed folks to fill out the details" do
+      visit edit_attendances_path
+      fill_in_the_deets
+      expect(page).to have_content "AndConf is going to be great!"
+    end
   end
 end
 

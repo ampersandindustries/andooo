@@ -1,6 +1,5 @@
 FactoryGirl.define do
 
-
   factory :user do
     name { "#{Faker::Name.first_name.gsub("'", "")} #{Faker::Name.last_name.gsub("'", "")}" }
     sequence(:email) { |n| "example#{n}@example.com" }
@@ -76,5 +75,29 @@ FactoryGirl.define do
     uid { rand(100000...999999).to_s }
     provider { "github" }
     association :user, factory: :attendee
+  end
+
+  factory :attendance do
+    association :event
+    association :user
+
+    badge_name "Several Lemurs"
+    twitter_handle "lemurlemurlemur"
+    dietary_restrictions ["something"]
+    gender "lemur"
+    pronouns "they/their"
+    sleeping_preference "I have no preference"
+    staying_sunday_night "yes"
+    flying_in "no"
+    transport_to_venue "I will be taking the free shuttle leaving downtown San Francisco on FRIDAY, August 12th at 3pm"
+    transport_from_venue "I will be driving myself or organizing carpooling via the doc or #transportation slack channel"
+    agree_to_coc true
+    accept_trails_and_pool_risk true
+    attend_entire_conference true
+    interested_in_volunteering false
+  end
+
+  factory :event do
+    name "lemurconf2016"
   end
 end

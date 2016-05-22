@@ -3,6 +3,8 @@ require 'spec_helper'
 describe AttendancesController do
   include AuthHelper
 
+  before { Event.create(name: "cool_event") }
+
   let(:applicant) { create(:approved_application).user }
 
   context "logged in as an applicant" do
@@ -17,7 +19,7 @@ describe AttendancesController do
     end
 
     describe "PUT create" do
-      let(:attendance) { applicant.attendances.first }
+      let(:attendance) { applicant.reload.attendances.first }
 
       subject { put :create, params }
 
@@ -89,7 +91,96 @@ describe AttendancesController do
 
         it "rerenders the form with errors" do
           expect(subject).to render_template :new
-          expect(attendance.errors.full_messages).to include("Gender can't be blank")
+          expect(assigns[:attendance].errors.full_messages).to include("Gender can't be blank")
+        end
+      end
+    end
+
+    describe "GET edit" do
+      before { create :attendance, user: applicant }
+
+      let(:attendance) { applicant.reload.attendances.first }
+
+      subject { get :edit }
+
+      it "renders the attendance page" do
+        expect(subject).to render_template :edit
+      end
+
+      it "assigns the correct attendance" do
+        subject
+        expect(assigns[:attendance]).to eq attendance
+      end
+    end
+
+    describe "PUT update" do
+      before { create :attendance, user: applicant }
+
+      let(:attendance) { applicant.reload.attendances.first }
+
+      subject { put :update, params }
+
+      context "with good params" do
+        let(:params) { { attendance: {
+          badge_name: "Not a Lemur",
+          twitter_handle: "several_tapirs",
+          dietary_restrictions: ["something"],
+          gender: "my gender",
+          pronouns: "they/their",
+          sleeping_preference: "I have no preference",
+          staying_sunday_night: "yes",
+          flying_in: "no",
+          transport_to_venue: "I will be taking the free shuttle leaving downtown San Francisco on FRIDAY, August 12th at 3pm",
+          transport_from_venue: "I will be driving myself or organizing carpooling via the doc or #transportation slack channel",
+          agree_to_coc: true,
+          accept_trails_and_pool_risk: true,
+          attend_entire_conference: true,
+          interested_in_volunteering: true
+        } } }
+
+        it "updates the attendance" do
+          subject
+          attendance.reload
+          expect(attendance.badge_name).to eq("Not a Lemur")
+          expect(attendance.twitter_handle).to eq("several_tapirs")
+        end
+
+        it "doesn't create another attendance" do
+          expect { subject }.not_to change { Attendance.count }
+        end
+
+        it "renders the details page" do
+          subject
+          expect(response).to redirect_to details_attendances_path
+        end
+
+        context "with a scholarship attendee" do
+          before { applicant.update(is_scholarship: true) }
+
+          it "renders the details page" do
+            subject
+            expect(response).to redirect_to details_attendances_path
+          end
+        end
+
+        context "when the application was rejected" do
+          let(:applicant) { create(:application).user }
+
+          before { applicant.application.reject! }
+
+          it "redirects to the root path" do
+            subject
+            expect(response).to redirect_to root_path
+          end
+        end
+      end
+
+      context "with bad params" do
+        let(:params) { { attendance: { gender: "" } } }
+
+        it "rerenders the form with errors" do
+          expect(subject).to render_template :edit
+          expect(assigns[:attendance].errors.full_messages).to include("Gender can't be blank")
         end
       end
     end
