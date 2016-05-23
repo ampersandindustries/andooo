@@ -13,7 +13,7 @@ html, body {
   padding-bottom: 155px;
 }
 footer, .push {
-	height: 155px; /* .push must be the same height as .footer */
+	min-height: 155px; /* .push must be the same height as .footer */
 }
 
 /*

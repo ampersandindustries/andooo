@@ -6,3 +6,5 @@ MAILING_LIST         = "http://andconf.us11.list-manage1.com/subscribe?u=3326a34
 CARPOOL_DOC          = "https://docs.google.com/spreadsheets/d/1mS6jM6CtcQnFeNbbbJILr7ssPVYwxzGXgrha7iyTIiI/edit?usp=sharing"
 SLACK_CHANNEL        = "http://andconf.slack.com"
 GOOGLE_ANALYTICS_ID  = 'UA-62820008-1'
+TWITTER_URL          = "https://twitter.com/andconf"
+BLOG_URL             = "https://blog.andconf.io"
