@@ -63,7 +63,7 @@ def fill_in_the_deets
   fill_in "Gender", with: "NB"
   fill_in "Pronouns", with: "they/their"
   check "attendance_dietary_restrictions_vegan"
-  fill_in "Additional dietary restrictions or concerns (e.g. needing access to a fridge)", with: "Need access to a kitchen"
+  fill_in "Additional dietary restrictions or concerns (e.g. needing access to a fridge to store medication)", with: "Need access to a kitchen"
   fill_in "Twitter Handle", with: "@fun_times"
   select "I have no preference", from: "Sleeping Preferences"
   select "Maybe", from: "Are you staying at St. Dorothy's Rest on Sunday night?"
