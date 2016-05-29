@@ -1,10 +1,10 @@
 class Attendance < ActiveRecord::Base
-  attr_accessible :gender, :badge_name, :dietary_restrictions, 
-  :dietary_additional_info, :twitter_handle, :sleeping_preference, 
-  :staying_sunday_night, :flying_in, :agree_to_coc, 
-  :attend_entire_conference, :interested_in_volunteering, :transport_to_venue, 
+  attr_accessible :gender, :badge_name, :dietary_restrictions,
+  :dietary_additional_info, :twitter_handle, :sleeping_preference,
+  :staying_sunday_night, :flying_in, :agree_to_coc,
+  :attend_entire_conference, :interested_in_volunteering, :transport_to_venue,
   :transport_from_venue, :accept_trails_and_pool_risk, :pronouns, :user_id, :event_id
-  
+
   belongs_to :user
   belongs_to :event
 
@@ -25,11 +25,15 @@ class Attendance < ActiveRecord::Base
   validates :pronouns, presence: true
 
   DIETARY_OPTIONS = ["Vegetarian", "Lactose Free", "Gluten Intolerant", "Vegan", "None"]
-  SLEEPING_OPTIONS = ["I prefer to be in all women-identified housing", "I prefer to be in all men-identified housing", 
-                      "I prefer to be in all-gender housing", "I have no preference", 
-                      "Other- please email #{ATTEND_EMAIL} with any accommodation needs"]
+  SLEEPING_OPTIONS = [
+    "I prefer to be in all women-identified housing",
+    "I prefer to be in all men-identified housing",
+    "I prefer to be in all-gender housing",
+    "I have no preference",
+    "Other — please email #{ATTEND_EMAIL} with accommodation needs"
+  ]
   STAYING_OVER_OPTIONS = %w(Yes No Maybe)
-  FLYING_IN_OPTIONS = %w(Yes No)  
+  FLYING_IN_OPTIONS = %w(Yes No)
   TRANSPORT_TO_VENUE_OPTIONS = ["I will be taking the free shuttle leaving downtown San Francisco on FRIDAY, August 12th at 3pm",
     "I will be driving myself or organizing carpooling via the doc or #transportation slack channel"]
   TRANSPORT_FROM_VENUE_OPTIONS = ["I will be taking the free shuttle leaving St. Dorothy's Rest on SUNDAY, August 14th at 8pm, returning to downtown San Francisco",
