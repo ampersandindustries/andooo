@@ -20,7 +20,7 @@
     = f.label :pronouns, "Pronouns"
     %small (required)
     .small.mb-5
-      Common pronouns include "they/their", "she/hers", and "ze/zir".
+      Common pronouns include "they/their", "she/her", and "ze/zir".
       Learn how to use various pronouns at #{ link_to "http://pronoun.is", "http://pronoun.is", target: "_blank"}!
     = f.text_field :pronouns, class: "col-lg-6"
 
@@ -33,7 +33,7 @@
   %br
   %label Want to help out during AndConf?
   .small.mb-5
-    We're looking for people interested in doing some light manual labor or logisical tasks during the conference.
+    We're looking for people interested in doing some light manual labor or logistical tasks during the conference.
   .form-group.mb-40.mt-10
     = f.check_box :interested_in_volunteering
     = f.label :interested_in_volunteering, "Sure, I'd like to help during AndConf."
@@ -53,7 +53,7 @@
       %br
 
   .form-group.mb-40
-    = f.label :dietary_additional_info, "Additional dietary restrictions or concerns (e.g. needing access to a fridge)"
+    = f.label :dietary_additional_info, "Additional dietary restrictions or concerns (e.g. needing access to a fridge for medication)"
     %br
     = f.text_area :dietary_additional_info, cols: "60", rows: "4"
 
