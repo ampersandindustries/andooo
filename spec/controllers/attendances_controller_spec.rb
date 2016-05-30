@@ -29,6 +29,7 @@ describe AttendancesController do
           twitter_handle: "a_handle",
           dietary_restrictions: ["something"],
           gender: "my gender",
+          roommate_request: "Duck McDuck",
           pronouns: "they/their",
           sleeping_preference: "I have no preference",
           staying_sunday_night: "yes",
@@ -47,6 +48,7 @@ describe AttendancesController do
           expect(attendance.badge_name).to eq("my name")
           expect(attendance.dietary_restrictions).to eq("[\"something\"]")
           expect(attendance.gender).to eq("my gender")
+          expect(attendance.roommate_request).to eq("Duck McDuck")
           expect(attendance.twitter_handle).to eq("a_handle")
           expect(attendance.sleeping_preference).to eq("I have no preference")
           expect(attendance.staying_sunday_night).to eq("yes")
@@ -126,6 +128,7 @@ describe AttendancesController do
           twitter_handle: "several_tapirs",
           dietary_restrictions: ["something"],
           gender: "my gender",
+          roommate_request: "Duck McDuck",
           pronouns: "they/their",
           sleeping_preference: "I have no preference",
           staying_sunday_night: "yes",

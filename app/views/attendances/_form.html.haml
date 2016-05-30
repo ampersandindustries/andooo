@@ -61,6 +61,10 @@
 
   %h2 Housing Stuff
 
+  %p
+    See the #{link_to "FAQ", details_path(anchor: "housing"), target: "_blank"}
+    for more information about what housing is like at SDR.
+
   .form-group.mb-40
     = f.label :sleeping_preference, "Sleeping Preferences"
     %small (required)
@@ -74,6 +78,15 @@
     .small.mb-5
       We use this information to help us figure out housing assignments.
     = f.text_field :gender
+
+  .form-group.mb-40
+    = f.label :roommate_request, "Roommate Request"
+    .small.mb-5
+      No promises — but if you know of another attendee (or two) that you'd like
+      as a roommate, put their name below, and, if you happen to choose compatible
+      sleeping preferences (above), we'll make our best effort to assign you to
+      the same building at SDR.
+    = f.text_field :roommate_request
 
   .form-group.mb-40
     = f.label :staying_sunday_night, "Are you staying at St. Dorothy's Rest on Sunday night?"

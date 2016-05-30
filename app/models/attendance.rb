@@ -1,7 +1,7 @@
 class Attendance < ActiveRecord::Base
   attr_accessible :gender, :badge_name, :dietary_restrictions,
   :dietary_additional_info, :twitter_handle, :sleeping_preference,
-  :staying_sunday_night, :flying_in, :agree_to_coc,
+  :staying_sunday_night, :flying_in, :agree_to_coc, :roommate_request,
   :attend_entire_conference, :interested_in_volunteering, :transport_to_venue,
   :transport_from_venue, :accept_trails_and_pool_risk, :pronouns, :user_id, :event_id
 

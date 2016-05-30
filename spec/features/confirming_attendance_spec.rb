@@ -61,6 +61,7 @@ end
 def fill_in_the_deets
   fill_in "Badge Name", with: "Cool Attendee"
   fill_in "Gender", with: "NB"
+  fill_in "Roommate Request", with: "Fuzzy Lemur Jr."
   fill_in "Pronouns", with: "they/their"
   check "attendance_dietary_restrictions_vegan"
   fill_in "Additional dietary restrictions or concerns (e.g. needing access to a fridge to store medication)", with: "Need access to a kitchen"
