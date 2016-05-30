@@ -4,10 +4,6 @@
       padding-right: 30px;
     }
   }
-
-  td.name, th.name {
-    width: 300px;
-  }
 }
 
 body.admin.applications.show {
@@ -60,10 +56,6 @@ body.admin.applications.show {
     &:hover {
       background: #FF5252;
     }
-  }
-
-  .name {
-    width: 200px;
   }
 }
 

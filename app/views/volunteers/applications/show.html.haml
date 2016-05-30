@@ -35,6 +35,12 @@
         = pretty_timestamp(@application.submitted_at)
         %small= "(#{time_ago_in_words(@application.submitted_at)} ago)"
   %tr
+    %td Last Updated
+    %td
+      - if @application.updated_at
+        = pretty_timestamp(@application.updated_at)
+        %small= "(#{time_ago_in_words(@application.updated_at)} ago)"
+  %tr
     %td Votes <strong>for</strong> attendance (#{@application.yes_votes.size})
     %td
       - if @application.yes_votes.any?

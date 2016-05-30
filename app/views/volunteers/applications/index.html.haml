@@ -5,6 +5,7 @@
       %tr.more-padding
         %th.name Name
         %th.date Submitted
+        %th.date Updated
         %th Comments
         - if current_user.application_reviewer?
           %th You
@@ -18,11 +19,8 @@
           %td.name
             = user_gravatar(applicant, 20)
             = link_to applicant.name, volunteers_application_path(application)
-          %td
-            - if application.submitted_at
-              = application.submitted_at.strftime('%b %d, %Y')
-            - else
-              \--
+          %td= application.submitted_at.strftime('%b %d, %Y')
+          %td= application.updated_at.strftime('%b %d, %Y')
           %td= application.comments.size
           - if current_user.application_reviewer?
             %td
