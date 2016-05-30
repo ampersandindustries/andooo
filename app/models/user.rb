@@ -47,6 +47,16 @@ class User < ActiveRecord::Base
    applicants.joins(:application).where(applications: { state: 'approved' })
   }
 
+  scope :requested_scholarship, -> {
+    with_submitted_application
+    .where("applications.scholarship = ? or applications.scholarship = ?", "yes", "maybe")
+  }
+
+  scope :requested_stipend, -> {
+    with_submitted_application
+    .where("applications.travel_stipend = ? or applications.travel_stipend = ?", "yes", "maybe")
+  }
+
   state_machine :state, initial: :visitor do
     event :make_applicant do
       transition visitor: :applicant

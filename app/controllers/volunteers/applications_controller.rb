@@ -2,6 +2,8 @@ class Volunteers::ApplicationsController < Volunteers::VolunteersController
 
   def index
     @applicants_submitted = User.with_submitted_application
+    @requested_scholarship_count = User.requested_scholarship.count
+    @requested_stipend_count = User.requested_stipend.count
   end
 
   def show

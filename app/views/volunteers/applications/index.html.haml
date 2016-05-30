@@ -1,5 +1,11 @@
 - if @applicants_submitted.any?
   %h2 Submitted Applications
+  %ul
+    %li #{@applicants_submitted.count} submitted applications
+    %li #{@requested_scholarship_count} scholarship requests
+    %li #{@requested_stipend_count} travel stipend requests
+    %li #{Application.where(state: "started").count} unsubmitted applications
+
   %table.table.table-striped.js-datatable-applications.applications
     %thead
       %tr.more-padding
