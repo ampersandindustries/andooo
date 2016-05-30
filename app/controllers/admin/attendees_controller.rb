@@ -1,4 +1,4 @@
-class Admin::MembershipsController < ApplicationController
+class Admin::AttendeesController < ApplicationController
   before_filter :ensure_admin
 
   def index
@@ -20,6 +20,10 @@ class Admin::MembershipsController < ApplicationController
     end
 
     redirect_to admin_applications_path
+  end
+
+  def show
+    @attendee = User.find(params[:id])
   end
 
   private

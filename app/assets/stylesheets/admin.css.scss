@@ -6,6 +6,12 @@
   }
 }
 
+body.attendees.index {
+  .container {
+    min-width: 1500px;
+  }
+}
+
 body.admin.applications.show {
   td.left {
     width: 30%;

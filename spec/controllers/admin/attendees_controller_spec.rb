@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Admin::MembershipsController do
+describe Admin::AttendeesController do
   include AuthHelper
 
   describe "GET index" do
@@ -54,6 +54,28 @@ describe Admin::MembershipsController do
 
       it "should mark scholarship as true" do
         expect { subject }.to change { attendee.reload.is_scholarship }.from(false).to(true)
+      end
+    end
+  end
+
+  describe "GET show" do
+    let(:attendee) { create :attendee }
+
+    context "when logged in as an admin" do
+      before { login_as(:application_reviewer, is_admin: true) }
+
+      it "allows admin to view admin members show" do
+        get :show, id: attendee.id
+        expect(response).to render_template :show
+      end
+    end
+
+    context "logged in as a non-admin" do
+      before { login_as(:attendee) }
+
+      it "should redirect to root if logged in as an attendee" do
+        get :show, id: attendee.id
+        expect(response).to redirect_to :root
       end
     end
   end

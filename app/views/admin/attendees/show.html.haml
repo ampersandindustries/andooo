@@ -1,0 +1,65 @@
+- attendance = @attendee.attendances.last
+
+%h2= @attendee.name
+%table.table
+  %tr
+    %td.left
+      Email
+    %td= @attendee.email
+  %tr
+    %td.left Interested in volunteering
+    %td= attendance.interested_in_volunteering
+
+
+%h3 Badge
+%table.table
+  %tr
+    %td.left Badge Name
+    %td= attendance.badge_name
+  %tr
+    %td.left Twitter Handle
+    %td= attendance.twitter_handle
+  %tr
+    %td.left Pronouns
+    %td= attendance.pronouns
+
+%h3 Housing & Venue
+%table.table
+  %tr
+    %td.left Dietary Restrictions
+    %td= dietary_restrictions_as_array(attendance.dietary_restrictions).join(", ")
+
+  %tr
+    %td.left Diet - Additional Info
+    %td= attendance.dietary_additional_info
+
+  %tr
+    %td.left Sleeping Preference
+    %td= attendance.sleeping_preference
+
+  %tr
+    %td.left Gender
+    %td= attendance.gender
+
+  %tr
+    %td.left Staying Sunday Night
+    %td= attendance.staying_sunday_night
+
+  %tr
+    %td.left Housing Request
+    %td= attendance.roommate_request
+
+
+%h3 Transportation
+%table.table
+  %tr
+    %td.left Flying In
+    %td= attendance.flying_in
+
+  %tr
+    %td.left Transportation to SDR
+    %td= short_transit(attendance.transport_to_venue)
+
+  %tr
+    %td.left Transportation from SDR
+    %td= short_transit(attendance.transport_from_venue)

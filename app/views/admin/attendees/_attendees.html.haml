@@ -1,18 +1,28 @@
 %table.table.table-striped.admin-console.js-datatable
   %thead
     %tr
-      %th Name
-      %th Status
-      %th.min-width-150 Dues Paid On
+      %th.min-width-150 Name
+      %th Volunteer?
+      %th Dietary Restrictions
+      %th Diet Details
+      %th Flying In?
+      %th Sunday night?
+      %th Coming
+      %th Going
       %th Notes
   %tbody
     - users.each do |user|
+      - attendance = user.attendances.first
       %tr{class: "user-#{user.id}"}
         %td.max-width-150
-          - if user.name.present?
-            = link_to user.name, volunteers_user_path(user)
-        %td= user.display_state
-        %td= user.last_stripe_charge_succeeded.strftime('%b %d %Y') if user.last_stripe_charge_succeeded
+          = link_to user.name, admin_attendee_path(user)
+        %td= attendance.interested_in_volunteering
+        %td= dietary_restrictions_as_array(attendance.dietary_restrictions).join(", ")
+        %td= attendance.dietary_additional_info
+        %td= attendance.flying_in
+        %td= attendance.staying_sunday_night
+        %td= short_transit(attendance.transport_to_venue)
+        %td= short_transit(attendance.transport_from_venue)
         %td
           = form_for :user, url: admin_save_membership_note_path, remote: true, html: { class: "js-membership-note js-membership-note-#{user.id}" } do |f|
             = f.hidden_field :id, value: user.id
