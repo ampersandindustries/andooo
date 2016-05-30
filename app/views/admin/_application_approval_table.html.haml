@@ -19,7 +19,7 @@
       %td= application.not_voted_count
       %td
         = user.is_scholarship ? "Yes" : "No"
-        = form_for user, url: admin_membership_path(user) do |f|
+        = form_for user, url: admin_attendee_path(user) do |f|
           = f.hidden_field(:id)
           = f.hidden_field(:is_scholarship, value: !user.is_scholarship)
           - if user.is_scholarship
