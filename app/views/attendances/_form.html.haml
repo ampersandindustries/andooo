@@ -76,6 +76,15 @@
     = f.text_field :gender
 
   .form-group.mb-40
+    = f.label :roommate_request, "Roommate Request"
+    .small.mb-5
+      No promises — but if you know of another attendee (or two) that you'd like
+      as a roommate, put their name below, and, if you happen to choose compatible
+      sleeping preferences (above), we'll make our best effort to assign you to
+      the same building at SDR.
+    = f.text_field :roommate_request
+
+  .form-group.mb-40
     = f.label :staying_sunday_night, "Are you staying at St. Dorothy's Rest on Sunday night?"
     %small (required)
     .small.mb-5

@@ -85,6 +85,7 @@ FactoryGirl.define do
     twitter_handle "lemurlemurlemur"
     dietary_restrictions ["something"]
     gender "lemur"
+    roommate_request "Walrus T. Wallerton III"
     pronouns "they/their"
     sleeping_preference "I have no preference"
     staying_sunday_night "yes"
