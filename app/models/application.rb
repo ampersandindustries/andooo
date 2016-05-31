@@ -30,20 +30,6 @@ class Application < ActiveRecord::Base
     .order('applications.created_at DESC')
   }
 
-  def yes_votes
-    @_yes_votes ||= votes.select(&:yes?)
-  end
-
-  def no_votes
-    @_no_votes ||= votes.select(&:no?)
-  end
-
-  def not_voted_count
-    @_not_voted_count ||= begin
-      User.application_reviewers.count - votes.size
-    end
-  end
-
   state_machine :state, initial: :started do
 
     after_transition started: :submitted do |application|
@@ -95,6 +81,36 @@ class Application < ActiveRecord::Base
     state :rejected
     state :confirmed
     state :declined
+  end
+
+  def self.submitted_to_csv(options = {})
+    CSV.generate(options) do |csv|
+      extra_headers = ["yes votes", "no votes", "name", "email"]
+      csv << column_names + extra_headers
+      self.submitted.each do |application|
+        extra_fields = [
+          application.yes_votes.count,
+          application.no_votes.count,
+          application.user.name,
+          application.user.email
+        ]
+        csv << application.attributes.values_at(*column_names) + extra_fields
+      end
+    end
+  end
+
+  def yes_votes
+    @_yes_votes ||= votes.select(&:yes?)
+  end
+
+  def no_votes
+    @_no_votes ||= votes.select(&:no?)
+  end
+
+  def not_voted_count
+    @_not_voted_count ||= begin
+      User.application_reviewers.count - votes.size
+    end
   end
 
   def approvable?

@@ -8,6 +8,8 @@
 
     %p The number of yes votes required is half of the application reviewership, rounding down when it's an odd number of people.
 
+    %p= link_to "Download a CSV of all submitted applications", admin_applications_path(format: "csv")
+
 %h3 Applications to Approve
 = render 'application_approval_table', applications: @to_approve
 

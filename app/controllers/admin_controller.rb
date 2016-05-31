@@ -5,6 +5,11 @@ class AdminController < ApplicationController
     @to_approve = Application.to_approve
     @to_reject = Application.to_reject
     @unknown = Application.not_enough_info
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data Application.submitted_to_csv }
+    end
   end
 
   def approve
