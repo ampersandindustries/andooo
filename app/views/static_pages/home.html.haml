@@ -2,16 +2,20 @@
   %p
     AndConf will be back,
     %strong August 12-14th, 2016!
-  %p
-    We're streamlining the ticketing process this year by having a single
-    = link_to "ticket application", login_path
-    form for everyone who wants to attend. You'll be able to request conference ticket and
-    (optionally) apply for a scholarship ticket, travel stipend, or dependent care stipend
-    all on the same form. Read more about the new ticketing process on our
-    #{ link_to "blog", "https://blog.andconf.io/announcing-andconf-2016-3c24c02b47b9#.ibhpph6gp", target: "_blank" }.
-    Apply by <strong>May 31st.</strong>
-  %p
-    = link_to "Apply to attend AndConf!", login_path, class: "btn btn-primary"
+
+  -if Configurable[:accepting_applications]
+    %p
+      We've streamlined the ticketing process this year by having a single #{ link_to "ticket application", login_path }
+      form for everyone who wants to attend. You'll be able to request conference ticket and
+      (optionally) apply for a scholarship ticket, travel stipend, or dependent care stipend
+      all on the same form. Read more about the new ticketing process on our
+      #{ link_to "blog", "https://blog.andconf.io/announcing-andconf-2016-3c24c02b47b9#.ibhpph6gp", target: "_blank" }.
+      Apply by <strong>May 31st.</strong>
+    %p
+      = link_to "Apply to attend AndConf!", login_path, class: "btn btn-primary"
+  - else
+    %p
+      Applications for AndConf 2016 have closed. Thank you to everyone who applied!
 
   %h2 What is AndConf?
   %p
@@ -43,15 +47,12 @@
         = link_to image_tag("sponsors/c5-logo-horizontal.png", alt: "Carbon Five", class: "sponsors-c5"), "http://www.carbonfive.com/"
         = link_to image_tag("sponsors/etsy_logo_lg_rgb.png", alt: "Etsy", class: "sponsors-etsy"), "https://www.etsy.com/"
         = link_to image_tag("sponsors/open-news.png", alt: "Knight-Mozilla Open New", class: "sponsors-open-news"), "https://opennews.org/"
-    -# %h3 Silver Sponsors
-    -# %ul.sponsors-silver
-    -#   %li
     %h3 Friends of AndConf
     %ul.sponsors-friends
       %li
         = link_to image_tag("sponsors/bugsnag.png", alt: "bugsnag", class: "sponsors-bugsnag"), "https://bugsnag.com"
   %p
-    We're actively seeking sponsors for AndConf 2016! Check out our
+    We're still seeking sponsors for AndConf 2016. Check out our
     #{ link_to "sponsorship prospectus", "/andconf_prospectus.pdf", target: "_blank" }, and email
     #{ mail_to "lillie@andconf.io" } with any questions!
 
@@ -69,7 +70,7 @@
 
   %h2 Contact
   %p
-    Questions? Check out the #{ link_to "faq", details_path } and if that doesn't
+    Questions? Check out the #{ link_to "FAQ", details_path } and if that doesn't
     answer it, contact the conference organizers at #{ mail_to INFO_EMAIL }.
 
   %h2 Conference Organizers

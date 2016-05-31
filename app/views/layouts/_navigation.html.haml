@@ -18,7 +18,10 @@
         %li
           = link_to "Blog", "https://blog.andconf.io", target: "_blank"
         %li{'data-toggle' => 'modal', 'data-target' => '#log_in'}
-          = link_to "Apply to attend!", "#"
+          - if Configurable[:accepting_applications]
+            = link_to "Apply to attend!", "#"
+          - else
+            = link_to "Attendee Login", "#"
 
 .modal#log_in
   .modal-dialog
