@@ -19,7 +19,7 @@ describe 'opening and closing applications' do
       end
 
       it 'should redirect to the membership page with a flash message' do
-        expect(page).to have_content "AndConf isn't currently accepting applications."
+        expect(page).to have_content "Applications for AndConf are now closed"
       end
 
       it 'should not show me my application' do

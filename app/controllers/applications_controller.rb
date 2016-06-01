@@ -57,7 +57,7 @@ class ApplicationsController < ApplicationController
 
   def ensure_accepting_applications
     unless Configurable[:accepting_applications]
-      flash['notice'] = "AndConf isn't currently accepting applications. Join our #{ view_context.link_to "general interest mailing list", MAILING_LIST, target: "_blank" } to be notified when applications are open again.".html_safe
+      flash['notice'] = "Applications for AndConf are now closed. Please join our #{ view_context.link_to "general interest mailing list", MAILING_LIST, target: "_blank" } for information about future events.".html_safe
       redirect_to root_path
     end
   end
