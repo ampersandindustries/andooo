@@ -87,7 +87,7 @@ class Application < ActiveRecord::Base
     CSV.generate(options) do |csv|
       extra_headers = ["yes votes", "no votes", "name", "email"]
       csv << column_names + extra_headers
-      self.submitted.each do |application|
+      self.submitted.order(submitted_at: :desc).each do |application|
         extra_fields = [
           application.yes_votes.count,
           application.no_votes.count,
