@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   attr_accessible :username, :name, :email,
     :application_attributes, :email_for_google, :dues_pledge, :is_scholarship,
-    :voting_policy_agreement, :gender
+    :voting_policy_agreement, :gender, :travel_stipend
 
   validates :state, presence: true
 

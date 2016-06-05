@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160530025250) do
+ActiveRecord::Schema.define(version: 20160605205043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,6 +119,7 @@ ActiveRecord::Schema.define(version: 20160530025250) do
     t.boolean  "is_scholarship",               default: false
     t.boolean  "voting_policy_agreement",      default: false
     t.text     "gender"
+    t.string   "travel_stipend"
   end
 
   create_table "votes", force: :cascade do |t|
