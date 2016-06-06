@@ -1,8 +1,8 @@
 -# locals: user: User instance
 - if user.is_scholarship && user.travel_stipend.present?
   %p
-    Thanks to our awesome sponsors, we're also happy to offer you a full ($325)
-    scholarship ticket to AndConf and a travel stipend of $#{user.travel_stipend}.
+    Thanks to our awesome sponsors, we're also happy to offer you a full
+    scholarship ticket to AndConf (a $325 value!) and a travel stipend of $#{user.travel_stipend}.
 - elsif user.travel_stipend.present? && !user.is_scholarship
   %p
     Thanks to our awesome sponsors, we are also happy to offer you a travel
@@ -11,5 +11,5 @@
   %p
     Thanks to our awesome sponsors, we're also happy to offer you a full
     ($325) scholarship ticket to AndConf. The ticket includes lodging
-    and meals at our conference venue, and bus transit to & from downtown
-    San Francisco.
+    and meals at our conference venue, and bus transit between downtown
+    San Francisco and the venue.

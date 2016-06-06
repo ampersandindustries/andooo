@@ -5,13 +5,13 @@
         Hi #{@user.name},
 
       %p
-        We're thrilled to invite you to join us this August 12-14 for AndConf 2016!
-        We can't wait to see you.
+        We're thrilled to invite you to join us this August 12-14 for AndConf 2016 for a weekend of programming,
+        feminism, friendship, and plenty of fireside announcements!
 
       = render "scholarship_notification", user: @user
 
       %p
-        %b Action Required: Complete your registration in the next 10 days
+        %b Super Important: please #{ link_to "complete your registration", new_attendances_url } in the next 10 days.
 
       - cta = @user.is_scholarship ? "confirm your attendance" : "purchase your ticket"
       %p
@@ -20,11 +20,14 @@
         You'll complete a short form with logistical questions like dietary
         restrictions, badge info, and travel & housing preferences.
         If you don't confirm your attendance within 10 days, we'll offer your spot
-        to someone on the waitlist. If you confirm your attendance <i>sooner</i>
+        to someone on the waitlist.
+      %p
+        If you confirm your attendance <i>sooner</i>
         than 10 days, the organizers will have lower blood pressure and a lasting
         appreciation for your wisdom and stylishness.
       %p
-        (If you can no longer attend, there's an option #{ link_to "to decline your spot", new_attendances_url }, which will allow us to offer a spot to someone on the waitlist.)
+        (If you can no longer attend, there's an option #{ link_to "to decline your spot", new_attendances_url },
+        which will allow us to offer a spot to someone on the waitlist.)
 
       = render "travel_stipend_explainer", user: @user
 
