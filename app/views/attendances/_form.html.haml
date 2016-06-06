@@ -156,5 +156,14 @@
     %small (required)
     %br
 
+  %hr
+
   %p
-    = f.submit "Submit", class: "btn btn-primary"
+    You've got one more, very short form to finish registering for AndConf. You can do it!
+
+  %p
+    - if current_user.state == "attendee"
+      = f.submit "Update", class: "btn btn-primary"
+    - else
+      - button_text = current_user.is_scholarship? ? "Continue to confirm scholarship" : "Continue to buy your ticket"
+      = f.submit button_text, class: "btn btn-primary"

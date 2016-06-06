@@ -6,6 +6,6 @@
   as transportation to and from downtown San Francisco.
 
 = form_tag pay_attendances_path, method: :put, id: "payment-form" do
-  %a#js-dues.btn.btn-primary{ href: "#", data: { key: "#{ENV['STRIPE_PUBLISHABLE_KEY']}", email: @user.email } } Purchase Ticket
+  %a#js-dues.btn.btn-primary{ href: "#", data: { key: "#{ENV['STRIPE_PUBLISHABLE_KEY']}", email: @user.email } } Purchase Ticket and Finish Registration
 
 %script{src: 'https://checkout.stripe.com/checkout.js'}

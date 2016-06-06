@@ -13,6 +13,8 @@ describe "confirming attendance to attend AndConf" do
 
     fill_in_the_deets
 
+    click_on "Continue to buy your ticket"
+
     expect(page).to have_content "Tickets to AndConf cost $325"
 
     # TODO maybe write an integration spec for stripe stuff??
@@ -26,6 +28,8 @@ describe "confirming attendance to attend AndConf" do
 
       fill_in_the_deets
 
+      click_on "Continue to confirm scholarship"
+
       expect(page).to have_content "Scholarship Confirmation"
       check "I can definitely attend the entirety of the conference."
       click_on "Confirm Attendance"
@@ -37,11 +41,17 @@ describe "confirming attendance to attend AndConf" do
   end
 
   describe "updating attendance details" do
-    before { create :attendance, user: applicant }
+    before do
+      create :attendance, user: applicant
+      applicant.make_attendee!
+    end
 
     it "allows confirmed folks to fill out the details" do
       visit edit_attendances_path
+
       fill_in_the_deets
+      click_on "Update"
+
       expect(page).to have_content "AndConf is going to be great!"
     end
   end
@@ -75,5 +85,4 @@ def fill_in_the_deets
   check "The trails around St. Dorothy's Rest are unmaintained and the pool at St. Dorothy's Rest is unsupervised. I acknowledge that if choose to use the pool or trails at any point, any use will be at my own risk."
   check "I plan to attend the entire conference (Friday evening through Sunday evening)"
   check "Sure, I'd like to help during AndConf."
-  click_on "Submit"
 end
