@@ -4,25 +4,34 @@
   You can update your food, transportation, or badge details #{ link_to "on this page", edit_attendances_path }
   until late July.
 
+%h3 Slack
+
 %p
-  We'll be adding you to the AndConf Slack soon! Keep an eye out for an email from Slack with your invitation.
-  Then you'll be able to access it here: #{ link_to "AndConf Slack", SLACK_CHANNEL, target: "_blank"}
+  We'll be inviting you to the #{ link_to "AndConf Slack organization", SLACK_CHANNEL, target: "_blank"} soon!
+  Keep an eye out for an email from Slack with your invitation.
+  (We use Slack primarily for getting ready for AndConf, and we'll shut it down a couple
+  of weeks after the conference.)
+
+%h3 Travel
 
 %p
   AndConf provides a free shuttle from downtown San Francisco to St. Dorothy's Rest, which is about 2.5 hours
   from downtown San Francisco in normal traffic. If you would rather coordinate carpooling with other attendees,
-  there is a #{ link_to "Carpool Coordination Doc", CARPOOL_DOC, target: "_blank"} and a #transportation
-  #{ link_to "Slack Channel", SLACK_CHANNEL, target: "_blank"} to help you facilitate.
+  there is a #{ link_to "carpool coordination Google doc", CARPOOL_DOC, target: "_blank"} and a #transportation
+  #{ link_to "Slack channel", "https://andconf.slack.com/messages/transportation/", target: "_blank"} to help you facilitate.
 
-%h2 Questions?
+%p
+  The carpool doc is public (but only easily findable with the link), so please keep that in mind when including your contact information.
+
+%h3 Questions?
 
 %p
   If you have questions about the schedule or are wondering what to bring, check out the
   #{ link_to "FAQ page", details_path }.
 
 %p
-  If that doesn't answer it, contact the conference organizers at #{ mail_to ATTEND_EMAIL }.
+  If that doesn't answer it, contact the team at #{ mail_to ATTEND_EMAIL }.
 
-%h2 Cancellation Policy
+%h3 Cancellation Policy
 
 = render "cancellation_policy", scholarship: false
