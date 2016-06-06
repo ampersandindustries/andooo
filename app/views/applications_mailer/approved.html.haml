@@ -2,51 +2,35 @@
   %tr
     %td
       %p
-        Hi #{@user.name}!
+        Hi #{@user.name},
 
       %p
-        Please join us in August for AndConf 2016! We can't wait to see you.
+        We're thrilled to invite you to join us this August 12-14 for AndConf 2016!
+        We can't wait to see you.
 
-      - if @user.is_scholarship && @user.travel_stipend.present?
-        %p
-          Thanks to our awesome sponsors, we're also happy to offer you a scholarship ticket to AndConf and a
-          travel stipend of $#{@user.travel_stipend}.
-      - elsif @user.travel_stipend.present? && !@user.is_scholarship
-        %p
-          Thanks to our awesome sponsors, we are happy to offer you a travel stipend of $#{@user.travel_stipend}.
-          You'll need to purchase your travel up front, and we'll reimburse you.
-      - elsif @user.is_scholarship && @user.travel_stipend.blank?
-        %p
-          Thanks to our awesome sponsors, we're also happy to offer you a scholarship ticket to AndConf.
+      = render "scholarship_notification", user: @user
 
-      -if @user.is_scholarship
-        %p
-          As soon as possible, please #{ link_to "log in", login_url } and #{ link_to "confirm your attendance", new_attendances_url }.
-          There's a short form with logistical questions like dietary restrictions, badge info, and travel and housing preferences.
-      - else
-        %p
-          As soon as possible, please #{ link_to "log in", login_url } and #{ link_to "purchase your ticket", new_attendances_url }.
-          There's a short form with logistical questions like dietary restrictions, badge info, and travel and housing preferences.
+      %p
+        %b Action Required: Complete your registration in the next 10 days
 
+      - cta = @user.is_scholarship ? "confirm your attendance" : "purchase your ticket"
+      %p
+        As soon as possible, please #{ link_to "log in", login_url } and
+        #{ link_to cta, new_attendances_url }.
+        You'll complete a short form with logistical questions like dietary
+        restrictions, badge info, and travel & housing preferences.
+        If you don't confirm your attendance within 10 days, we'll offer your spot
+        to someone on the waitlist.
       %p
         (If you can no longer attend, there's an option #{ link_to "to decline your spot", new_attendances_url }, which will allow us to offer a spot to someone on the waitlist.)
 
-      - if @user.travel_stipend.present?
-        %p
-        Once you've bought your travel, please email us at #{ mail_to INFO_EMAIL } with the following:
-
-        %ul
-          %li A copy of your receipt
-          %li Who we should write the check out to
-          %li The mailing address we should send it to
-
-        If you have any questions about this process, don't hesitate to ask.
+      = render "travel_stipend_explainer", user: @user
 
       %p
-        If you don't confirm your attendance within 10 days (by #{(Time.zone.now + 10.days).strftime('%B %m, %Y') }), we'll offer your spot to someone on the waitlist.
+        %b Questions?
 
       %p
-        As always, #{ link_to "the FAQ", details_url } is a great source of information about AndConf. If you can't find something there, feel free to email us.
+        As always, #{ link_to "the FAQ", details_url } is a great source of information
+        about AndConf. If you can't find something there, feel free to email us.
 
       = render "layouts/mailer_footer"
-

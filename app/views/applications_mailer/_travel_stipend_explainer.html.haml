@@ -1,0 +1,24 @@
+-# locals: user: User instance
+
+- if user.travel_stipend.present?
+  %p
+    %b Travel stipends
+
+  %p
+    You'll need to purchase your travel to and from downtown San Francisco up front,
+    and we'll reimburse you up to $#{user.travel_stipend} when you arrive at AndConf.
+    (Don't forget that bus travel to & from downtown San Francisco, and meals
+    & lodging at the conference venue are already included in the conference ticket.)
+
+  %p
+    Once you've purchased your travel, please email us at #{ mail_to INFO_EMAIL }
+    with the following:
+
+  %ul
+    %li A copy of any receipts for your travel expenses
+    %li Who we should write the check out to
+
+  %p
+    Once we have your receipts, we'll reimburse you up to $#{user.travel_stipend}
+    by check when you arrive at AndConf. If you have any questions about this
+    process, please don't hesitate to ask!
