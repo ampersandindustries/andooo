@@ -2,6 +2,9 @@ class AttendancesController < ApplicationController
   before_action :require_approved_applicant
 
   def new
+    return redirect_to details_attendances_path if current_user.state == "attendee"
+    return go_to_payment_or_scholarship_page if current_user.attendances.present?
+
     @attendance = Attendance.new
   end
 
@@ -9,11 +12,7 @@ class AttendancesController < ApplicationController
     @attendance = current_user.attendances.build(event_id: Event.last.id)
 
     if @attendance.update(attendance_params)
-      if current_user.is_scholarship?
-        redirect_to scholarship_form_attendances_path
-      else
-        redirect_to payment_form_attendances_path
-      end
+      go_to_payment_or_scholarship_page
     else
       render :new
     end
@@ -90,6 +89,14 @@ class AttendancesController < ApplicationController
   end
 
   private
+
+  def go_to_payment_or_scholarship_page
+    if current_user.is_scholarship?
+      redirect_to scholarship_form_attendances_path
+    else
+      redirect_to payment_form_attendances_path
+    end
+  end
 
   def attendance_params
     params.require(:attendance).permit(:badge_name, :gender, { dietary_restrictions: [] }, :dietary_additional_info, :twitter_handle, :sleeping_preference,

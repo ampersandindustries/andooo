@@ -30,6 +30,8 @@
             %ul.dropdown-menu
               - if current_user.applicant? && Configurable[:accepting_applications]
                 %li= link_to 'Application', edit_application_path(current_user.application)
+              - if current_user.applicant? && current_user.application.state == "approved"
+                %li= link_to 'Register for AndConf', new_attendances_path
               - if current_user.attendee? || current_user.application_reviewer?
                 %li= link_to 'Attendee Details', details_attendances_path
               %li.divider

@@ -16,6 +16,30 @@ describe AttendancesController do
       it "renders the attendance page" do
         expect(subject).to render_template :new
       end
+
+      context "with a user that already has an attendance" do
+        before { create :attendance, user: applicant }
+
+        it "redirects to the payment form" do
+          expect(subject).to redirect_to payment_form_attendances_path
+        end
+
+        context "who is getting a scholarship ticket" do
+          before { applicant.update(is_scholarship: true) }
+
+          it "redirects to the scholarship form" do
+            expect(subject).to redirect_to scholarship_form_attendances_path
+          end
+        end
+      end
+
+      context "with a user that's already confirmed their attendance" do
+        before { applicant.make_attendee! }
+
+        it "redirects to the details page" do
+          expect(subject).to redirect_to details_attendances_path
+        end
+      end
     end
 
     describe "PUT create" do
