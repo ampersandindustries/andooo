@@ -28,7 +28,7 @@
               = current_user.username
               <b class="caret"></b>
             %ul.dropdown-menu
-              - if current_user.applicant?
+              - if current_user.applicant? && Configurable[:accepting_applications]
                 %li= link_to 'Application', edit_application_path(current_user.application)
               - if current_user.attendee? || current_user.application_reviewer?
                 %li= link_to 'Attendee Details', details_attendances_path
