@@ -1,5 +1,10 @@
 = content_for :js do
   = javascript_include_tag :membership_note
 
-.mt-20
-  = render partial: 'attendees', locals: { users: @all_attendees }
+- if @all_attendees.any?
+  %h2 Attendees
+  %ul
+    %li #{@all_attendees.count} registered attendees
+
+  .mt-20
+    = render partial: 'attendees', locals: { users: @all_attendees }
