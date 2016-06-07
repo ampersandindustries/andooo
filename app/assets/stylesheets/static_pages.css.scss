@@ -202,26 +202,24 @@ body.static_pages {
       text-align: center;
       font-size: 2rem;
     }
-    ul {
-      list-style: none;
+    div {
       text-align: center;
-      margin-left: 0;
-      padding-left: 0;
-
-      &.sponsors-diamond img  { width: 450px; }
-      &.sponsors-platinum img { width: 320px; }
-      &.sponsors-gold img     { width: 200px; }
-      &.sponsors-silver img   { width: 150px; }
-      &.sponsors-friends img  { width: 120px; }
-
-      .sponsors-c5        { padding-top: 10px; }
-      .sponsors-etsy      { padding: 20px; }
-      .sponsors-mailchimp { margin-bottom: 15px; padding: 30px 5px 0; }
     }
     img {
       display: inline;
       vertical-align: middle;
       margin: 0 1.5rem;
     }
+    .sponsors-diamond img  { width: 450px; }
+    .sponsors-platinum img { width: 320px; }
+    .sponsors-gold img     { width: 200px; }
+    .sponsors-silver img   { width: 150px; }
+    .sponsors-friends img  { width: 120px; }
+
+    img.logo-c5           { padding-top: 10px; }
+    img.logo-dev-bootcamp { width: 260px; padding-top: 20px; }
+    img.logo-etsy         { padding: 20px; }
+    img.logo-mailchimp    { margin: 15px 20px 15px 0; padding: 30px 5px 0; }
+    img.logo-omada        { width: 260px; margin-top: 20px; }
   }
 }
