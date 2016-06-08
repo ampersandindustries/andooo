@@ -216,10 +216,12 @@ body.static_pages {
     .sponsors-silver img   { width: 150px; }
     .sponsors-friends img  { width: 120px; }
 
-    img.logo-c5           { padding-top: 10px; }
+    img.logo-c5           { padding: 10px 0; }
     img.logo-dev-bootcamp { width: 260px; padding-top: 20px; }
-    img.logo-etsy         { padding: 20px; }
+    img.logo-etsy         { padding: 20px; margin: 0 -5px; }
     img.logo-mailchimp    { margin: 15px 20px 15px 0; padding: 30px 5px 0; }
-    img.logo-omada        { width: 260px; margin-top: 20px; }
+    img.logo-omada        { width: 260px; padding: 5px 0; margin-top: 20px; }
+    img.logo-stripe       { width: 80px; }
+    img.logo-usertesting  { padding-top: 5px; margin: 10px 0 0 20px; }
   }
 }
