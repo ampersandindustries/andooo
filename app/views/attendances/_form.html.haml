@@ -48,7 +48,7 @@
     %small (required)
     %p
     - Attendance::DIETARY_OPTIONS.each do | option |
-      - checked = @attendance.dietary_restrictions.include?(option)
+      - checked = @attendance.dietary_restrictions ? @attendance.dietary_restrictions.include?(option) : false
       = f.check_box :dietary_restrictions, { :multiple => true, checked: checked }, option, nil
       = f.label :dietary_restrictions, { value: option }
       %br
