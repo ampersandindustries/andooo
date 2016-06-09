@@ -3,7 +3,9 @@
     %td
       %p
         Hi #{@user.name}!
-
+        - unless @user.is_scholarship
+          %p
+            Thank you for purchasing a ticket to AndConf for $325 on #{Date.today.strftime('%B %-d, %Y')}.
       %p
         You're all set for attending AndConf 2016! See you in August.
 
