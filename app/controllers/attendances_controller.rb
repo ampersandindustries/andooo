@@ -60,7 +60,7 @@ class AttendancesController < ApplicationController
     @user = current_user
 
     stripe_customer = Stripe::Customer.create(
-      email: params[:email],
+      email: current_user.email,
       source: params[:token]
     )
 
