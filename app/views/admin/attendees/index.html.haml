@@ -4,7 +4,13 @@
 - if @all_attendees.any?
   %h2 Attendees
   %ul
-    %li #{@all_attendees.count} registered attendees
+    %li #{@all_attendees.count} attendees
+    %li
+      #{@unregistered.count} unregistered
+      %ul
+        - @unregistered.each do |user|
+          %li
+            = "#{user.name} | #{user.email}"
 
   .mt-20
     = render partial: 'attendees', locals: { users: @all_attendees }
