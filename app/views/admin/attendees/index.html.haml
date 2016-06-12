@@ -4,10 +4,10 @@
 - if @all_attendees.any?
   %h2 Attendees
   %ul
+    %li #{@all_attendees.count} registered attendees
     %li
       %a{"data-toggle" => "collapse" , "href" => "#collapseUnregistered"} #{@unregistered.count} unregistered attendees <b class="caret"></b>
       %div.collapse.out#collapseUnregistered
-        %p IDs: #{@unregistered.pluck(:id)}
         %ul
           - @unregistered.each do |user|
             %li
