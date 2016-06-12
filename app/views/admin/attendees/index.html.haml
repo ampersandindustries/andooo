@@ -4,13 +4,14 @@
 - if @all_attendees.any?
   %h2 Attendees
   %ul
-    %li #{@all_attendees.count} attendees
     %li
-      #{@unregistered.count} unregistered
-      %ul
-        - @unregistered.each do |user|
-          %li
-            = "#{user.name} | #{user.email}"
+      %a{"data-toggle" => "collapse" , "href" => "#collapseUnregistered"} #{@unregistered.count} unregistered attendees <b class="caret"></b>
+      %div.collapse.out#collapseUnregistered
+        %p IDs: #{@unregistered.pluck(:id)}
+        %ul
+          - @unregistered.each do |user|
+            %li
+              = "#{user.name} <#{user.email}>"
 
   .mt-20
     = render partial: 'attendees', locals: { users: @all_attendees }
