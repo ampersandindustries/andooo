@@ -4,6 +4,7 @@ class Admin::AttendeesController < ApplicationController
   def index
     @all_attendees = User.all_attendees
     @unregistered  = User.has_not_confirmed_attendance
+    @housing_totals = Attendance.group(:sleeping_preference).count
 
     respond_to do |format|
       format.html
