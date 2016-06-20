@@ -9,6 +9,8 @@
       %th Sunday night?
       %th Coming
       %th Going
+      %th Housing
+      %th Housing Request
       %th Notes
   %tbody
     - users.each do |user|
@@ -23,6 +25,8 @@
         %td= attendance.staying_sunday_night
         %td= short_transit(attendance.transport_to_venue)
         %td= short_transit(attendance.transport_from_venue)
+        %td= short_housing(attendance.sleeping_preference)
+        %td= attendance.roommate_request
         %td
           = form_for :user, url: admin_save_membership_note_path, remote: true, html: { class: "js-membership-note js-membership-note-#{user.id}" } do |f|
             = f.hidden_field :id, value: user.id

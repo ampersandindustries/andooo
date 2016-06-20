@@ -18,6 +18,20 @@ module UsersHelper
     end
   end
 
+  def short_housing(housing)
+    if housing == "I prefer to be in all women-identified housing"
+      "Women"
+    elsif housing ==  "I prefer to be in all men-identified housing"
+      "Men"
+    elsif housing ==  "I prefer to be in all-gender housing"
+      "All-Gender"
+    elsif housing ==  "I have no preference"
+      "No Pref"
+    else
+      "Other"
+    end
+  end
+
   def dietary_restrictions_as_array(diet)
     diet.gsub(/[\[\]\"]/, "").split(",")
   end
