@@ -4,6 +4,7 @@ class Admin::AttendeesController < ApplicationController
   def index
     @all_attendees = User.all_attendees
     @unregistered  = User.has_not_confirmed_attendance
+    @users_in_limbo = User.joins(:attendances).where({ state: "applicant" })
     @housing_totals = Attendance.group(:sleeping_preference).count
 
     respond_to do |format|

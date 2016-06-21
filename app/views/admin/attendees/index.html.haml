@@ -12,6 +12,17 @@
             %li #{@all_attendees.where(is_scholarship: false).count} paid attendees
             %li #{@all_attendees.where(is_scholarship: true).count} scholarship, sponsor, or volunteer attendees
         %li
+          %a{"data-toggle" => "collapse" , "href" => "#collapseLimbo"}
+            #{@users_in_limbo.count} attendees are in setup limbo <b class="caret"></b>
+          %div.collapse.out#collapseLimbo
+            %p.mt-0
+              The following have completed step 1 of registration, but haven't finished step 2 (paying
+              or confirming their scholarship ticket):
+            %ul
+              - @users_in_limbo.each do |user|
+                %li
+                  = "#{user.name} <#{user.email}>"
+        %li
           %a{"data-toggle" => "collapse" , "href" => "#collapseUnregistered"} #{@unregistered.count} unregistered attendees <b class="caret"></b>
           %div.collapse.out#collapseUnregistered
             %ul
