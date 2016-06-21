@@ -18,7 +18,7 @@
   AndConf provides a free shuttle from downtown San Francisco to St. Dorothy's Rest, which is about 2.5 hours
   from downtown San Francisco in normal traffic. If you would rather coordinate carpooling with other attendees,
   there is a #{ link_to "carpool coordination Google doc", CARPOOL_DOC, target: "_blank"} and a #transportation
-  #{ link_to "Slack channel", "https://andconf.slack.com/messages/transportation/", target: "_blank"} to help you facilitate.
+  #{ link_to "Slack channel", TRANSIT_SLACK_CHANNEL, target: "_blank"} to help you facilitate.
 
 %p
   The carpool doc is public (but only easily findable with the link), so please keep that in mind when including your contact information.
@@ -35,6 +35,9 @@
   %b 10am on Monday, August 15th.
   We need to book our the shuttles in advance, so please choose wisely! The shuttle will drop off near a Bart station in downtown SF.
 
+%p
+  Need help with anything else transit-related? Email #{ mail_to TRANSPORTATION_EMAIL } or hit up the #{ link_to "Slack channel", TRANSIT_SLACK_CHANNEL, target: "_blank"}.
+
 %h3 Questions?
 
 %p
@@ -42,7 +45,10 @@
   #{ link_to "FAQ page", details_path }.
 
 %p
-  If that doesn't answer it, contact the team at #{ mail_to ATTEND_EMAIL }.
+  If your question is transit-related, email #{ mail_to TRANSPORTATION_EMAIL }.
+
+%p
+  Otherwise, you can contact the team at #{ mail_to ATTEND_EMAIL }.
 
 %h3 Cancellation Policy
 
