@@ -6,6 +6,7 @@ class Admin::AttendeesController < ApplicationController
     @unregistered  = User.has_not_confirmed_attendance
     @users_in_limbo = User.joins(:attendances).where({ state: "applicant" })
     @housing_totals = Attendance.group(:sleeping_preference).count
+    @sunday_night = Attendance.group(:staying_sunday_night).count
 
     respond_to do |format|
       format.html

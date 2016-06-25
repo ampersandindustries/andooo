@@ -2,7 +2,7 @@
   = javascript_include_tag :membership_note
 
 .row
-  .col-md-6
+  .col-md-5
     %h3 Attendee Totals
     - if @all_attendees.any?
       %ul
@@ -29,18 +29,24 @@
               - @unregistered.each do |user|
                 %li
                   = "#{user.name} <#{user.email}>"
-  .col-md-3
+  .col-md-2
     %h3
       Housing Totals
     %ul
     - @housing_totals.sort.each do |pref, count|
-      %li #{short_housing(pref)} - #{count}
+      %li #{short_housing(pref)}: #{count}
+  .col-md-2
+    %h3
+      Sunday night?
+    %ul
+    - @sunday_night.sort.each do |pref, count|
+      %li #{pref}: #{count}
   .col-md-3
     %h3
       Food Totals
     %ul
     - Attendance::DIETARY_OPTIONS.each do |pref|
-      %li #{pref} - #{Attendance.where('dietary_restrictions like ?', "%#{pref}%").count}
+      %li #{pref}: #{Attendance.where('dietary_restrictions like ?', "%#{pref}%").count}
 
 .mt-20
   = render partial: 'attendees', locals: { users: @all_attendees }
