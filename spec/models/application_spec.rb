@@ -78,4 +78,32 @@ describe Application do
       expect(application.rejectable?).to be_truthy
     end
   end
+
+  describe "#decline" do
+    subject { application.decline }
+
+    context "application is approved" do
+      let(:application) { create(:approved_application) }
+
+      it "sends the organizers a declined email" do
+        expect { subject }.to change(ActionMailer::Base.deliveries, :count).by(1)
+      end
+
+      it "doesn't change the user state" do
+        expect { subject }.to_not change { application.user.state }
+      end
+    end
+
+    context "application is confirmed" do
+      let(:application) { create(:confirmed_application) }
+
+      it "doesn't send the organizers a declined email" do
+        expect { subject }.to_not change(ActionMailer::Base.deliveries, :count)
+      end
+
+      it "returns the user to the applicant state" do
+        expect { subject }.to change { application.user.state }.from("attendee").to("applicant")
+      end
+    end
+  end
 end

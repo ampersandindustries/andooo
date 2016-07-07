@@ -55,6 +55,10 @@ class Application < ActiveRecord::Base
       ApplicationsMailer.declined(application).deliver_now
     end
 
+    after_transition confirmed: :declined do |application|
+      application.user.make_applicant
+    end
+
     event :submit do
       transition started: :submitted
     end
@@ -73,6 +77,7 @@ class Application < ActiveRecord::Base
 
     event :decline do
       transition approved: :declined
+      transition confirmed: :declined
     end
 
     state :started
