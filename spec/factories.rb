@@ -25,6 +25,10 @@ FactoryGirl.define do
       is_admin true
       state "application_reviewer"
     end
+
+    factory :visitor do
+      state "visitor"
+    end
   end
 
   factory :vote do

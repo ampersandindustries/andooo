@@ -26,15 +26,24 @@ describe User do
     expect(User.new.state).to eq('visitor')
   end
 
-  it 'should transition from visitor to applicant' do
-    user = User.new
-    user.username = 'sallyride'
-    user.email = 'cat@example.org'
-    user.save!
+  describe "#make_applicant" do
+    subject { applicant.make_applicant }
 
-    expect(user.state).to eq('visitor')
-    user.make_applicant!
-    expect(user.state).to eq('applicant')
+    context "new applicant" do
+      let(:applicant) { create(:visitor) }
+
+      it "should transition from visitor to applicant" do
+        expect { subject }.to change { applicant.state }.from("visitor").to("applicant")
+      end
+    end
+
+    context "attendee declines to attend" do
+      let(:applicant) { create(:attendee) }
+
+      it "should transition from attendee to applicant" do
+        expect { subject }.to change { applicant.state }.from("attendee").to("applicant")
+      end
+    end
   end
 
   describe "#make_attendee" do

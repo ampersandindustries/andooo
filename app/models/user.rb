@@ -60,6 +60,7 @@ class User < ActiveRecord::Base
   state_machine :state, initial: :visitor do
     event :make_applicant do
       transition visitor: :applicant
+      transition attendee: :applicant
     end
 
     event :make_attendee do
