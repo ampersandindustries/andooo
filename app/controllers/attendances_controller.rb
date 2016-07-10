@@ -1,5 +1,6 @@
 class AttendancesController < ApplicationController
   before_action :require_approved_applicant
+  before_action :check_if_attendance_changes_allowed, except: :details
 
   def new
     return redirect_to details_attendances_path if current_user.state == "attendee"
@@ -89,6 +90,13 @@ class AttendancesController < ApplicationController
   end
 
   private
+
+  def check_if_attendance_changes_allowed
+    if Configurable[:attendance_changes_allowed] == false
+      flash[:error] = "Sorry, you can no longer update your attendance details. Please email #{ATTEND_EMAIL} with any questions."
+      redirect_to root_path
+    end
+  end
 
   def go_to_payment_or_scholarship_page
     if current_user.is_scholarship?

@@ -1,16 +1,9 @@
 %h1 AndConf is going to be great!
 
-%p
-  %b You can update your food, transportation, or badge details #{ link_to "on this page", edit_attendances_path }
-  %b until late July.
-
-%h3 Slack
-
-%p
-  We'll be inviting you to the #{ link_to "AndConf Slack organization", SLACK_CHANNEL, target: "_blank"} soon!
-  Keep an eye out for an email from Slack with your invitation.
-  (We use Slack primarily for getting ready for AndConf, and we'll shut it down a couple
-  of weeks after the conference.)
+- if Configurable[:attendance_changes_allowed]
+  %p
+    %b You can update your food, transportation, or badge details #{ link_to "on this page", edit_attendances_path }
+    %b until #{Configurable[:attendance_updates_close_date]}.
 
 %h3 Travel
 
@@ -37,6 +30,12 @@
 
 %p
   Need help with anything else transit-related? Email #{ mail_to TRANSPORTATION_EMAIL } or hit up the #{ link_to "Slack channel", TRANSIT_SLACK_CHANNEL, target: "_blank"}.
+
+%h3 Slack
+
+%p
+  You should have gotten an invitation to the #{ link_to "AndConf Slack organization", SLACK_CHANNEL, target: "_blank"}.
+  We use Slack primarily for getting ready for AndConf, and we'll shut it down a couple of weeks after the conference.
 
 %h3 Questions?
 

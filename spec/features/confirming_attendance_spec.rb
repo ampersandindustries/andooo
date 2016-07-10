@@ -66,6 +66,16 @@ describe "confirming attendance to attend AndConf" do
       expect(applicant.reload.application.state).to eq "declined"
     end
   end
+
+  describe "when attendance details updating is turned off" do
+    before { Configurable[:attendance_changes_allowed] = false }
+
+    it "doesn't show the link to edit attendances" do
+      visit details_attendances_path
+
+      expect(page).not_to have_content "You can update your food, transportation, or badge details on this page"
+    end
+  end
 end
 
 def fill_in_the_deets

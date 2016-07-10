@@ -7,6 +7,17 @@ describe AttendancesController do
 
   let(:applicant) { create(:approved_application).user }
 
+  shared_examples_for "an action when attendance updates are turned off" do
+    before { Configurable[:attendance_changes_allowed] = false }
+
+    let(:params) { { attendance: { badge_name: "beep boop"} } }
+
+    it "redirects to the attendance details page with a flash" do
+      expect(subject).to redirect_to root_path
+      expect(flash[:error]).to eq "Sorry, you can no longer update your attendance details. Please email #{ATTEND_EMAIL} with any questions."
+    end
+  end
+
   context "logged in as an applicant" do
     before { login_as applicant }
 
@@ -40,6 +51,8 @@ describe AttendancesController do
           expect(subject).to redirect_to details_attendances_path
         end
       end
+
+      it_behaves_like "an action when attendance updates are turned off"
     end
 
     describe "PUT create" do
@@ -120,6 +133,8 @@ describe AttendancesController do
           expect(assigns[:attendance].errors.full_messages).to include("Gender can't be blank")
         end
       end
+
+      it_behaves_like "an action when attendance updates are turned off"
     end
 
     describe "GET edit" do
@@ -137,6 +152,8 @@ describe AttendancesController do
         subject
         expect(assigns[:attendance]).to eq attendance
       end
+
+      it_behaves_like "an action when attendance updates are turned off"
     end
 
     describe "PUT update" do
@@ -210,6 +227,8 @@ describe AttendancesController do
           expect(assigns[:attendance].errors.full_messages).to include("Gender can't be blank")
         end
       end
+
+      it_behaves_like "an action when attendance updates are turned off"
     end
 
     describe "GET payment_form" do
@@ -218,6 +237,8 @@ describe AttendancesController do
       it "renders the attendance page" do
         expect(subject).to render_template :payment_form
       end
+
+      it_behaves_like "an action when attendance updates are turned off"
     end
 
     describe "PUT pay" do
@@ -276,6 +297,8 @@ describe AttendancesController do
           expect { subject }.not_to change { applicant.state }.from("applicant")
         end
       end
+
+      it_behaves_like "an action when attendance updates are turned off"
     end
 
     describe "GET scholarship_form" do
@@ -284,6 +307,8 @@ describe AttendancesController do
       it "renders the attendance page" do
         expect(subject).to render_template :scholarship_form
       end
+
+      it_behaves_like "an action when attendance updates are turned off"
     end
 
     describe "PUT confirm_scholarship" do
@@ -323,6 +348,8 @@ describe AttendancesController do
           expect(subject).to redirect_to details_attendances_path
         end
       end
+
+      it_behaves_like "an action when attendance updates are turned off"
     end
 
     describe "PUT decline" do
@@ -350,6 +377,24 @@ describe AttendancesController do
 
         it "redirects to root" do
           expect(subject).to redirect_to root_path
+        end
+      end
+
+      it_behaves_like "an action when attendance updates are turned off"
+    end
+
+    describe "GET details" do
+      subject { get :details }
+
+      it "render the template" do
+        expect(subject).to render_template "details"
+      end
+
+      context "when attendance updates are turned off" do
+        before { Configurable[:attendance_changes_allowed] = false }
+
+        it "still renders the template" do
+          expect(subject).to render_template "details"
         end
       end
     end
