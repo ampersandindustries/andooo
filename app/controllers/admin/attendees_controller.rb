@@ -7,7 +7,7 @@ class Admin::AttendeesController < ApplicationController
     @users_in_limbo = User.joins(:attendances).where({ state: "applicant" })
     @housing_totals = Attendance.group(:sleeping_preference).count
     @sunday_night = Attendance.group(:staying_sunday_night).count
-
+    @bus_totals = Attendance.group(:transport_to_venue).count
     respond_to do |format|
       format.html
       format.json { render json: @all_attendees.as_json }
