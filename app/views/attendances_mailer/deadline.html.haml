@@ -1,20 +1,19 @@
 %p Hello, #{@attendance.user.name}!
 
 %p
-  We need to book shuttle buses and send final housing details to St. Dorothy's Rest, so we're closing
+  AndConf is coming up so soon, and we're getting ready to book the shuttle buses and send
+  final housing details to St. Dorothy's Rest! Since those number need to be finalized, we're closing
   down the form with all the details you provided when signing up for AndConf.
 
 %p
-  Please double check your responses below, and
+  Please double check your excellent responses below, and
   %b
     head over to #{ link_to "the attendance registration details form", edit_attendances_url }
     by #{Configurable[:attendance_updates_close_date]} if you need to make any updates.
-
-%p
   After #{Configurable[:attendance_updates_close_date]}, if something comes up, please reply to this email for help.
 
-
 - if @attendance.dietary_additional_info.present?
+  %b Super important note about food:
   %p
     You listed "#{@attendance.dietary_additional_info}" as an additional dietary need.
     Meals at St. Dorothy's Rest are served buffet-style, usually with common dietary-restriction sensitive
@@ -24,6 +23,8 @@
   %b
     If you don't think those options will accommodate your dietary restrictions,
     and would like to bring your own food, please reply to this email and we can assign you to a house with a kitchen and fridge.
+
+= render "layouts/mailer_footer"
 
 %hr
 
