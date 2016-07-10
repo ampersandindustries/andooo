@@ -2,7 +2,7 @@
   = javascript_include_tag :membership_note
 
 .row
-  .col-md-5
+  .col-md-3
     %h3 Attendee Totals
     - if @all_attendees.any?
       %ul
@@ -41,6 +41,12 @@
     %ul
     - @sunday_night.sort.each do |pref, count|
       %li #{pref}: #{count}
+  .col-md-2
+    %h3
+      Transportation?
+    %ul
+    - @bus_totals.sort.each do |pref, count|
+      %li #{short_transit(pref)}: #{count}
   .col-md-3
     %h3
       Food Totals
