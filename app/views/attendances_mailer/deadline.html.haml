@@ -1,0 +1,61 @@
+%p Hello, #{@attendance.user.name}!
+
+%p
+  We need to book shuttle buses and send final housing details to St. Dorothy's Rest, so we're closing
+  down the form with all the details you provided when signing up for AndConf.
+
+%p
+  Please double check your responses below, and
+  %b
+    head over to #{ link_to "the attendance registration details form", edit_attendances_url }
+    by #{Configurable[:attendance_updates_close_date]} if you need to make any updates.
+
+%p
+  After #{Configurable[:attendance_updates_close_date]}, if something comes up, please reply to this email for help.
+
+
+- if @attendance.dietary_additional_info.present?
+  %p
+    You listed "#{@attendance.dietary_additional_info}" as an additional dietary need.
+    Meals at St. Dorothy's Rest are served buffet-style, usually with common dietary-restriction sensitive
+    foods separated out so you can pick what works for you.
+    (For example, a build your own taco bar, or options of wheat or gluten-free pasta where you pick your own sauce.)
+    Every meal will have options for vegetarian, vegan, lactose-free, and gluten-intolerant diets.
+  %b
+    If you don't think those options will accommodate your dietary restrictions,
+    and would like to bring your own food, please reply to this email and we can assign you to a house with a kitchen and fridge.
+
+%hr
+
+%h3 Your Details
+
+%h4 Food & Housing Deets
+
+%ul.mt-10
+  %li Dietary Restrictions: #{dietary_restrictions_as_array(@attendance.dietary_restrictions).join(", ")}
+  %li Staying over Sunday night?: #{@attendance.staying_sunday_night}
+  %li Gender: #{@attendance.gender}
+  %li Sleeping Preference: #{@attendance.sleeping_preference}
+  - if @attendance.roommate_request.present?
+    %li
+      Roommate Request: #{@attendance.roommate_request}
+
+- if @attendance.roommate_request.present?
+  %p
+    For roommate requests of 1-2 people whose sleeping preferences align, we'll make our best effort
+    to assign you to the same building at SDR.
+
+%h4 Getting Places
+
+%ul.mt-10
+  %li You're signed up for #{short_sentence_transit(@attendance.transport_to_venue)} to AndConf
+  %li You're signed up for #{short_sentence_transit(@attendance.transport_from_venue)} back to SF
+
+
+%h4 Your Badge Will Say These Things:
+
+%ul.mt-10
+  %li Name: #{@attendance.badge_name}
+  %li Pronouns: #{@attendance.pronouns}
+  - if @attendance.twitter_handle
+    %li Twitter Handle: #{@attendance.twitter_handle}
