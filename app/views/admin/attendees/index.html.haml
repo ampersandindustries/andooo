@@ -43,9 +43,14 @@
       %li #{pref}: #{count}
   .col-md-2
     %h3
-      Transportation?
+      Friday Transit?
     %ul
-    - @bus_totals.sort.each do |pref, count|
+    - @transport_to_venue_totals.sort.each do |pref, count|
+      %li #{short_transit(pref)}: #{count}
+    %h3
+      Return Transit?
+    %ul
+    - @transport_from_venue_totals.sort.each do |pref, count|
       %li #{short_transit(pref)}: #{count}
   .col-md-3
     %h3
