@@ -77,7 +77,7 @@ def fill_in_the_deets
   fill_in "Additional dietary restrictions or concerns (e.g. needing access to a fridge to store medication)", with: "Need access to a kitchen"
   fill_in "Twitter Handle", with: "@fun_times"
   select "I have no preference", from: "Sleeping Preferences"
-  select "Maybe", from: "Are you staying at St. Dorothy's Rest on Sunday night?"
+  select "Yes", from: "Are you staying at St. Dorothy's Rest on Sunday night?"
   select "No", from: "Are you flying into the Bay Area for AndConf?"
   select "I will be taking the free shuttle leaving downtown San Francisco on FRIDAY, August 12th at 3pm", from: "Transportation to St. Dorothy's Rest"
   select "I will be driving myself or organizing carpooling via the doc or #transportation slack channel", from: "Transportation from St. Dorothy's Rest"

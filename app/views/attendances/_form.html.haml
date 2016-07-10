@@ -95,7 +95,7 @@
     .small.mb-5
       The conference program ends after dinner on Sunday, but staying over on Sunday night is included
       in the ticket cost in case you want to head home Monday morning. We recommend it if you can swing it!
-    = f.select :staying_sunday_night, ["-"] + Attendance::STAYING_OVER_OPTIONS
+    = f.select :staying_sunday_night, Attendance::STAYING_OVER_OPTIONS
 
   %hr
 

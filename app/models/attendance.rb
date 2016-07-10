@@ -32,7 +32,7 @@ class Attendance < ActiveRecord::Base
     "I have no preference",
     "Other — please email #{ATTEND_EMAIL} with accommodation needs"
   ]
-  STAYING_OVER_OPTIONS = %w(Yes No Maybe)
+  STAYING_OVER_OPTIONS = %w(No Yes)
   FLYING_IN_OPTIONS = %w(Yes No)
   TRANSPORT_TO_VENUE_OPTIONS = ["I will be taking the free shuttle leaving downtown San Francisco on FRIDAY, August 12th at 3pm",
     "I will be driving myself or organizing carpooling via the doc or #transportation slack channel"]
