@@ -1,0 +1,25 @@
+%b
+  You've signed up for
+  = short_sentence_transit(attendance.transport_to_venue)
+  to AndConf, and
+  = short_sentence_transit(attendance.transport_from_venue)
+  back to San Francisco.
+
+- if attendance.transport_to_venue.include?("shuttle")
+  %p
+    We'll let you know the specific shuttle pick up location once we've
+    rented some metered spots from the city. It'll be within a few blocks of a downtown Bart station.
+
+- if attendance.transport_from_venue.include?("shuttle")
+  %p
+    The return shuttles will drop off near a Bart station in downtown SF.
+
+- if attendance.transport_to_venue.include?("driving") || attendance.transport_from_venue.include?("driving")
+  %p
+    St. Dorothy's Rest is about 2.5 hours from downtown San Francisco in normal traffic.
+    There is a #{ link_to "carpool coordination Google doc", CARPOOL_DOC, target: "_blank"} and a #transportation
+    #{ link_to "Slack channel", TRANSIT_SLACK_CHANNEL, target: "_blank"} to help you facilitate.
+    The carpool doc is public (but only easily findable with the link), so please keep that in mind when including your contact information.
+
+%p
+  Need help with anything else transit-related? Email #{ mail_to TRANSPORTATION_EMAIL } or hit up the #{ link_to "Slack channel", TRANSIT_SLACK_CHANNEL, target: "_blank"}.

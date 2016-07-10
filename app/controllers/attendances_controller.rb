@@ -35,6 +35,7 @@ class AttendancesController < ApplicationController
   end
 
   def details
+    @attendance = Attendance.where(user: current_user, event_id: Event.last.id).first
   end
 
   def scholarship_form

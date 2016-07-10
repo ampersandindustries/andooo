@@ -18,6 +18,18 @@ module UsersHelper
     end
   end
 
+  def short_sentence_transit(transit)
+    if transit == "I will be taking the free shuttle leaving downtown San Francisco on FRIDAY, August 12th at 3pm"
+      "the 3pm Friday shuttle"
+    elsif transit == "I will be taking the free shuttle leaving St. Dorothy's Rest on SUNDAY, August 14th at 8pm, returning to downtown San Francisco"
+      "the 8pm Sunday shuttle"
+    elsif transit == "I will be taking the free shuttle leaving St. Dorothy's Rest on MONDAY, August 15th at 10am, returning to downtown San Francisco"
+      "the 10am Monday shuttle"
+    else
+      "driving or carpooling"
+    end
+  end
+
   def short_housing(housing)
     if housing == "I prefer to be in all women-identified housing"
       "Women"

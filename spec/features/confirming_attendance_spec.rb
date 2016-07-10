@@ -68,7 +68,11 @@ describe "confirming attendance to attend AndConf" do
   end
 
   describe "when attendance details updating is turned off" do
-    before { Configurable[:attendance_changes_allowed] = false }
+    before do
+      create :attendance, user: applicant
+      applicant.make_attendee!
+      Configurable[:attendance_changes_allowed] = false
+    end
 
     it "doesn't show the link to edit attendances" do
       visit details_attendances_path
