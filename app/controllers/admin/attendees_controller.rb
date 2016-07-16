@@ -11,7 +11,8 @@ class Admin::AttendeesController < ApplicationController
     @transport_from_venue_totals = Attendance.group(:transport_from_venue).count
     respond_to do |format|
       format.html
-      format.json { render json: @all_attendees.as_json }
+      format.json { render json: @all_attendees, include: :attendances }
+      format.csv { send_data Attendance.to_csv_with_account_details }
     end
   end
 

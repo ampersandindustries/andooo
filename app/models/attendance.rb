@@ -40,4 +40,21 @@ class Attendance < ActiveRecord::Base
 "I will be taking the free shuttle leaving St. Dorothy's Rest on MONDAY, August 15th at 10am, returning to downtown San Francisco",
 "I will be driving myself or organizing carpooling via the doc or #transportation slack channel"]
 
+  def self.to_csv_with_account_details(options = {})
+    CSV.generate(options) do |csv|
+      extra_headers = ["name", "email",  "gender", "membership_note", "travel_stipend", "is_scholarship"]
+      csv << column_names + extra_headers
+      Event.last.attendances.each do |attendance|
+        extra_fields = [
+          attendance.user.name,
+          attendance.user.email,
+          attendance.user.gender,
+          attendance.user.membership_note,
+          attendance.user.travel_stipend,
+          attendance.user.is_scholarship,
+        ]
+        csv << attendance.attributes.values_at(*column_names) + extra_fields
+      end
+    end
+  end
 end
