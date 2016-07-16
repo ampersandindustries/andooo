@@ -201,6 +201,7 @@ body.static_pages {
     h3 {
       text-align: center;
       font-size: 2rem;
+      padding-top: 20px;
     }
     div {
       text-align: center;
@@ -218,10 +219,21 @@ body.static_pages {
 
     img.logo-c5           { padding: 10px 0; }
     img.logo-dev-bootcamp { width: 260px; padding-top: 20px; }
-    img.logo-etsy         { padding: 20px; margin: 0 -5px; }
     img.logo-mailchimp    { margin: 15px 20px 15px 0; padding: 30px 5px 0; }
     img.logo-omada        { width: 260px; padding: 5px 0; margin-top: 20px; }
     img.logo-stripe       { width: 80px; }
-    img.logo-usertesting  { padding-top: 5px; margin: 10px 0 0 20px; }
+
+    @media screen and (min-width: 42em) {
+      img.logo-etsy         { padding: 20px; margin: 0 -5px; }
+      img.logo-usertesting  { padding-top: 5px; margin: 10px 0 0 20px; }
+    }
+
+    @media screen and (max-width: 42em) {
+      img.logo-c5           { padding: 0; }
+      img.logo-etsy         { padding: 0 20px; }
+      img.logo-usertesting  { margin: 20px 0; }
+      img.logo-actblue      { margin: 20px 0; }
+      img.logo-open-news    { margin: 20px 0; }
+    }
   }
 }
