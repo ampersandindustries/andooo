@@ -32,4 +32,7 @@ class AttendancesMailerPreview < ActionMailer::Preview
     AttendancesMailer.transportation_confirmation(attendance)
   end
 
+  def what_to_bring
+    AttendancesMailer.what_to_bring(Attendance.first)
+  end
 end
