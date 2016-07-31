@@ -57,4 +57,20 @@ class Attendance < ActiveRecord::Base
       end
     end
   end
+
+  def driving_to_sdr?
+    transport_to_venue == "I will be driving myself or organizing carpooling via the doc or #transportation slack channel"
+  end
+
+  def friday_shuttle?
+    transport_to_venue == "I will be taking the free shuttle leaving downtown San Francisco on FRIDAY, August 12th at 3pm"
+  end
+
+  def sunday_shuttle?
+    transport_from_venue == "I will be taking the free shuttle leaving St. Dorothy's Rest on SUNDAY, August 14th at 8pm, returning to downtown San Francisco"
+  end
+
+  def monday_shuttle?
+    transport_from_venue == "I will be taking the free shuttle leaving St. Dorothy's Rest on MONDAY, August 15th at 10am, returning to downtown San Francisco"
+  end
 end

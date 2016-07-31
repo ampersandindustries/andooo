@@ -1,0 +1,97 @@
+%p Hello, #{@attendance.user.name}!
+
+%p
+  AndConf is fast approaching and we’d like to share some final transportation details with you!
+
+- if @attendance.driving_to_sdr?
+  %p
+    %b
+      You'll be driving yourself or carpooling to AndConf.
+    You can find directions to St. Dorothy’s Rest
+    #{ link_to "on their website", "http://stdorothysrest.org/about-us/directions/" }.
+
+  %p
+    %b Registration on Friday starts at 5:30pm and ends at 7pm.
+    This will allow you to get settled into your bunk, eat dinner, and enjoy a round
+    of informative and often hilarious lightning talks.
+  
+  %p
+    If you arrive after 7pm, we can only accommodate late check in until 9pm.
+
+- if @attendance.friday_shuttle?
+  %p
+    %b
+      You'll be joining us on the bus leaving San Francisco on Friday at 3pm.
+
+  %p
+    The bus will pick up at 555 Howard St, San Francisco, CA 95104. Google Maps &
+    #{ link_to "http://bart.gov", "http://bart.gov" } have reliable transit directions.
+    If you have any issues the day of, you can reach our transportation coordinator
+    #{ Configurable[:transit_coordinator_name] } at #{ Configurable[:transit_coordinator_phone] }, but
+    planning on arriving a few minutes early is eminently responsible.
+
+- if @attendance.sunday_shuttle?
+  %p
+    %b
+      You'll be joining us on the bus leaving St. Dorothy's Rest on Sunday at 8pm.
+
+  %p
+    The bus will drop off by the Westfield Mall at 865 Market St, San Francisco, CA 94103.
+
+- if @attendance.monday_shuttle?
+  %p
+    %b
+      You'll be joining us on the bus leaving St. Dorothy's Rest on Monday at 10am.
+
+  %p
+    The bus will drop off by the Westfield Mall at 865 Market St, San Francisco, CA 94103.
+
+%p
+  St. Dorothy's Rest is about 2.5 hours from downtown San Francisco in normal traffic.
+  You can email transportation@andconf.io or join us in the
+  #{ link_to "#transportation Slack channel", "http://andconf.slack.com" } with any questions.
+
+%p
+  %b
+    And now a message from two of our lovely sponsors, Etsy and NoRedInk.
+    Thank you for making AndConf possible!
+
+%hr
+
+%p
+  %b Etsy
+  is proud to sponsor AndConf! A few of our very own will be in attendance,
+  so be sure to say hi! For those unfamiliar, Etsy is a marketplace where people
+  around the world connect, both online and offline, to make, sell and buy unique goods.
+
+%p
+  We're committed to diversity in the workplace and we're proud to be a certified
+  B-Corporation, which means we adhere to rigorous standards and use our business
+  power to solve social and environmental problems. Our Etsy Engineering team is
+  the author of #{ link_to "CodeAsCraft.com", "https://codeascraft.com/", target: "_blank" },
+  a blog dedicated to our collective experience building and running
+  #{ link_to "Etsy.com", "https://www.etsy.com/", target: "_blank" }.
+
+%hr
+
+%p
+  %b NoRedInk
+  is happy to sponsor AndConf for the first time! As a group of people who are committed
+  to being open, honest, and good to each other, we’re thrilled to be able to support a conference
+  that provides a safe space for participants to learn and to share.
+
+%p
+  We’re an ed-tech company on a mission to unlock every writer’s potential. We want to help
+  teachers empower students to express themselves, to convey their ideas, to argue, to engage,
+  and to communicate. Our team may be small (only 15 engineers!), but NoRedInk is used by 1 in
+  3 school districts in the US, and students have answered over 1 billion questions with us.
+
+%p
+  If you’re interested in learning more about the team, visit
+  #{ link_to "https://www.noredink.com/about/team", "https://www.noredink.com/about/team", target: "_blank" }.
+  We’d love to add you to that group picture at the top of the page! You can learn more about
+  what it’s like working here through a blog post one of our awesome engineers, Hardy Jones,
+  #{ link_to "wrote about his onboarding", "http://tech.noredink.com/post/143787279069/on-boarding-as-a-new-remote-engineer-think-about", target: "_blank" }.
+%hr
+
+= render "layouts/mailer_footer"
