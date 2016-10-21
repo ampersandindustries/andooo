@@ -35,12 +35,3 @@ $(document).ready(function () {
     ]
   })
 });
-
-// Redirector app doesn't always work, so auto-redirect to SSL if someone manages
-// to visit http://andconf.io. :'(
-if (
-  window.location.protocol === 'http:' &&
-  window.location.hostname.indexOf("andconf.io") > -1
-) {
-  window.location.href = window.location.href.replace(/^http:/, 'https:')
-}
